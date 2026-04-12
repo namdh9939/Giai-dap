@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trợ lý tư vấn xây nhà dành cho học viên khóa học Xây Nhà Lần Đầu. Giải đáp 5 vấn đề quan trọng: Hợp đồng, Pháp lý, Báo giá, Tiêu chuẩn thi công, Thắc mắc.">
+  <title>Trợ Lý Xây Nhà | Khóa Học Xây Nhà Lần Đầu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ====== REGISTRATION GATE ====== -->
+  <div id="register-screen" class="register-screen">
+    <div class="register-card">
+      <div class="register-header">
+        <div class="register-logo">🏠</div>
+        <h1 class="register-title">Trợ Lý Xây Nhà</h1>
+        <p class="register-desc">Vui lòng điền đầy đủ thông tin bên dưới để sử dụng công cụ tư vấn dành riêng cho học viên.</p>
+      </div>
+
+      <form id="register-form" class="register-form" novalidate>
+        <!-- Họ và tên -->
+        <div class="form-group">
+          <label for="input-name" class="form-label">Họ và tên</label>
+          <input type="text" id="input-name" class="form-input" placeholder="VD: Nguyễn Văn A" required autocomplete="name">
+          <span class="form-error" id="error-name"></span>
+        </div>
+
+        <!-- Số điện thoại -->
+        <div class="form-group">
+          <label for="input-phone" class="form-label">Số điện thoại</label>
+          <input type="tel" id="input-phone" class="form-input" placeholder="VD: 0901 234 567" required autocomplete="tel">
+          <span class="form-error" id="error-phone"></span>
+        </div>
+
+        <!-- Thành viên khóa học -->
+        <div class="form-group">
+          <label for="input-course" class="form-label">Thành viên khóa học</label>
+          <select id="input-course" class="form-input form-select" required>
+            <option value="" disabled selected>— Chọn khóa học —</option>
+            <option value="tu-kiem-soat">Tự Kiểm Soát Xây Nhà</option>
+            <option value="xay-nha-lan-dau">Xây Nhà Lần Đầu</option>
+          </select>
+          <span class="form-error" id="error-course"></span>
+        </div>
+
+        <!-- Lớp học (chỉ hiện khi chọn Tự Kiểm Soát) -->
+        <div class="form-group form-group-class hidden" id="class-group">
+          <label for="input-class" class="form-label">Lớp học đã tham gia</label>
+          <input type="text" id="input-class" class="form-input" placeholder="VD: K15">
+          <span class="form-error" id="error-class"></span>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" id="btn-submit" class="form-submit">
+          Bắt đầu sử dụng
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ====== CHAT APP (ẩn cho đến khi đăng ký) ====== -->
+  <div id="app" class="app-container hidden">
+
+    <!-- ====== SIDEBAR — Desktop only ====== -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">🏠</div>
+        <h2 class="sidebar-title">Trợ Lý Xây Nhà</h2>
+        <p class="sidebar-subtitle">Công cụ tư vấn dành cho học viên</p>
+      </div>
+      <nav class="sidebar-nav">
+        <p class="sidebar-nav-label">Chủ đề tư vấn</p>
+        <div id="sidebar-topics" class="sidebar-topics">
+          <!-- Topic buttons rendered by JS -->
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <p class="sidebar-footer-text">Khóa học Xây Nhà Lần Đầu</p>
+      </div>
+    </aside>
+
+    <!-- ====== CHAT PANEL ====== -->
+    <div class="chat-panel">
+      <!-- Header -->
+      <header id="app-header" class="chat-header">
+        <div class="header-content">
+          <div class="header-avatar">
+            <span class="avatar-icon">🏠</span>
+            <span class="status-dot"></span>
+          </div>
+          <div class="header-info">
+            <h1 class="header-title">Trợ Lý Xây Nhà</h1>
+            <p id="header-subtitle" class="header-subtitle">Khóa học Xây Nhà Lần Đầu</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Chat Messages Area -->
+      <main id="chat-messages" class="chat-messages" role="log" aria-live="polite" aria-label="Khu vực tin nhắn">
+        <!-- Messages will be injected here by JS -->
+      </main>
+
+      <!-- Quick Replies Area -->
+      <section id="quick-replies" class="quick-replies" aria-label="Lựa chọn nhanh">
+        <!-- Quick reply buttons will be injected here by JS -->
+      </section>
+
+      <!-- Typing Indicator -->
+      <div id="typing-indicator" class="typing-indicator hidden" aria-label="Trợ lý đang soạn tin">
+        <div class="typing-avatar">🏠</div>
+        <div class="typing-bubble">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+
+      <!-- Chat Input Bar -->
+      <div id="chat-input-bar" class="chat-input-bar">
+        <input type="text" id="chat-input" class="chat-input" placeholder="Nhập câu hỏi của bạn..." autocomplete="off">
+        <button id="chat-send-btn" class="chat-send-btn" aria-label="Gửi tin nhắn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
