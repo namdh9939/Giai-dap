@@ -545,45 +545,45 @@ async function handleSendMessage(predefinedQuery = null) {
   clearQuickReplies();
   showTyping();
 
-  let response;
+  let response = '';
   let relevantChunks = [];
 
   try {
     if (currentFile && currentFile.base64) {
-      // === ẢNH: Gửi Gemini Vision ===
       const mimeType = `image/${currentFile.type === 'jpg' ? 'jpeg' : currentFile.type}`;
       response = await analyzeImageWithGemini(currentFile.base64, mimeType, text);
       if (!response) response = "Dạ, em không thể phân tích hình ảnh lúc này. Anh/chị thử mô tả bằng văn bản giúp em nhé.";
     } else if (currentFile && currentFile.textContent) {
-      // === TÀI LIỆU: Trích xuất text → gửi AI cùng câu hỏi ===
       relevantChunks = searchRelevantChunks(text || currentFile.name);
       const fakeChunk = { source: currentFile.name, page: 1, content: currentFile.textContent, keywords: [], images: [] };
       response = await askAI(text || `Phân tích tài liệu "${currentFile.name}"`, [fakeChunk, ...relevantChunks]);
     } else {
-      // === Chat thường ===
       relevantChunks = searchRelevantChunks(text);
       response = await askAI(text, relevantChunks);
     }
   } catch (err) {
     console.error('Chat error:', err);
     response = "Dạ, có lỗi xảy ra. Anh/chị thử hỏi lại nhé.";
-  }
+  } finally {
+    // LUÔN reset trạng thái dù lỗi hay không
+    hideTyping();
+    if (response) addBotMessage(response);
 
-  hideTyping();
-  addBotMessage(response);
+    // Hình ảnh minh họa cho tiêu chuẩn thi công
+    try {
+      if (relevantChunks.length > 0 && (currentTopic === 'tieu-chuan' || (text && text.match(/tiêu chuẩn|nghiệm thu|bê tông|cốt thép|tường xây|ống nước|điện/i)))) {
+        renderRelatedImages(relevantChunks);
+      }
+    } catch (e) { /* ignore */ }
 
-  // Gửi kèm hình ảnh minh họa nếu tiêu chuẩn thi công
-  if (relevantChunks.length > 0 && (currentTopic === 'tieu-chuan' || (text && text.match(/tiêu chuẩn|nghiệm thu|bê tông|cốt thép|tường xây|ống nước|điện/i)))) {
-    renderRelatedImages(relevantChunks);
+    // Hiện lại nút câu hỏi gợi ý
+    if (currentTopic) {
+      renderQuestionButtons(currentTopic);
+    } else {
+      renderTopicButtons();
+    }
+    isProcessing = false;
   }
-
-  // Hiện lại nút câu hỏi gợi ý
-  if (currentTopic) {
-    renderQuestionButtons(currentTopic);
-  } else {
-    renderTopicButtons();
-  }
-  isProcessing = false;
 }
 
 function renderCitations(chunks) {
