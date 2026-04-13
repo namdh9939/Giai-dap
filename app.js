@@ -566,12 +566,39 @@ function renderQuestionButtons(topicKey) {
   quickReplies.appendChild(backBtn);
 }
 
-// Danh sách tài liệu tham khảo (hiển thị trên sidebar)
+// Danh sách tài liệu tham khảo (từ thư mục XÂY NHÀ LẦN ĐẦU.COM)
 const REFERENCE_DOCS = [
-  { icon: "📘", name: "Quy chuẩn kiểm tra — Nhà thầu", file: "Quy chuẩn kiểm tra_nhà thầu.pdf" },
-  { icon: "📗", name: "Quy chuẩn thi công — Chủ đầu tư", file: "Quy chuẩn thi công_cđt.pdf" },
-  { icon: "📿", name: "Nghi lễ cúng Động thổ", file: "Cúng động thổ.pdf" },
-  { icon: "📿", name: "Cúng Động thổ (Mượn tuổi)", file: "Cúng động thổ (mượn tuổi).pdf" }
+  { icon: "📋", group: "Checklist", items: [
+    "Checklist kiểm tra công việc xây nhà",
+    "Các giai đoạn CĐT cần có mặt kịp thời",
+    "Kiểm tra hồ sơ thiết kế",
+    "Đánh giá & Lựa chọn nhà thầu Xây Dựng",
+    "Đánh giá & Lựa chọn Thiết Kế"
+  ]},
+  { icon: "📝", group: "Hợp đồng", items: [
+    "HĐ thi công phần thô & NCHT",
+    "HĐ thiết kế",
+    "HĐ thiết kế nội thất",
+    "HĐ cung cấp vật tư",
+    "HĐ cung ứng vật tư hoàn thiện",
+    "HĐ nhà thầu phụ 2025",
+    "Phụ lục HĐ đá hoa cương",
+    "Phụ lục HĐ sắt",
+    "Biên bản làm việc"
+  ]},
+  { icon: "💰", group: "Tiền & Dự toán", items: [
+    "Dự toán NCM",
+    "Dự trù ngân sách xây nhà",
+    "Phụ lục HĐ (báo giá → phụ lục)"
+  ]},
+  { icon: "📿", group: "Phong thủy", items: [
+    "Cúng động thổ",
+    "Cúng động thổ (mượn tuổi)",
+    "Cúng nhập trạch"
+  ]},
+  { icon: "🛒", group: "Khác", items: [
+    "Nhóm mua vật tư"
+  ]}
 ];
 
 function renderSidebar() {
@@ -597,13 +624,18 @@ function renderDocsPopup() {
   if (!docsContainer) return;
   docsContainer.innerHTML = '';
   REFERENCE_DOCS.forEach(doc => {
-    const item = document.createElement('div');
-    item.className = 'docs-popup-item';
-    item.innerHTML = `
-      <span class="docs-popup-item-icon">${doc.icon}</span>
-      <span class="docs-popup-item-name" title="${doc.file}">${doc.name}</span>
-    `;
-    docsContainer.appendChild(item);
+    // Group header
+    const groupEl = document.createElement('div');
+    groupEl.className = 'docs-popup-group';
+    groupEl.innerHTML = `<div class="docs-popup-group-title">${doc.icon} ${doc.group}</div>`;
+    // Items
+    doc.items.forEach(name => {
+      const item = document.createElement('div');
+      item.className = 'docs-popup-item';
+      item.innerHTML = `<span class="docs-popup-item-name" title="${name}">${name}</span>`;
+      groupEl.appendChild(item);
+    });
+    docsContainer.appendChild(groupEl);
   });
 }
 
