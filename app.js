@@ -392,80 +392,107 @@ function checkExistingUser() {
 // =============================================
 let pendingFile = null; // { name, type, data, textContent, base64 }
 
-function setupFileUpload() {
-  const fileInput = document.getElementById('file-upload');
-  const btnAttach = document.getElementById('btn-attach');
+// Xử lý 1 file (dùng chung cho input, drag-drop, paste)
+async function processFile(file) {
   const preview = document.getElementById('file-preview');
   const previewName = document.getElementById('file-preview-name');
   const previewIcon = document.getElementById('file-preview-icon');
+
+  if (!file) return;
+  if (file.size > 10 * 1024 * 1024) {
+    addBotMessage('Dạ, file quá lớn (tối đa 10MB). Anh/chị chọn file nhỏ hơn nhé.');
+    return;
+  }
+
+  const ext = file.name.split('.').pop().toLowerCase();
+  const iconMap = { pdf: '📄', xlsx: '📊', xls: '📊', docx: '📝', doc: '📝', jpg: '🖼️', jpeg: '🖼️', png: '🖼️', gif: '🖼️', webp: '🖼️' };
+  previewIcon.textContent = iconMap[ext] || '📎';
+  previewName.textContent = file.name;
+  preview.classList.remove('hidden');
+
+  pendingFile = { name: file.name, type: ext, data: file, textContent: null, base64: null };
+
+  try {
+    if (file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = () => { if (pendingFile) pendingFile.base64 = reader.result.split(',')[1]; };
+      reader.readAsDataURL(file);
+    } else if (ext === 'pdf') {
+      const arrayBuf = await file.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({ data: arrayBuf }).promise;
+      let text = '';
+      for (let i = 1; i <= Math.min(pdf.numPages, 20); i++) {
+        const page = await pdf.getPage(i);
+        const content = await page.getTextContent();
+        text += content.items.map(item => item.str).join(' ') + '\n';
+      }
+      pendingFile.textContent = text.slice(0, 8000);
+    } else if (ext === 'xlsx' || ext === 'xls') {
+      const arrayBuf = await file.arrayBuffer();
+      const wb = XLSX.read(arrayBuf, { type: 'array' });
+      let text = '';
+      wb.SheetNames.forEach(name => { text += `[${name}]\n` + XLSX.utils.sheet_to_csv(wb.Sheets[name]) + '\n'; });
+      pendingFile.textContent = text.slice(0, 8000);
+    } else if (ext === 'docx' || ext === 'doc') {
+      const arrayBuf = await file.arrayBuffer();
+      const result = await mammoth.extractRawText({ arrayBuffer: arrayBuf });
+      pendingFile.textContent = result.value.slice(0, 8000);
+    }
+  } catch (err) {
+    console.warn('File parse error:', err);
+    if (pendingFile) pendingFile.textContent = `[Không thể đọc file ${file.name}]`;
+  }
+}
+
+function clearPendingFile() {
+  pendingFile = null;
+  document.getElementById('file-upload').value = '';
+  document.getElementById('file-preview').classList.add('hidden');
+}
+
+function setupFileUpload() {
+  const fileInput = document.getElementById('file-upload');
+  const btnAttach = document.getElementById('btn-attach');
   const previewRemove = document.getElementById('file-preview-remove');
+  const chatPanel = document.querySelector('.chat-panel');
 
+  // 1. Nút đính kèm
   btnAttach.addEventListener('click', () => fileInput.click());
+  previewRemove.addEventListener('click', clearPendingFile);
+  fileInput.addEventListener('change', (e) => { if (e.target.files[0]) processFile(e.target.files[0]); });
 
-  previewRemove.addEventListener('click', () => {
-    pendingFile = null;
-    fileInput.value = '';
-    preview.classList.add('hidden');
+  // 2. Drag & Drop vào khung chat
+  chatPanel.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    chatPanel.classList.add('drag-over');
+  });
+  chatPanel.addEventListener('dragleave', (e) => {
+    e.preventDefault();
+    chatPanel.classList.remove('drag-over');
+  });
+  chatPanel.addEventListener('drop', (e) => {
+    e.preventDefault();
+    chatPanel.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) processFile(file);
   });
 
-  fileInput.addEventListener('change', async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    // Max 10MB
-    if (file.size > 10 * 1024 * 1024) {
-      addBotMessage('Dạ, file quá lớn (tối đa 10MB). Anh/chị chọn file nhỏ hơn nhé.');
-      fileInput.value = '';
-      return;
-    }
-
-    const ext = file.name.split('.').pop().toLowerCase();
-    const iconMap = { pdf: '📄', xlsx: '📊', xls: '📊', docx: '📝', doc: '📝', jpg: '🖼️', jpeg: '🖼️', png: '🖼️', gif: '🖼️', webp: '🖼️' };
-    const icon = iconMap[ext] || '📎';
-    const isImage = file.type.startsWith('image/');
-
-    previewIcon.textContent = icon;
-    previewName.textContent = file.name;
-    preview.classList.remove('hidden');
-
-    pendingFile = { name: file.name, type: ext, data: file, textContent: null, base64: null };
-
-    try {
-      if (isImage) {
-        // Đọc ảnh thành base64 để gửi Gemini Vision
-        const reader = new FileReader();
-        reader.onload = () => { pendingFile.base64 = reader.result.split(',')[1]; };
-        reader.readAsDataURL(file);
-      } else if (ext === 'pdf') {
-        // Trích xuất text từ PDF
-        const arrayBuf = await file.arrayBuffer();
-        const pdf = await pdfjsLib.getDocument({ data: arrayBuf }).promise;
-        let text = '';
-        for (let i = 1; i <= Math.min(pdf.numPages, 20); i++) {
-          const page = await pdf.getPage(i);
-          const content = await page.getTextContent();
-          text += content.items.map(item => item.str).join(' ') + '\n';
+  // 3. Paste ảnh từ clipboard (Ctrl+V / Cmd+V)
+  document.addEventListener('paste', (e) => {
+    const items = e.clipboardData?.items;
+    if (!items) return;
+    for (const item of items) {
+      if (item.type.startsWith('image/')) {
+        e.preventDefault();
+        const file = item.getAsFile();
+        if (file) {
+          // Đặt tên cho ảnh paste
+          const ext = file.type.split('/')[1] || 'png';
+          const namedFile = new File([file], `paste_${Date.now()}.${ext}`, { type: file.type });
+          processFile(namedFile);
         }
-        pendingFile.textContent = text.slice(0, 8000);
-      } else if (ext === 'xlsx' || ext === 'xls') {
-        // Trích xuất text từ Excel
-        const arrayBuf = await file.arrayBuffer();
-        const wb = XLSX.read(arrayBuf, { type: 'array' });
-        let text = '';
-        wb.SheetNames.forEach(name => {
-          const ws = wb.Sheets[name];
-          text += `[${name}]\n` + XLSX.utils.sheet_to_csv(ws) + '\n';
-        });
-        pendingFile.textContent = text.slice(0, 8000);
-      } else if (ext === 'docx' || ext === 'doc') {
-        // Trích xuất text từ Word
-        const arrayBuf = await file.arrayBuffer();
-        const result = await mammoth.extractRawText({ arrayBuffer: arrayBuf });
-        pendingFile.textContent = result.value.slice(0, 8000);
+        return;
       }
-    } catch (err) {
-      console.warn('File parse error:', err);
-      pendingFile.textContent = `[Không thể đọc file ${file.name}]`;
     }
   });
 }
@@ -542,9 +569,7 @@ async function handleSendMessage(predefinedQuery = null) {
 
   // Clear file preview
   const currentFile = pendingFile;
-  pendingFile = null;
-  document.getElementById('file-upload').value = '';
-  document.getElementById('file-preview').classList.add('hidden');
+  clearPendingFile();
 
   closeSuggestions();
   clearQuickReplies();
