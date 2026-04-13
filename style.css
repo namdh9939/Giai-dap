@@ -328,6 +328,44 @@ body {
   box-shadow: var(--shadow-glow-gold);
 }
 
+/* --- Image Grid in Messages --- */
+.msg-images-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.msg-images-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.msg-image-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.msg-image {
+  max-width: 100%;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  transition: transform var(--transition-fast);
+}
+
+.msg-image:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-md);
+}
+
+.msg-image-caption {
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
 /* --- Message Content Formatting --- */
 .message-bubble strong {
   font-weight: 600;

@@ -105,17 +105,26 @@ function markdownToHtml(text) {
 }
 
 // =============================================
-// DATA LOADING
+// DATA LOADING (5 topic-specific knowledge bases)
 // =============================================
+const KB_FILES = {
+  'hop-dong': 'kb_hop_dong.json',
+  'bao-gia': 'kb_bao_gia.json',
+  'tieu-chuan': 'kb_tieu_chuan.json',
+  'phap-ly': 'kb_phap_ly.json',
+  'thac-mac': 'kb_thac_mac.json'
+};
+
 async function loadKnowledgeBase() {
   try {
-    const response = await fetch('knowledge_base.json');
-    if (!response.ok) throw new Error("Failed to load knowledge base");
-    knowledgeBase = await response.json();
-    console.log("Knowledge Base loaded:", knowledgeBase.length, "chunks");
+    const allPromises = Object.values(KB_FILES).map(file =>
+      fetch(file).then(r => r.ok ? r.json() : []).catch(() => [])
+    );
+    const results = await Promise.all(allPromises);
+    knowledgeBase = results.flat();
+    console.log("Knowledge Base loaded:", knowledgeBase.length, "chunks from 5 files");
   } catch (error) {
     console.error("Error loading knowledge base:", error);
-    addBotMessage("⚠️ Lỗi: Không thể tải cơ sở dữ liệu tri thức. Vui lòng kiểm tra lại file knowledge_base.json.");
   }
 }
 
@@ -175,36 +184,32 @@ async function askGemini(userQuery, contextChunks, retryCount = 0) {
   const userCourse = userData ? userData.course : '';
   const hotline = userCourse === 'tu-kiem-soat' ? '0981 982 029' : '0902 982 029';
 
+  // Kiểm tra có hình ảnh trong context không
+  const hasImages = contextChunks.some(c => c.images && c.images.length > 0);
+
   const prompt = `Bạn là "Trợ Lý Xây Nhà" — chatbot chuyên hỗ trợ học viên khóa học Xây Nhà Lần Đầu (XNLĐ) và Tự Kiểm Soát Xây Nhà (TKSXN) giải đáp thắc mắc trong quá trình xây dựng.
 
 ## Vai trò
 - Bạn là trợ lý thân thiện, am hiểu kỹ thuật xây dựng dân dụng
-- Trả lời dựa trên kiến thức đã được cung cấp trong TRI THỨC TÀI LIỆU bên dưới
+- Trả lời dựa trên kiến thức đã được cung cấp trong TRI THỨC TÀI LIỆU
 - Luôn đứng về phía quyền lợi của chủ nhà
 
 ## Nguyên tắc trả lời
 
 1. **Phạm vi kiến thức:**
-   - Nếu câu hỏi nằm trong TRI THỨC TÀI LIỆU → Trả lời đầy đủ, có cấu trúc, kèm trích dẫn [Tên tài liệu, Trang X]
-   - Nếu câu hỏi ngoài phạm vi → Nói rõ: "Câu hỏi này em cần chuyển đến đội ngũ chuyên môn để hỗ trợ anh/chị tốt hơn ạ." kèm hotline: ${hotline}
+   - Nếu câu hỏi có trong TRI THỨC TÀI LIỆU → Trả lời đầy đủ, có cấu trúc, kèm trích dẫn [Tên tài liệu, Trang X]
+   - Nếu câu hỏi ngoài phạm vi → "Câu hỏi này em cần chuyển đến đội ngũ chuyên môn để hỗ trợ anh/chị tốt hơn ạ. Hotline: ${hotline}"
 
-2. **Cấu trúc câu trả lời:**
-   - Ngắn gọn, đi thẳng vào vấn đề
-   - Dùng bullet points khi liệt kê
-   - Sử dụng HTML (<strong>, <ul>, <li>) để trình bày đẹp
+2. **Cấu trúc:** Ngắn gọn, đi thẳng vào vấn đề, dùng bullet points, HTML (<strong>, <ul>, <li>)
 
-3. **Giọng văn:**
-   - Thân thiện nhưng chuyên nghiệp
-   - Xưng "em" với học viên, gọi "anh/chị"
-   - Tối đa 1-2 emoji/tin nhắn
+3. **Giọng văn:** Xưng "em", gọi "anh/chị". Thân thiện, chuyên nghiệp. Tối đa 1-2 emoji.
 
-4. **TUYỆT ĐỐI KHÔNG:**
-   - Không gửi URL, link website, đường dẫn nào
-   - Không tư vấn pháp lý chuyên sâu, báo giá cụ thể, tranh chấp nhà thầu → chuyển hotline
-   - Không trả lời ngoài lĩnh vực xây dựng nhà ở
+4. **Topic Guard:** Nếu anh/chị đang hỏi chủ đề A mà chuyển sang B → xác nhận trước khi trả lời.
 
-5. **Kết thúc câu trả lời:**
-   - Luôn kết thúc bằng 1 câu hỏi dẫn dắt tiếp (VD: "Anh/chị cần em tư vấn thêm về phần nào không ạ?")
+5. **TUYỆT ĐỐI KHÔNG:** Không gửi URL/link. Không tư vấn pháp lý chuyên sâu, báo giá cụ thể → chuyển hotline.
+
+6. **Kết thúc:** Luôn kết bằng 1 câu hỏi dẫn dắt tiếp.
+${hasImages ? '\n7. **Hình ảnh:** Hệ thống sẽ tự động gửi hình minh họa. Trong câu trả lời, hãy nhắc anh/chị xem hình bên dưới để đối chiếu.' : ''}
 
 ## TRI THỨC TÀI LIỆU:
 ${contextText}
@@ -212,7 +217,7 @@ ${contextText}
 ## LỊCH SỬ HỘI THOẠI:
 ${historyText}
 
-## CÂU HỎI HIỆN TẠI: "${userQuery}"`;
+## CÂU HỎI: "${userQuery}"`;
 
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 35000); 
@@ -397,11 +402,15 @@ async function handleSendMessage(predefinedQuery = null) {
   
   hideTyping();
   addBotMessage(response);
-  
+
   // Only show citations if AI responded successfully (not an error message)
   const isErrorResponse = response.startsWith("Dạ, hệ thống") || response.startsWith("Dạ, server") || response.startsWith("Dạ, kết nối") || response.startsWith("Dạ, câu hỏi này");
   if (!isErrorResponse && relevantChunks.length > 0 && geminiApiKey) {
     renderCitations(relevantChunks);
+    // Gửi kèm hình ảnh minh họa nếu topic là tiêu chuẩn thi công
+    if (currentTopic === 'tieu-chuan' || text.match(/tiêu chuẩn|nghiệm thu|bê tông|cốt thép|tường xây|ống nước|điện/i)) {
+      renderRelatedImages(relevantChunks);
+    }
   }
 
   // After AI answers, show "Back to Topics" if we were in a topic
@@ -437,6 +446,36 @@ function renderCitations(chunks) {
     </div>
   `;
   addBotMessage(citationHtml, false);
+}
+
+function renderRelatedImages(chunks) {
+  // Collect unique images from relevant chunks (max 4 images)
+  const images = [];
+  const seen = new Set();
+  for (const chunk of chunks) {
+    if (chunk.images && chunk.images.length > 0) {
+      for (const imgPath of chunk.images) {
+        if (!seen.has(imgPath) && images.length < 4) {
+          seen.add(imgPath);
+          images.push({ path: imgPath, source: chunk.source, page: chunk.page });
+        }
+      }
+    }
+  }
+  if (images.length === 0) return;
+
+  const imagesHtml = `
+    <div class="msg-images-grid">
+      <div class="msg-images-label">Hình ảnh minh họa từ tài liệu:</div>
+      ${images.map(img => `
+        <div class="msg-image-item">
+          <img src="${img.path}" alt="Trang ${img.page}" class="msg-image" onclick="window.open('${img.path}', '_blank')" loading="lazy">
+          <span class="msg-image-caption">${img.source} — Trang ${img.page}</span>
+        </div>
+      `).join('')}
+    </div>
+  `;
+  addBotMessage(imagesHtml, false);
 }
 
 function addBotMessage(content, showAvatar = true) {
