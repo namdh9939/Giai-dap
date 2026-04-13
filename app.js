@@ -9,17 +9,17 @@
 const BOT_NAME = "Trợ Lý Xây Nhà";
 let knowledgeBase = [];
 
-// Auto-import API key from URL param ?key=xxx (1 lần, lưu localStorage, xóa khỏi URL)
+// Auto-import API keys from URL params (1 lần, lưu localStorage, xóa khỏi URL)
 (function() {
   const params = new URLSearchParams(window.location.search);
-  const keyParam = params.get('key');
-  if (keyParam && keyParam.startsWith('AIza')) {
-    localStorage.setItem('gemini_api_key', keyParam);
-    // Xóa key khỏi URL để không lộ trong history
-    window.history.replaceState({}, '', window.location.pathname);
-  }
+  const groqKey = params.get('groq');
+  const geminiKey = params.get('key');
+  if (groqKey) localStorage.setItem('groq_api_key', groqKey);
+  if (geminiKey && geminiKey.startsWith('AIza')) localStorage.setItem('gemini_api_key', geminiKey);
+  if (groqKey || geminiKey) window.history.replaceState({}, '', window.location.pathname);
 })();
 
+let groqApiKey = localStorage.getItem('groq_api_key') || '';
 let geminiApiKey = localStorage.getItem('gemini_api_key') || '';
 let userData = null;
 let currentTopic = null;
@@ -183,12 +183,10 @@ function searchRelevantChunks(query, limit = 8) {
 }
 
 // =============================================
-// GEMINI API INTEGRATION
+// AI ENGINE — Groq (chính) + Gemini (dự phòng)
 // =============================================
-async function askGemini(userQuery, contextChunks, retryCount = 0) {
-  if (!geminiApiKey) return "Dạ, hệ thống đang bảo trì. Anh/chị vui lòng quay lại sau ít phút nhé.";
-
-  // Chuẩn bị Context từ tài liệu — giới hạn 6000 ký tự để tránh vượt quota
+function buildPromptAndContext(userQuery, contextChunks) {
+  // Context — giới hạn 6000 ký tự
   let contextText = "";
   if (contextChunks.length > 0) {
     let totalLen = 0;
@@ -201,157 +199,118 @@ async function askGemini(userQuery, contextChunks, retryCount = 0) {
     }
     contextText = selected.join('\n---\n');
   } else {
-    contextText = "Không tìm thấy quy định cụ thể trong tài liệu tri thức cho câu hỏi này.";
+    contextText = "Không tìm thấy quy định cụ thể trong tài liệu tri thức.";
   }
 
-  // Chuẩn bị Lịch sử hội thoại để Agent có "bộ nhớ"
   const historyText = chatHistory.length > 0
     ? chatHistory.map(m => `${m.role === 'user' ? 'Khách' : 'Trợ lý'}: ${m.content}`).join('\n')
-    : "Đây là câu hỏi đầu tiên của Quý khách.";
+    : "";
 
-  // Xác định khóa học của user để chọn hotline phù hợp
   const userCourse = userData ? userData.course : '';
   const hotline = userCourse === 'tu-kiem-soat' ? '0981 982 029' : '0902 982 029';
-
-  // Kiểm tra có hình ảnh trong context không
   const hasImages = contextChunks.some(c => c.images && c.images.length > 0);
 
-  const prompt = `Bạn là "Trợ Lý Xây Nhà" — chatbot chuyên hỗ trợ học viên khóa học Xây Nhà Lần Đầu (XNLĐ) và Tự Kiểm Soát Xây Nhà (TKSXN) giải đáp thắc mắc trong quá trình xây dựng.
+  const systemPrompt = `Bạn là "Trợ Lý Xây Nhà" — chatbot hỗ trợ học viên khóa XNLĐ/TKSXN giải đáp thắc mắc xây dựng.
 
-## Vai trò
-- Bạn là trợ lý thân thiện, am hiểu kỹ thuật xây dựng dân dụng
-- Trả lời dựa trên kiến thức đã được cung cấp trong TRI THỨC TÀI LIỆU
-- Luôn đứng về phía quyền lợi của chủ nhà
+NGUYÊN TẮC:
+1. BẮT BUỘC trích dẫn số liệu cụ thể (%, VNĐ, ngày, mức phạt) từ TRI THỨC TÀI LIỆU. KHÔNG bịa số liệu. Nếu tài liệu ghi "…" thì nói "do hai bên thỏa thuận khi ký".
+2. VIẾT câu trả lời hoàn chỉnh cho khách đọc trực tiếp. KHÔNG nói "xem file X", "tham khảo tài liệu Y".
+3. Dùng HTML (<strong>, <ul>, <li>) trình bày rõ ràng.
+4. Xưng "em", gọi "anh/chị". Thân thiện, chuyên nghiệp.
+5. KHÔNG gửi URL/link. KHÔNG dẫn tên file.
+6. Ngoài phạm vi → "Hotline: ${hotline}"
+7. Kết thúc bằng 1 câu hỏi dẫn dắt tiếp.${hasImages ? '\n8. Hệ thống sẽ gửi hình minh họa kèm theo.' : ''}`;
 
-## Nguyên tắc trả lời
+  const userMessage = `TRI THỨC TÀI LIỆU:\n${contextText}\n\n${historyText ? 'LỊCH SỬ:\n' + historyText + '\n\n' : ''}CÂU HỎI: "${userQuery}"`;
 
-1. **BẮT BUỘC TRÍCH DẪN SỐ LIỆU CỤ THỂ:**
-   - ĐỌC KỸ TRI THỨC TÀI LIỆU bên dưới. Tìm mọi con số, tỷ lệ %, mức phạt VNĐ, số ngày, điều khoản cụ thể.
-   - VIẾT LẠI thành câu trả lời hoàn chỉnh VỚI ĐẦY ĐỦ SỐ LIỆU cho khách đọc trực tiếp.
-   - VD đúng: "Phạt chậm tiến độ: 1% giá trị HĐ/ngày, tối đa 8%. Bảo hành 12 tháng."
-   - VD sai: "Nhà thầu sẽ bị phạt theo quy định trong hợp đồng."
-   - KHÔNG BAO GIỜ nói "xem file X", "tham khảo tài liệu Y". Khách KHÔNG có file.
-   - KHÔNG BỊA SỐ LIỆU. Chỉ dùng số liệu có trong TRI THỨC TÀI LIỆU bên dưới. Nếu tài liệu ghi "…" (chưa điền) thì nói rõ "mức cụ thể do hai bên thỏa thuận khi ký".
+  return { systemPrompt, userMessage };
+}
 
-2. **Cấu trúc:** Dùng HTML (<strong>, <ul>, <li>) để trình bày rõ ràng. Chia thành các mục, đánh số.
+// --- GROQ API (Llama 3.3 70B — nhanh, ổn định) ---
+async function callGroq(systemPrompt, userMessage) {
+  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${groqApiKey}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      model: 'llama-3.3-70b-versatile',
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: userMessage }
+      ],
+      max_tokens: 1024,
+      temperature: 0.2
+    })
+  });
 
-3. **Giọng văn:** Xưng "em", gọi "anh/chị". Thân thiện, chuyên nghiệp.
-
-4. **Ngoài phạm vi:** → "Câu hỏi này em cần chuyển đến đội ngũ chuyên môn. Hotline: ${hotline}"
-
-5. **TUYỆT ĐỐI KHÔNG:** Không gửi URL/link. Không dẫn tên file/biểu mẫu. Không nói "xem thêm tại...".
-
-6. **Kết thúc:** Luôn kết bằng 1 câu hỏi dẫn dắt tiếp.
-${hasImages ? '\n7. **Hình ảnh:** Hệ thống sẽ tự động gửi hình minh họa kèm theo.' : ''}
-
-## TRI THỨC TÀI LIỆU:
-${contextText}
-
-## LỊCH SỬ HỘI THOẠI:
-${historyText}
-
-## CÂU HỎI: "${userQuery}"`;
-
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 45000); // 45s timeout 
-
-  try {
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      signal: controller.signal,
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        safetySettings: [
-          { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_ONLY_HIGH" },
-          { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_ONLY_HIGH" },
-          { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_ONLY_HIGH" },
-          { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_ONLY_HIGH" }
-        ],
-        generationConfig: {
-          maxOutputTokens: 1024,
-          temperature: 0.2,
-          topP: 0.8
-        }
-      })
-    });
-
-    clearTimeout(timeoutId);
-
-    if (!response.ok) {
-      const errBody = await response.text().catch(() => '');
-      console.warn(`Gemini HTTP ${response.status}:`, errBody);
-      // Rate limit (429) — auto retry 1 lần sau 3 giây
-      if (response.status === 429 && retryCount < 2) {
-        await new Promise(r => setTimeout(r, 3000));
-        return askGemini(userQuery, contextChunks, retryCount + 1);
-      }
-      // Server error (500/503) — auto retry tối đa 3 lần, chờ lâu hơn mỗi lần
-      if ((response.status >= 500) && retryCount < 3) {
-        const waitMs = (retryCount + 1) * 3000; // 3s, 6s, 9s
-        await new Promise(r => setTimeout(r, waitMs));
-        return askGemini(userQuery, contextChunks, retryCount + 1);
-      }
-      if (response.status === 403) {
-        return "Dạ, API Key không hợp lệ hoặc đã bị khóa. Anh/chị nhấn nút 🔑 bên phải để cập nhật key mới nhé.";
-      }
-      return "Dạ, server AI đang quá tải. Anh/chị đợi khoảng 30 giây rồi hỏi lại nhé.";
-    }
-
-    const data = await response.json();
-
-    // Kiểm tra lỗi API trả về trong body
-    if (data.error) {
-      console.warn("Gemini API error:", data.error);
-      return "Dạ, hệ thống đang bận. Anh/chị thử hỏi lại sau ít giây nhé.";
-    }
-
-    // Kiểm tra candidates tồn tại và có nội dung
-    if (!data.candidates || data.candidates.length === 0) {
-      console.warn("Gemini: no candidates returned", data);
-      return "Dạ, em chưa tìm được câu trả lời phù hợp. Anh/chị thử diễn đạt lại câu hỏi giúp em nhé.";
-    }
-
-    const candidate = data.candidates[0];
-
-    // Kiểm tra bị chặn bởi safety filter
-    if (candidate.finishReason === "SAFETY" || !candidate.content) {
-      console.warn("Gemini: blocked by safety filter", candidate);
-      return "Dạ, câu hỏi này em chưa thể trả lời được. Anh/chị thử hỏi cụ thể hơn về xây dựng nhé.";
-    }
-
-    // Trích xuất text an toàn
-    const parts = candidate.content.parts;
-    if (!parts || parts.length === 0 || !parts[0].text) {
-      return "Dạ, em chưa tìm được câu trả lời phù hợp. Anh/chị thử hỏi lại nhé.";
-    }
-
-    const botResponse = parts[0].text;
-
-    // CẬP NHẬT BỘ NHỚ (GIỮ 8 TIN NHẮN GẦN NHẤT)
-    chatHistory.push({ role: 'user', content: userQuery });
-    chatHistory.push({ role: 'model', content: botResponse });
-    if (chatHistory.length > 8) chatHistory.splice(0, 2);
-
-    return botResponse;
-
-  } catch (error) {
-    clearTimeout(timeoutId);
-
-    // Timeout / mất mạng — retry 1 lần
-    if (error.name === 'AbortError') {
-      if (retryCount < 1) return askGemini(userQuery, contextChunks, retryCount + 1);
-      return "Dạ, server đang phản hồi chậm. Anh/chị thử lại sau ít giây nhé.";
-    }
-
-    // Lỗi mạng — retry 1 lần
-    if (retryCount < 1) {
-      await new Promise(r => setTimeout(r, 1000));
-      return askGemini(userQuery, contextChunks, retryCount + 1);
-    }
-
-    return "Dạ, kết nối mạng đang không ổn định. Anh/chị kiểm tra WiFi rồi thử lại nhé.";
+  if (!response.ok) {
+    const err = await response.text().catch(() => '');
+    throw new Error(`Groq ${response.status}: ${err}`);
   }
+
+  const data = await response.json();
+  return data.choices[0].message.content;
+}
+
+// --- GEMINI API (dự phòng) ---
+async function callGemini(systemPrompt, userMessage) {
+  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: systemPrompt + '\n\n' + userMessage }] }],
+      generationConfig: { maxOutputTokens: 1024, temperature: 0.2 }
+    })
+  });
+
+  if (!response.ok) throw new Error(`Gemini ${response.status}`);
+
+  const data = await response.json();
+  if (data.error) throw new Error(data.error.message);
+  if (!data.candidates?.[0]?.content?.parts?.[0]?.text) throw new Error('Empty response');
+
+  return data.candidates[0].content.parts[0].text;
+}
+
+// --- MAIN: Groq trước, Gemini fallback ---
+async function askAI(userQuery, contextChunks) {
+  if (!groqApiKey && !geminiApiKey) {
+    return "Dạ, anh/chị cần cài đặt API Key trước. Nhấn nút 🔑 bên phải để nhập key nhé.";
+  }
+
+  const { systemPrompt, userMessage } = buildPromptAndContext(userQuery, contextChunks);
+
+  // Thử Groq trước (nhanh, ổn định)
+  if (groqApiKey) {
+    try {
+      const result = await callGroq(systemPrompt, userMessage);
+      console.log('AI engine: Groq');
+      chatHistory.push({ role: 'user', content: userQuery });
+      chatHistory.push({ role: 'model', content: result });
+      if (chatHistory.length > 8) chatHistory.splice(0, 2);
+      return result;
+    } catch (err) {
+      console.warn('Groq failed:', err.message);
+    }
+  }
+
+  // Fallback sang Gemini
+  if (geminiApiKey) {
+    try {
+      const result = await callGemini(systemPrompt, userMessage);
+      console.log('AI engine: Gemini (fallback)');
+      chatHistory.push({ role: 'user', content: userQuery });
+      chatHistory.push({ role: 'model', content: result });
+      if (chatHistory.length > 8) chatHistory.splice(0, 2);
+      return result;
+    } catch (err) {
+      console.warn('Gemini failed:', err.message);
+    }
+  }
+
+  return "Dạ, cả hai server AI đều đang bận. Anh/chị thử lại sau 30 giây nhé.";
 }
 
 // =============================================
@@ -437,7 +396,7 @@ async function handleSendMessage(predefinedQuery = null) {
   
   // RAG Pipeline
   const relevantChunks = searchRelevantChunks(text);
-  const response = await askGemini(text, relevantChunks);
+  const response = await askAI(text, relevantChunks);
   
   hideTyping();
   addBotMessage(response);
@@ -741,8 +700,10 @@ function setupApiKeyModal() {
 
   if (!btnOpen || !modal) return;
 
-  // Hiện key hiện tại (nếu có)
-  if (geminiApiKey) {
+  // Hiện key hiện tại (ưu tiên Groq)
+  if (groqApiKey) {
+    input.value = groqApiKey;
+  } else if (geminiApiKey) {
     input.value = geminiApiKey;
   }
 
@@ -770,28 +731,38 @@ function setupApiKeyModal() {
     status.textContent = 'Đang kiểm tra...';
     status.className = 'apikey-status checking';
 
-    // Test key
     try {
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents: [{ parts: [{ text: 'test' }] }], generationConfig: { maxOutputTokens: 5 } })
-      });
-      const data = await res.json();
-
-      if (data.error) {
-        status.textContent = 'Key không hợp lệ: ' + data.error.message;
+      // Detect key type: Groq (gsk_) vs Gemini (AIza)
+      if (key.startsWith('gsk_')) {
+        // Test Groq key
+        const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ model: 'llama-3.3-70b-versatile', messages: [{ role: 'user', content: 'test' }], max_tokens: 5 })
+        });
+        if (!res.ok) { status.textContent = 'Groq Key không hợp lệ.'; status.className = 'apikey-status error'; return; }
+        groqApiKey = key;
+        localStorage.setItem('groq_api_key', key);
+        status.textContent = 'Groq API — Kích hoạt thành công!';
+      } else if (key.startsWith('AIza')) {
+        // Test Gemini key
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ contents: [{ parts: [{ text: 'test' }] }], generationConfig: { maxOutputTokens: 5 } })
+        });
+        const data = await res.json();
+        if (data.error) { status.textContent = 'Gemini Key lỗi: ' + data.error.message; status.className = 'apikey-status error'; return; }
+        geminiApiKey = key;
+        localStorage.setItem('gemini_api_key', key);
+        status.textContent = 'Gemini API — Kích hoạt thành công!';
+      } else {
+        status.textContent = 'Key không đúng định dạng (Groq: gsk_... / Gemini: AIza...)';
         status.className = 'apikey-status error';
         return;
       }
 
-      // Key OK — save
-      geminiApiKey = key;
-      localStorage.setItem('gemini_api_key', key);
-      status.textContent = 'Kích hoạt thành công!';
       status.className = 'apikey-status success';
       updateApiKeyButton();
-
       setTimeout(() => modal.classList.add('hidden'), 1000);
     } catch (err) {
       status.textContent = 'Lỗi kết nối. Thử lại.';
@@ -801,17 +772,19 @@ function setupApiKeyModal() {
 }
 
 function updateApiKeyButton() {
+  const hasKey = !!(groqApiKey || geminiApiKey);
+  const label = groqApiKey ? 'Groq' : geminiApiKey ? 'Gemini' : '';
   // Update sidebar button
   const btn = document.getElementById('btn-apikey');
   if (btn) {
-    btn.classList.toggle('active', !!geminiApiKey);
-    btn.title = geminiApiKey ? 'API Key đã kích hoạt' : 'Chưa có API Key';
+    btn.classList.toggle('active', hasKey);
+    btn.title = hasKey ? `${label} API đã kích hoạt` : 'Chưa có API Key';
   }
   // Update FAB button
   const fab = document.getElementById('fab-apikey');
   if (fab) {
-    fab.classList.toggle('active', !!geminiApiKey);
-    fab.title = geminiApiKey ? 'API Key đã kích hoạt' : 'Nhấn để cài API Key';
+    fab.classList.toggle('active', hasKey);
+    fab.title = hasKey ? `${label} API đã kích hoạt` : 'Nhấn để cài API Key';
   }
 }
 
@@ -827,10 +800,11 @@ async function initChat() {
 
   const firstName = userData ? userData.name.split(' ').pop() : 'bạn';
 
-  if (!geminiApiKey) {
-    addBotMessage(`Chào <strong>${firstName}</strong>! Để em có thể tư vấn, anh/chị cần cài đặt <strong>API Key</strong> trước. Nhấn nút ⚙️ <strong>API Key</strong> ở sidebar bên trái nhé.`);
+  if (!groqApiKey && !geminiApiKey) {
+    addBotMessage(`Chào <strong>${firstName}</strong>! Để em có thể tư vấn, anh/chị cần cài đặt <strong>API Key</strong> trước. Nhấn nút 🔑 bên phải nhé.`);
   } else {
-    addBotMessage(`Chào mừng <strong>${firstName}</strong> quay trở lại. Em đã sẵn sàng hỗ trợ anh/chị.`);
+    const engine = groqApiKey ? 'Groq' : 'Gemini';
+    addBotMessage(`Chào mừng <strong>${firstName}</strong> quay trở lại! Em đã sẵn sàng hỗ trợ anh/chị. (AI: ${engine})`);
   }
 }
 
