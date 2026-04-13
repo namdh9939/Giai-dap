@@ -8,6 +8,18 @@
 // =============================================
 const BOT_NAME = "Trợ Lý Xây Nhà";
 let knowledgeBase = [];
+
+// Auto-import API key from URL param ?key=xxx (1 lần, lưu localStorage, xóa khỏi URL)
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const keyParam = params.get('key');
+  if (keyParam && keyParam.startsWith('AIza')) {
+    localStorage.setItem('gemini_api_key', keyParam);
+    // Xóa key khỏi URL để không lộ trong history
+    window.history.replaceState({}, '', window.location.pathname);
+  }
+})();
+
 let geminiApiKey = localStorage.getItem('gemini_api_key') || '';
 let userData = null;
 let currentTopic = null;
