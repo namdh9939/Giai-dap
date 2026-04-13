@@ -182,7 +182,8 @@ HƯỚNG DẪN TƯ DUY (AGENTIC RULES):
 4. CHỦ ĐỘNG: 
    - Nếu tài liệu không đủ thông tin, hãy nói rõ và đưa ra lời khuyên dựa trên kinh nghiệm xây dựng thực tế (nhưng nhắc khách tham khảo thêm KS/KTS).
    - Nếu câu hỏi quá chung chung, hãy ĐẶT CÂU HỎI NGƯỢC LẠI để làm rõ (VD: "Anh định xây nhà mấy tầng để em tư vấn kỹ hơn?").
-5. ĐỊNH DẠNG: Sử dụng HTML (<strong>, <ul>, <li>) để trình bày đẹp mắt.
+5. HÌNH ẢNH: Bạn CHỈ ĐƯỢC PHÉP sử dụng hình ảnh minh họa (Markdown: ![mô tả](link)) khi trả lời về chủ đề "Tiêu chuẩn thi công". Các chủ đề khác tuyệt đối không gửi ảnh.
+6. ĐỊNH DẠNG: Sử dụng HTML (<strong>, <ul>, <li>) để trình bày đẹp mắt.
 
 CÂU HỎI HIỆN TẠI: "${userQuery}"`;
 
@@ -320,8 +321,13 @@ function renderCitations(chunks) {
       ${chunks.map(c => `
         <div class="citation-item">
           <span class="citation-icon">📄</span>
-          <span class="citation-source">${c.source}</span>
-          <span class="citation-page">Trang ${c.page}</span>
+          <div class="citation-content">
+            <span class="citation-source">${c.source}</span>
+            <span class="citation-page">Trang ${c.page}</span>
+          </div>
+          <a href="${encodeURIComponent(c.source)}" target="_blank" class="download-link" title="Mở/Tải tài liệu">
+            📥
+          </a>
         </div>
       `).join('')}
     </div>
