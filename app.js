@@ -7,6 +7,11 @@
 // GLOBAL STATE & CONFIG
 // =============================================
 const BOT_NAME = "Trợ Lý Xây Nhà";
+
+// PDF.js worker
+if (typeof pdfjsLib !== 'undefined') {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+}
 let knowledgeBase = [];
 
 // Auto-import API keys from URL params (1 lần, lưu localStorage, xóa khỏi URL)
@@ -378,6 +383,116 @@ function checkExistingUser() {
 }
 
 // =============================================
+// FILE UPLOAD SYSTEM
+// =============================================
+let pendingFile = null; // { name, type, data, textContent, base64 }
+
+function setupFileUpload() {
+  const fileInput = document.getElementById('file-upload');
+  const btnAttach = document.getElementById('btn-attach');
+  const preview = document.getElementById('file-preview');
+  const previewName = document.getElementById('file-preview-name');
+  const previewIcon = document.getElementById('file-preview-icon');
+  const previewRemove = document.getElementById('file-preview-remove');
+
+  btnAttach.addEventListener('click', () => fileInput.click());
+
+  previewRemove.addEventListener('click', () => {
+    pendingFile = null;
+    fileInput.value = '';
+    preview.classList.add('hidden');
+  });
+
+  fileInput.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // Max 10MB
+    if (file.size > 10 * 1024 * 1024) {
+      addBotMessage('Dạ, file quá lớn (tối đa 10MB). Anh/chị chọn file nhỏ hơn nhé.');
+      fileInput.value = '';
+      return;
+    }
+
+    const ext = file.name.split('.').pop().toLowerCase();
+    const iconMap = { pdf: '📄', xlsx: '📊', xls: '📊', docx: '📝', doc: '📝', jpg: '🖼️', jpeg: '🖼️', png: '🖼️', gif: '🖼️', webp: '🖼️' };
+    const icon = iconMap[ext] || '📎';
+    const isImage = file.type.startsWith('image/');
+
+    previewIcon.textContent = icon;
+    previewName.textContent = file.name;
+    preview.classList.remove('hidden');
+
+    pendingFile = { name: file.name, type: ext, data: file, textContent: null, base64: null };
+
+    try {
+      if (isImage) {
+        // Đọc ảnh thành base64 để gửi Gemini Vision
+        const reader = new FileReader();
+        reader.onload = () => { pendingFile.base64 = reader.result.split(',')[1]; };
+        reader.readAsDataURL(file);
+      } else if (ext === 'pdf') {
+        // Trích xuất text từ PDF
+        const arrayBuf = await file.arrayBuffer();
+        const pdf = await pdfjsLib.getDocument({ data: arrayBuf }).promise;
+        let text = '';
+        for (let i = 1; i <= Math.min(pdf.numPages, 20); i++) {
+          const page = await pdf.getPage(i);
+          const content = await page.getTextContent();
+          text += content.items.map(item => item.str).join(' ') + '\n';
+        }
+        pendingFile.textContent = text.slice(0, 8000);
+      } else if (ext === 'xlsx' || ext === 'xls') {
+        // Trích xuất text từ Excel
+        const arrayBuf = await file.arrayBuffer();
+        const wb = XLSX.read(arrayBuf, { type: 'array' });
+        let text = '';
+        wb.SheetNames.forEach(name => {
+          const ws = wb.Sheets[name];
+          text += `[${name}]\n` + XLSX.utils.sheet_to_csv(ws) + '\n';
+        });
+        pendingFile.textContent = text.slice(0, 8000);
+      } else if (ext === 'docx' || ext === 'doc') {
+        // Trích xuất text từ Word
+        const arrayBuf = await file.arrayBuffer();
+        const result = await mammoth.extractRawText({ arrayBuffer: arrayBuf });
+        pendingFile.textContent = result.value.slice(0, 8000);
+      }
+    } catch (err) {
+      console.warn('File parse error:', err);
+      pendingFile.textContent = `[Không thể đọc file ${file.name}]`;
+    }
+  });
+}
+
+// Gọi Gemini Vision API cho ảnh
+async function analyzeImageWithGemini(base64Data, mimeType, userQuery) {
+  if (!geminiApiKey) return null;
+  try {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{
+          parts: [
+            { text: `Bạn là chuyên gia xây dựng. Phân tích hình ảnh này và trả lời câu hỏi của chủ đầu tư. Trả lời bằng tiếng Việt, dùng HTML (<strong>, <ul>, <li>). Xưng "em", gọi "anh/chị".\n\nCâu hỏi: ${userQuery || 'Phân tích hình ảnh này giúp em'}` },
+            { inlineData: { mimeType: mimeType, data: base64Data } }
+          ]
+        }],
+        generationConfig: { maxOutputTokens: 1024, temperature: 0.3 }
+      })
+    });
+    const data = await res.json();
+    if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
+      return data.candidates[0].content.parts[0].text;
+    }
+  } catch (err) {
+    console.warn('Gemini Vision error:', err);
+  }
+  return null;
+}
+
+// =============================================
 // CHAT LOGIC
 // =============================================
 function setupChatInput() {
@@ -392,26 +507,63 @@ function setupChatInput() {
 
 async function handleSendMessage(predefinedQuery = null) {
   const text = predefinedQuery || chatInput.value.trim();
-  if (!text || isProcessing) return;
+  const hasFile = !!pendingFile;
+
+  if (!text && !hasFile) return;
+  if (isProcessing) return;
 
   // Bắt buộc chọn chủ đề trước khi chat
   if (!currentTopic) {
-    addUserMessage(text);
-    addBotMessage('Dạ, anh/chị vui lòng <strong>chọn 1 chủ đề</strong> trước để em tư vấn chính xác nhé. Nhấn vào icon 💬 bên phải hoặc chọn chủ đề ở sidebar ạ.');
+    if (text) addUserMessage(text);
+    addBotMessage('Dạ, anh/chị vui lòng <strong>chọn 1 chủ đề</strong> trước để em tư vấn chính xác nhé.');
     return;
   }
 
   isProcessing = true;
   chatInput.value = '';
 
-  addUserMessage(text);
+  // Hiển thị tin nhắn user + file preview
+  const userText = text || `[Gửi file: ${pendingFile?.name}]`;
+  addUserMessage(userText);
+
+  // Nếu có ảnh, hiện thumbnail trong chat
+  if (hasFile && pendingFile.base64) {
+    const imgHtml = `<img src="data:image/${pendingFile.type};base64,${pendingFile.base64}" class="msg-uploaded-image" alt="${pendingFile.name}">`;
+    addBotMessage(imgHtml, false);
+  }
+  if (hasFile && !pendingFile.base64 && pendingFile.name) {
+    addUserMessage(`<span class="file-badge">📎 ${pendingFile.name}</span>`);
+  }
+
+  // Clear file preview
+  const currentFile = pendingFile;
+  pendingFile = null;
+  document.getElementById('file-upload').value = '';
+  document.getElementById('file-preview').classList.add('hidden');
+
   closeSuggestions();
   clearQuickReplies();
   showTyping();
 
-  // RAG Pipeline — chỉ tìm trong KB đúng chủ đề
-  const relevantChunks = searchRelevantChunks(text);
-  const response = await askAI(text, relevantChunks);
+  let response;
+
+  if (currentFile && currentFile.base64) {
+    // === ẢNH: Gửi Gemini Vision ===
+    const mimeType = `image/${currentFile.type === 'jpg' ? 'jpeg' : currentFile.type}`;
+    response = await analyzeImageWithGemini(currentFile.base64, mimeType, text);
+    if (!response) response = "Dạ, em không thể phân tích hình ảnh lúc này. Anh/chị thử mô tả bằng văn bản giúp em nhé.";
+  } else if (currentFile && currentFile.textContent) {
+    // === TÀI LIỆU: Trích xuất text → gửi AI cùng câu hỏi ===
+    const relevantChunks = searchRelevantChunks(text || currentFile.name);
+    // Thêm nội dung file vào context
+    const fakeChunk = { source: currentFile.name, page: 1, content: currentFile.textContent, keywords: [], images: [] };
+    const allChunks = [fakeChunk, ...relevantChunks];
+    response = await askAI(text || `Phân tích tài liệu "${currentFile.name}"`, allChunks);
+  } else {
+    // === Chat thường (không có file) ===
+    const relevantChunks = searchRelevantChunks(text);
+    response = await askAI(text, relevantChunks);
+  }
   
   hideTyping();
   addBotMessage(response);
@@ -807,6 +959,7 @@ async function initChat() {
   renderSidebar();
   renderDocsPopup();
   setupFabButtons();
+  setupFileUpload();
   setupApiKeyModal();
   updateApiKeyButton();
   renderTopicButtons();
