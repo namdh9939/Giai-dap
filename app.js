@@ -690,8 +690,13 @@ function renderDocsPopup() {
 function setupFabButtons() {
   const fabSuggestions = document.getElementById('fab-suggestions');
   const fabDocs = document.getElementById('fab-docs');
+  const fabApikey = document.getElementById('fab-apikey');
   if (fabSuggestions) fabSuggestions.addEventListener('click', toggleSuggestions);
   if (fabDocs) fabDocs.addEventListener('click', toggleDocs);
+  if (fabApikey) fabApikey.addEventListener('click', () => {
+    const modal = document.getElementById('apikey-modal');
+    if (modal) modal.classList.remove('hidden');
+  });
 }
 
 // =============================================
@@ -767,14 +772,17 @@ function setupApiKeyModal() {
 }
 
 function updateApiKeyButton() {
+  // Update sidebar button
   const btn = document.getElementById('btn-apikey');
-  if (!btn) return;
-  if (geminiApiKey) {
-    btn.classList.add('active');
-    btn.title = 'API Key đã kích hoạt';
-  } else {
-    btn.classList.remove('active');
-    btn.title = 'Chưa có API Key — nhấn để cài đặt';
+  if (btn) {
+    btn.classList.toggle('active', !!geminiApiKey);
+    btn.title = geminiApiKey ? 'API Key đã kích hoạt' : 'Chưa có API Key';
+  }
+  // Update FAB button
+  const fab = document.getElementById('fab-apikey');
+  if (fab) {
+    fab.classList.toggle('active', !!geminiApiKey);
+    fab.title = geminiApiKey ? 'API Key đã kích hoạt' : 'Nhấn để cài API Key';
   }
 }
 
