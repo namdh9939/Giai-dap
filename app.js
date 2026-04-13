@@ -182,8 +182,8 @@ HƯỚNG DẪN TƯ DUY (AGENTIC RULES):
 4. CHỦ ĐỘNG: 
    - Nếu tài liệu không đủ thông tin, hãy nói rõ và đưa ra lời khuyên dựa trên kinh nghiệm xây dựng thực tế (nhưng nhắc khách tham khảo thêm KS/KTS).
    - Nếu câu hỏi quá chung chung, hãy ĐẶT CÂU HỎI NGƯỢC LẠI để làm rõ (VD: "Anh định xây nhà mấy tầng để em tư vấn kỹ hơn?").
-5. HÌNH ẢNH: Bạn CHỈ ĐƯỢC PHÉP sử dụng hình ảnh minh họa (Markdown: ![mô tả](link)) khi trả lời về chủ đề "Tiêu chuẩn thi công". Các chủ đề khác tuyệt đối không gửi ảnh.
-6. ĐỊNH DẠNG: Sử dụng HTML (<strong>, <ul>, <li>) để trình bày đẹp mắt.
+5. ĐỊNH DẠNG: Sử dụng HTML (<strong>, <ul>, <li>) để trình bày đẹp mắt. KHÔNG sử dụng Markdown hình ảnh.
+6. KẾT THÚC: Luôn kết thúc câu trả lời bằng 1 gợi ý hoặc câu hỏi tiếp theo để dẫn dắt khách (VD: "Anh/chị có muốn em tư vấn thêm về phần thanh toán không ạ?").
 
 CÂU HỎI HIỆN TẠI: "${userQuery}"`;
 
@@ -315,19 +315,24 @@ async function handleSendMessage(predefinedQuery = null) {
 }
 
 function renderCitations(chunks) {
+  // Loại bỏ trùng lặp nguồn
+  const uniqueSources = [];
+  const seen = new Set();
+  chunks.forEach(c => {
+    const key = `${c.source}_${c.page}`;
+    if (!seen.has(key)) { seen.add(key); uniqueSources.push(c); }
+  });
+
   const citationHtml = `
     <div class="citation">
-      <div class="citation-header">Tài liệu tham khảo</div>
-      ${chunks.map(c => `
+      <div class="citation-header">📚 Nguồn tham khảo</div>
+      ${uniqueSources.map(c => `
         <div class="citation-item">
           <span class="citation-icon">📄</span>
           <div class="citation-content">
             <span class="citation-source">${c.source}</span>
             <span class="citation-page">Trang ${c.page}</span>
           </div>
-          <a href="${encodeURIComponent(c.source)}" target="_blank" class="download-link" title="Mở/Tải tài liệu">
-            📥
-          </a>
         </div>
       `).join('')}
     </div>
