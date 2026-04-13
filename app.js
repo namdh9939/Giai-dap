@@ -84,20 +84,19 @@ const classGroup = document.getElementById('class-group');
 function markdownToHtml(text) {
   if (!text) return "";
   let html = text
-    // Images: ![alt](url)
     .replace(/!\[(.*?)\]\((.*?)\)/g, '<div class="msg-image-container"><img src="$2" alt="$1" class="msg-image" onclick="window.open(\'$2\', \'_blank\')"></div>')
-    // Bold: **text**
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    // Lists: * item
-    .replace(/^\* (.*)/gm, '<li>$1</li>')
-    // Line breaks
-    .replace(/\n/g, '<br>');
+    .replace(/^\* (.*)/gm, '<li>$1</li>');
     
-  // Wrap list items
-  if (html.includes('<li>')) {
-    html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
-  }
-  return html;
+  // Xử lý xuống dòng, nhưng bỏ qua xuống dòng liền trước/sau các thẻ ul/li để tránh tạo khoảng trắng dư
+  html = html.replace(/\n(?!\s*<(li|\/ul)>)/g, '<br>');
+  
+  // Wrap các thẻ <li> liên tiếp bằng <ul>
+  html = html.replace(/(<li>.*?<\/li>)(?=(?:<br>)?\s*<li|(?![ \S\s]*?<li>))/gs, function(match) {
+        return `<ul>${match.replace(/<br>/g, '')}</ul>`;
+  });
+  
+  return html.replace(/<\/ul><ul>/g, ''); // Gộp các ul liền kề
 }
 
 // =============================================
@@ -118,9 +117,10 @@ async function loadKnowledgeBase() {
 // =============================================
 // SEARCH ENGINE (Simple Semantic/Keyword Search)
 // =============================================
-function searchRelevantChunks(query, limit = 20) {
+function searchRelevantChunks(query, limit = 12) {
   const normalizedQuery = query.toLowerCase();
-  const searchTerms = normalizedQuery.split(/\s+/).filter(t => t.length > 2);
+  // KHẮC PHỤC LỖI TỪ KHÓA VIỆT NAM (giữ các từ như: đá, tô, la, bê)
+  const searchTerms = normalizedQuery.split(/\s+/).filter(t => t.length > 1);
   
   const scoredData = knowledgeBase.map(chunk => {
     let score = 0;
