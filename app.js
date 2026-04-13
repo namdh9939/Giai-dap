@@ -187,7 +187,7 @@ HƯỚNG DẪN TƯ DUY (AGENTIC RULES):
 CÂU HỎI HIỆN TẠI: "${userQuery}"`;
 
   try {
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
@@ -299,8 +299,8 @@ async function handleSendMessage(predefinedQuery = null) {
   hideTyping();
   addBotMessage(response);
   
-  // Show citations if found
-  if (relevantChunks.length > 0 && geminiApiKey) {
+  // Only show citations if AI responded successfully (doesn't start with ⚠️)
+  if (!response.startsWith("⚠️") && relevantChunks.length > 0 && geminiApiKey) {
     renderCitations(relevantChunks);
   }
 
