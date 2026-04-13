@@ -338,12 +338,12 @@ body {
    QUICK REPLIES
    ======================================== */
 .quick-replies {
-  padding: var(--space-md) var(--space-lg) var(--space-xl);
+  padding: var(--space-sm) var(--space-lg) var(--space-md);
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: 6px;
   flex-shrink: 0;
-  max-height: 55dvh;
+  max-height: 60dvh;
   overflow-y: auto;
   background: linear-gradient(180deg, transparent 0%, var(--color-bg-chat) 20%);
   scrollbar-width: thin;
@@ -368,20 +368,20 @@ body {
 .topic-btn {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
+  gap: var(--space-sm);
   width: 100%;
-  padding: var(--space-md) var(--space-lg);
+  padding: var(--space-sm) var(--space-md);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   color: var(--color-text-primary);
   font-family: var(--font-family);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   font-weight: 500;
   cursor: pointer;
   transition: all var(--transition-normal);
   text-align: left;
-  line-height: 1.4;
+  line-height: 1.3;
   animation: buttonFadeIn 0.3s ease both;
 }
 
@@ -415,15 +415,15 @@ body {
 }
 
 .topic-btn .btn-icon {
-  font-size: 1.5rem;
+  font-size: 1.15rem;
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--color-brand-gold-dim);
-  border-radius: var(--radius-sm);
+  border-radius: 6px;
 }
 
 .topic-btn .btn-content {
@@ -434,12 +434,12 @@ body {
 
 .topic-btn .btn-title {
   font-weight: 600;
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   color: var(--color-text-primary);
 }
 
 .topic-btn .btn-desc {
-  font-size: var(--font-size-xs);
+  font-size: 0.7rem;
   color: var(--color-text-secondary);
   font-weight: 400;
 }
@@ -448,20 +448,20 @@ body {
 .question-btn {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
+  gap: var(--space-sm);
   width: 100%;
-  padding: var(--space-md) var(--space-lg);
+  padding: 6px var(--space-md);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   color: var(--color-text-primary);
   font-family: var(--font-family);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   font-weight: 400;
   cursor: pointer;
   transition: all var(--transition-normal);
   text-align: left;
-  line-height: 1.5;
+  line-height: 1.4;
   animation: buttonFadeIn 0.3s ease both;
 }
 
@@ -475,7 +475,7 @@ body {
 
 .question-btn::before {
   content: '💬';
-  font-size: 1rem;
+  font-size: 0.8rem;
   flex-shrink: 0;
 }
 
@@ -494,14 +494,14 @@ body {
 .nav-btn {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-sm) var(--space-lg);
+  gap: var(--space-xs);
+  padding: 5px var(--space-md);
   background: transparent;
   border: 1px solid var(--color-brand-gold-dim);
   border-radius: var(--radius-lg);
   color: var(--color-brand-gold);
   font-family: var(--font-family);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   font-weight: 500;
   cursor: pointer;
   transition: all var(--transition-normal);
@@ -1108,5 +1108,135 @@ body {
   white-space: nowrap;
   border: 0;
 }
+
+/* ========================================
+   CITATIONS
+   ======================================== */
+.citation {
+  margin-top: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.citation-header {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+
+.citation-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 4px 8px;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.citation-icon {
+  font-size: 0.75rem;
+}
+
+.citation-source {
+  font-weight: 500;
+  color: var(--color-brand-gold-light);
+}
+
+.citation-page {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* ========================================
+   IMAGES & MARKDOWN
+   ======================================== */
+.msg-image-container {
+  margin-top: var(--space-md);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  cursor: zoom-in;
+  max-width: 100%;
+}
+
+.msg-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+.msg-image:hover {
+  transform: scale(1.02);
+}
+
+/* ========================================
+   QUESTION BUTTONS (TRANSITION)
+   ======================================== */
+.question-btn {
+  display: block;
+  width: 100%;
+  padding: var(--space-md) var(--space-xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-primary);
+  text-align: left;
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  line-height: 1.4;
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: calc(var(--space-xl) + 12px);
+  animation: buttonFadeIn 0.3s ease both;
+}
+
+.question-btn::before {
+  content: '→';
+  position: absolute;
+  left: var(--space-xl);
+  color: var(--color-brand-gold);
+  font-weight: 700;
+}
+
+.question-btn:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-brand-gold);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-glow-gold);
+}
+
+.question-btn.back-btn {
+  background: transparent;
+  border: 1px dashed var(--color-border);
+  color: var(--color-text-secondary);
+  font-style: italic;
+  margin-top: var(--space-lg);
+}
+
+.question-btn.back-btn::before {
+  content: '↺';
+  color: var(--color-text-muted);
+}
+
+.question-btn.back-btn:hover {
+  border-color: var(--color-text-muted);
+  color: var(--color-text-primary);
+  transform: translateX(0);
+}
+
    
  
