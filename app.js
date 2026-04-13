@@ -7,7 +7,7 @@
 // GLOBAL STATE & CONFIG
 // =============================================
 const BOT_NAME = "Trợ Lý Xây Nhà";
-const CONFIG_API_KEY = "AIzaSyAjJIl7x24KMuMFdXjDine_9CX97mIp0NQ"; // <--- ĐÃ CẤU HÌNH API KEY CHÍNH THỨC
+const CONFIG_API_KEY = "AIzaSyDLvpZzMNJhjMXHrqXZPOt9Y9BZ3pT-GR0"; // <--- GEMINI FREE API KEY
 let knowledgeBase = [];
 let geminiApiKey = CONFIG_API_KEY;
 let userData = null;
