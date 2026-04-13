@@ -188,10 +188,21 @@ function searchRelevantChunks(query, limit = 8) {
 async function askGemini(userQuery, contextChunks, retryCount = 0) {
   if (!geminiApiKey) return "Dạ, hệ thống đang bảo trì. Anh/chị vui lòng quay lại sau ít phút nhé.";
 
-  // Chuẩn bị Context từ tài liệu
-  const contextText = contextChunks.length > 0
-    ? contextChunks.map(c => `[Nguồn: ${c.source}, Trang: ${c.page}]\nNội dung: ${c.content}`).join('\n\n---\n\n')
-    : "Không tìm thấy quy định cụ thể trong tài liệu tri thức cho câu hỏi này.";
+  // Chuẩn bị Context từ tài liệu — giới hạn 6000 ký tự để tránh vượt quota
+  let contextText = "";
+  if (contextChunks.length > 0) {
+    let totalLen = 0;
+    const selected = [];
+    for (const c of contextChunks) {
+      const entry = `[${c.source}, P${c.page}]: ${c.content}`;
+      if (totalLen + entry.length > 6000) break;
+      selected.push(entry);
+      totalLen += entry.length;
+    }
+    contextText = selected.join('\n---\n');
+  } else {
+    contextText = "Không tìm thấy quy định cụ thể trong tài liệu tri thức cho câu hỏi này.";
+  }
 
   // Chuẩn bị Lịch sử hội thoại để Agent có "bộ nhớ"
   const historyText = chatHistory.length > 0
@@ -258,7 +269,7 @@ ${historyText}
           { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_ONLY_HIGH" }
         ],
         generationConfig: {
-          maxOutputTokens: 2048,
+          maxOutputTokens: 1024,
           temperature: 0.2,
           topP: 0.8
         }
@@ -268,15 +279,20 @@ ${historyText}
     clearTimeout(timeoutId);
 
     if (!response.ok) {
-      // Rate limit (429) — auto retry 1 lần sau 2 giây
-      if (response.status === 429 && retryCount < 1) {
-        await new Promise(r => setTimeout(r, 2000));
+      const errBody = await response.text().catch(() => '');
+      console.warn(`Gemini HTTP ${response.status}:`, errBody);
+      // Rate limit (429) — auto retry 1 lần sau 3 giây
+      if (response.status === 429 && retryCount < 2) {
+        await new Promise(r => setTimeout(r, 3000));
         return askGemini(userQuery, contextChunks, retryCount + 1);
       }
       // Server error (500/503) — auto retry 1 lần
       if ((response.status >= 500) && retryCount < 1) {
-        await new Promise(r => setTimeout(r, 1500));
+        await new Promise(r => setTimeout(r, 2000));
         return askGemini(userQuery, contextChunks, retryCount + 1);
+      }
+      if (response.status === 403) {
+        return "Dạ, API Key đã hết hạn. Anh/chị vui lòng cập nhật key mới (nhấn nút chìa khóa bên phải).";
       }
       return "Dạ, hệ thống đang bận. Anh/chị thử hỏi lại sau ít giây nhé.";
     }
