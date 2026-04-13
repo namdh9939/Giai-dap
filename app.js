@@ -131,14 +131,19 @@ const KB_FILES = {
   'thac-mac': 'kb_thac_mac.json'
 };
 
+let fileUrlMap = {}; // source name -> { file, url }
+
 async function loadKnowledgeBase() {
   try {
-    const allPromises = Object.values(KB_FILES).map(file =>
-      fetch(file).then(r => r.ok ? r.json() : []).catch(() => [])
-    );
-    const results = await Promise.all(allPromises);
-    knowledgeBase = results.flat();
-    console.log("Knowledge Base loaded:", knowledgeBase.length, "chunks from 5 files");
+    const [kbResults, urlMap] = await Promise.all([
+      Promise.all(Object.values(KB_FILES).map(file =>
+        fetch(file).then(r => r.ok ? r.json() : []).catch(() => [])
+      )),
+      fetch('file_urls.json').then(r => r.ok ? r.json() : {}).catch(() => ({}))
+    ]);
+    knowledgeBase = kbResults.flat();
+    fileUrlMap = urlMap;
+    console.log("KB loaded:", knowledgeBase.length, "chunks. File URLs:", Object.keys(fileUrlMap).length);
   } catch (error) {
     console.error("Error loading knowledge base:", error);
   }
@@ -569,10 +574,13 @@ async function handleSendMessage(predefinedQuery = null) {
     hideTyping();
     if (response) addBotMessage(response);
 
-    // Hình ảnh minh họa cho tiêu chuẩn thi công
+    // Link tài liệu liên quan + hình ảnh minh họa
     try {
-      if (relevantChunks.length > 0 && (currentTopic === 'tieu-chuan' || (text && text.match(/tiêu chuẩn|nghiệm thu|bê tông|cốt thép|tường xây|ống nước|điện/i)))) {
-        renderRelatedImages(relevantChunks);
+      if (relevantChunks.length > 0) {
+        renderDocLinks(relevantChunks);
+        if (currentTopic === 'tieu-chuan' || (text && text.match(/tiêu chuẩn|nghiệm thu|bê tông|cốt thép|tường xây|ống nước|điện/i))) {
+          renderRelatedImages(relevantChunks);
+        }
       }
     } catch (e) { /* ignore */ }
 
@@ -584,6 +592,34 @@ async function handleSendMessage(predefinedQuery = null) {
     }
     isProcessing = false;
   }
+}
+
+function renderDocLinks(chunks) {
+  // Tìm file tài liệu liên quan từ chunks đã dùng
+  const links = [];
+  const seen = new Set();
+  for (const chunk of chunks) {
+    const source = chunk.source;
+    if (seen.has(source)) continue;
+    // Tìm trong fileUrlMap
+    if (fileUrlMap[source]) {
+      seen.add(source);
+      links.push({ name: source, url: fileUrlMap[source].url, file: fileUrlMap[source].file });
+    }
+  }
+  if (links.length === 0) return;
+
+  const html = `
+    <div class="doc-links">
+      <div class="doc-links-label">📎 Tài liệu liên quan:</div>
+      ${links.slice(0, 3).map(l => {
+        const ext = l.file.split('.').pop().toLowerCase();
+        const icon = ext === 'pdf' ? '📄' : ext === 'xlsx' || ext === 'xls' ? '📊' : ext === 'docx' ? '📝' : ext === 'jpg' || ext === 'jpeg' ? '🖼️' : '📎';
+        return `<a href="${l.url}" target="_blank" class="doc-link-item" download>${icon} ${l.name}</a>`;
+      }).join('')}
+    </div>
+  `;
+  addBotMessage(html, false);
 }
 
 function renderCitations(chunks) {
