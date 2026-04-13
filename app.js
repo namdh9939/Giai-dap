@@ -196,20 +196,22 @@ async function askGemini(userQuery, contextChunks, retryCount = 0) {
 
 ## Nguyên tắc trả lời
 
-1. **Phạm vi kiến thức:**
-   - Nếu câu hỏi có trong TRI THỨC TÀI LIỆU → Trả lời đầy đủ, có cấu trúc, kèm trích dẫn [Tên tài liệu, Trang X]
-   - Nếu câu hỏi ngoài phạm vi → "Câu hỏi này em cần chuyển đến đội ngũ chuyên môn để hỗ trợ anh/chị tốt hơn ạ. Hotline: ${hotline}"
+1. **TRẢ LỜI BẰNG NỘI DUNG CỤ THỂ:**
+   - ĐỌC KỸ TRI THỨC TÀI LIỆU bên dưới rồi VIẾT LẠI thành câu trả lời hoàn chỉnh cho khách đọc trực tiếp.
+   - KHÔNG BAO GIỜ nói "xem file X", "tham khảo tài liệu Y", "mở biểu mẫu Z". Khách hàng KHÔNG có file nào cả.
+   - Trích xuất số liệu, điều khoản, quy định cụ thể từ tài liệu và trình bày trực tiếp trong tin nhắn.
+   - VD: Thay vì "Xem HĐ thi công phần thô", hãy viết ra các điều khoản thanh toán cụ thể.
 
-2. **Cấu trúc:** Ngắn gọn, đi thẳng vào vấn đề, dùng bullet points, HTML (<strong>, <ul>, <li>)
+2. **Cấu trúc:** Dùng HTML (<strong>, <ul>, <li>) để trình bày rõ ràng. Chia thành các mục, đánh số.
 
-3. **Giọng văn:** Xưng "em", gọi "anh/chị". Thân thiện, chuyên nghiệp. Tối đa 1-2 emoji.
+3. **Giọng văn:** Xưng "em", gọi "anh/chị". Thân thiện, chuyên nghiệp.
 
-4. **Topic Guard:** Nếu anh/chị đang hỏi chủ đề A mà chuyển sang B → xác nhận trước khi trả lời.
+4. **Ngoài phạm vi:** → "Câu hỏi này em cần chuyển đến đội ngũ chuyên môn. Hotline: ${hotline}"
 
-5. **TUYỆT ĐỐI KHÔNG:** Không gửi URL/link. Không tư vấn pháp lý chuyên sâu, báo giá cụ thể → chuyển hotline.
+5. **TUYỆT ĐỐI KHÔNG:** Không gửi URL/link. Không dẫn tên file/biểu mẫu. Không nói "xem thêm tại...".
 
 6. **Kết thúc:** Luôn kết bằng 1 câu hỏi dẫn dắt tiếp.
-${hasImages ? '\n7. **Hình ảnh:** Hệ thống sẽ tự động gửi hình minh họa. Trong câu trả lời, hãy nhắc anh/chị xem hình bên dưới để đối chiếu.' : ''}
+${hasImages ? '\n7. **Hình ảnh:** Hệ thống sẽ tự động gửi hình minh họa kèm theo.' : ''}
 
 ## TRI THỨC TÀI LIỆU:
 ${contextText}
@@ -406,7 +408,6 @@ async function handleSendMessage(predefinedQuery = null) {
   // Only show citations if AI responded successfully (not an error message)
   const isErrorResponse = response.startsWith("Dạ, hệ thống") || response.startsWith("Dạ, server") || response.startsWith("Dạ, kết nối") || response.startsWith("Dạ, câu hỏi này");
   if (!isErrorResponse && relevantChunks.length > 0 && geminiApiKey) {
-    renderCitations(relevantChunks);
     // Gửi kèm hình ảnh minh họa nếu topic là tiêu chuẩn thi công
     if (currentTopic === 'tieu-chuan' || text.match(/tiêu chuẩn|nghiệm thu|bê tông|cốt thép|tường xây|ống nước|điện/i)) {
       renderRelatedImages(relevantChunks);
