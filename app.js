@@ -7,9 +7,9 @@
 // GLOBAL STATE & CONFIG
 // =============================================
 const BOT_NAME = "Trợ Lý Xây Nhà";
-const CONFIG_API_KEY = "AIzaSyChHzkiOTlGzHrFr-Xa1PHserZuUl2Q-Yk"; // <--- ĐÃ CÀI ĐẶT KEY QUAN TRỌNG
+const CONFIG_API_KEY = ""; // <--- CHƯA CÀI ĐẶT API KEY
 let knowledgeBase = [];
-let geminiApiKey = CONFIG_API_KEY; 
+let geminiApiKey = CONFIG_API_KEY;
 let userData = null;
 let currentTopic = null;
 let isProcessing = false;
@@ -153,14 +153,14 @@ function searchRelevantChunks(query, limit = 5) {
 // =============================================
 // GEMINI API INTEGRATION
 // =============================================
-async function askGemini(userQuery, contextChunks) {
-  if (!geminiApiKey) return "⚠️ Thiếu API Key. Vui lòng cấu hình lại.";
+async function askGemini(userQuery, contextChunks, retryCount = 0) {
+  if (!geminiApiKey) return "Dạ, hệ thống đang bảo trì. Anh/chị vui lòng quay lại sau ít phút nhé.";
 
   // Chuẩn bị Context từ tài liệu
-  const contextText = contextChunks.length > 0 
+  const contextText = contextChunks.length > 0
     ? contextChunks.map(c => `[Nguồn: ${c.source}, Trang: ${c.page}]\nNội dung: ${c.content}`).join('\n\n---\n\n')
     : "Không tìm thấy quy định cụ thể trong tài liệu tri thức cho câu hỏi này.";
-  
+
   // Chuẩn bị Lịch sử hội thoại để Agent có "bộ nhớ"
   const historyText = chatHistory.length > 0
     ? chatHistory.map(m => `${m.role === 'user' ? 'Khách' : 'Trợ lý'}: ${m.content}`).join('\n')
@@ -179,7 +179,7 @@ HƯỚNG DẪN TƯ DUY (AGENTIC RULES):
 1. KẾT NỐI NGỮ CẢNH: Nếu khách hỏi những câu như "Tại sao?", "Còn phần đó thì sao?", hãy nhìn vào Lịch sử trò chuyện để biết khách đang nói về vấn đề gì.
 2. PHONG CÁCH TƯ VẤN: Trả lời thân thiện ("Dạ", "Em", "Anh/Chị"). Không trả lời quá ngắn gọn kiểu máy móc, hãy giải thích lý do.
 3. TRÍCH DẪN: Luôn kèm [Tên File, Trang X] nếu thông tin có trong tài liệu.
-4. CHỦ ĐỘNG: 
+4. CHỦ ĐỘNG:
    - Nếu tài liệu không đủ thông tin, hãy nói rõ và đưa ra lời khuyên dựa trên kinh nghiệm xây dựng thực tế (nhưng nhắc khách tham khảo thêm KS/KTS).
    - Nếu câu hỏi quá chung chung, hãy ĐẶT CÂU HỎI NGƯỢC LẠI để làm rõ (VD: "Anh định xây nhà mấy tầng để em tư vấn kỹ hơn?").
 5. ĐỊNH DẠNG: Sử dụng HTML (<strong>, <ul>, <li>) để trình bày đẹp mắt. KHÔNG sử dụng Markdown hình ảnh.
@@ -187,20 +187,74 @@ HƯỚNG DẪN TƯ DUY (AGENTIC RULES):
 
 CÂU HỎI HIỆN TẠI: "${userQuery}"`;
 
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 30000); // 30s timeout
+
   try {
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${geminiApiKey}`, {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+      signal: controller.signal,
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        safetySettings: [
+          { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_ONLY_HIGH" },
+          { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_ONLY_HIGH" },
+          { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_ONLY_HIGH" },
+          { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_ONLY_HIGH" }
+        ],
+        generationConfig: {
+          maxOutputTokens: 2048,
+          temperature: 0.7
+        }
+      })
     });
 
-    const data = await response.json();
-    if (data.error) {
-      if (data.error.code === 429) return "⚠️ Hệ thống đang quá tải. Anh/chị đợi 1 phút rồi hỏi lại nhé.";
-      return `⚠️ Lỗi AI: ${data.error.message}`;
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      // Rate limit (429) — auto retry 1 lần sau 2 giây
+      if (response.status === 429 && retryCount < 1) {
+        await new Promise(r => setTimeout(r, 2000));
+        return askGemini(userQuery, contextChunks, retryCount + 1);
+      }
+      // Server error (500/503) — auto retry 1 lần
+      if ((response.status >= 500) && retryCount < 1) {
+        await new Promise(r => setTimeout(r, 1500));
+        return askGemini(userQuery, contextChunks, retryCount + 1);
+      }
+      return "Dạ, hệ thống đang bận. Anh/chị thử hỏi lại sau ít giây nhé.";
     }
-    
-    const botResponse = data.candidates[0].content.parts[0].text;
+
+    const data = await response.json();
+
+    // Kiểm tra lỗi API trả về trong body
+    if (data.error) {
+      console.warn("Gemini API error:", data.error);
+      return "Dạ, hệ thống đang bận. Anh/chị thử hỏi lại sau ít giây nhé.";
+    }
+
+    // Kiểm tra candidates tồn tại và có nội dung
+    if (!data.candidates || data.candidates.length === 0) {
+      console.warn("Gemini: no candidates returned", data);
+      return "Dạ, em chưa tìm được câu trả lời phù hợp. Anh/chị thử diễn đạt lại câu hỏi giúp em nhé.";
+    }
+
+    const candidate = data.candidates[0];
+
+    // Kiểm tra bị chặn bởi safety filter
+    if (candidate.finishReason === "SAFETY" || !candidate.content) {
+      console.warn("Gemini: blocked by safety filter", candidate);
+      return "Dạ, câu hỏi này em chưa thể trả lời được. Anh/chị thử hỏi cụ thể hơn về xây dựng nhé.";
+    }
+
+    // Trích xuất text an toàn
+    const parts = candidate.content.parts;
+    if (!parts || parts.length === 0 || !parts[0].text) {
+      return "Dạ, em chưa tìm được câu trả lời phù hợp. Anh/chị thử hỏi lại nhé.";
+    }
+
+    const botResponse = parts[0].text;
 
     // CẬP NHẬT BỘ NHỚ (GIỮ 8 TIN NHẮN GẦN NHẤT)
     chatHistory.push({ role: 'user', content: userQuery });
@@ -208,8 +262,23 @@ CÂU HỎI HIỆN TẠI: "${userQuery}"`;
     if (chatHistory.length > 8) chatHistory.splice(0, 2);
 
     return botResponse;
+
   } catch (error) {
-    return "⚠️ Không thể kết nối với AI. Vui lòng kiểm tra mạng.";
+    clearTimeout(timeoutId);
+
+    // Timeout / mất mạng — retry 1 lần
+    if (error.name === 'AbortError') {
+      if (retryCount < 1) return askGemini(userQuery, contextChunks, retryCount + 1);
+      return "Dạ, server đang phản hồi chậm. Anh/chị thử lại sau ít giây nhé.";
+    }
+
+    // Lỗi mạng — retry 1 lần
+    if (retryCount < 1) {
+      await new Promise(r => setTimeout(r, 1000));
+      return askGemini(userQuery, contextChunks, retryCount + 1);
+    }
+
+    return "Dạ, kết nối mạng đang không ổn định. Anh/chị kiểm tra WiFi rồi thử lại nhé.";
   }
 }
 
