@@ -26,5 +26,37 @@
       "nhập trạch"
     ],
     "images": []
+  },
+  {
+    "id": "thac-mac_img_Cúng nhập trạch 1.jpg",
+    "source": "Phong thủy - Hình minh họa",
+    "page": 1,
+    "content": "Hình ảnh minh họa nghi lễ: Cúng nhập trạch 1",
+    "keywords": [
+      "cúng",
+      "nhập trạch",
+      "động thổ",
+      "phong thủy",
+      "nghi lễ"
+    ],
+    "images": [
+      "images/phong-thuy/Cúng nhập trạch 1.jpg"
+    ]
+  },
+  {
+    "id": "thac-mac_img_Cúng nhập trạch 2.jp2.jpg",
+    "source": "Phong thủy - Hình minh họa",
+    "page": 1,
+    "content": "Hình ảnh minh họa nghi lễ: Cúng nhập trạch 2.jp2",
+    "keywords": [
+      "cúng",
+      "nhập trạch",
+      "động thổ",
+      "phong thủy",
+      "nghi lễ"
+    ],
+    "images": [
+      "images/phong-thuy/Cúng nhập trạch 2.jp2.jpg"
+    ]
   }
 ]
