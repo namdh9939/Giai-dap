@@ -546,38 +546,38 @@ async function handleSendMessage(predefinedQuery = null) {
   showTyping();
 
   let response;
+  let relevantChunks = [];
 
-  if (currentFile && currentFile.base64) {
-    // === ẢNH: Gửi Gemini Vision ===
-    const mimeType = `image/${currentFile.type === 'jpg' ? 'jpeg' : currentFile.type}`;
-    response = await analyzeImageWithGemini(currentFile.base64, mimeType, text);
-    if (!response) response = "Dạ, em không thể phân tích hình ảnh lúc này. Anh/chị thử mô tả bằng văn bản giúp em nhé.";
-  } else if (currentFile && currentFile.textContent) {
-    // === TÀI LIỆU: Trích xuất text → gửi AI cùng câu hỏi ===
-    const relevantChunks = searchRelevantChunks(text || currentFile.name);
-    // Thêm nội dung file vào context
-    const fakeChunk = { source: currentFile.name, page: 1, content: currentFile.textContent, keywords: [], images: [] };
-    const allChunks = [fakeChunk, ...relevantChunks];
-    response = await askAI(text || `Phân tích tài liệu "${currentFile.name}"`, allChunks);
-  } else {
-    // === Chat thường (không có file) ===
-    const relevantChunks = searchRelevantChunks(text);
-    response = await askAI(text, relevantChunks);
+  try {
+    if (currentFile && currentFile.base64) {
+      // === ẢNH: Gửi Gemini Vision ===
+      const mimeType = `image/${currentFile.type === 'jpg' ? 'jpeg' : currentFile.type}`;
+      response = await analyzeImageWithGemini(currentFile.base64, mimeType, text);
+      if (!response) response = "Dạ, em không thể phân tích hình ảnh lúc này. Anh/chị thử mô tả bằng văn bản giúp em nhé.";
+    } else if (currentFile && currentFile.textContent) {
+      // === TÀI LIỆU: Trích xuất text → gửi AI cùng câu hỏi ===
+      relevantChunks = searchRelevantChunks(text || currentFile.name);
+      const fakeChunk = { source: currentFile.name, page: 1, content: currentFile.textContent, keywords: [], images: [] };
+      response = await askAI(text || `Phân tích tài liệu "${currentFile.name}"`, [fakeChunk, ...relevantChunks]);
+    } else {
+      // === Chat thường ===
+      relevantChunks = searchRelevantChunks(text);
+      response = await askAI(text, relevantChunks);
+    }
+  } catch (err) {
+    console.error('Chat error:', err);
+    response = "Dạ, có lỗi xảy ra. Anh/chị thử hỏi lại nhé.";
   }
-  
+
   hideTyping();
   addBotMessage(response);
 
-  // Only show citations if AI responded successfully (not an error message)
-  const isErrorResponse = response.startsWith("Dạ, hệ thống") || response.startsWith("Dạ, server") || response.startsWith("Dạ, kết nối") || response.startsWith("Dạ, câu hỏi này") || response.startsWith("Dạ, cả hai");
-  if (!isErrorResponse && relevantChunks.length > 0) {
-    // Gửi kèm hình ảnh minh họa nếu topic là tiêu chuẩn thi công
-    if (currentTopic === 'tieu-chuan' || text.match(/tiêu chuẩn|nghiệm thu|bê tông|cốt thép|tường xây|ống nước|điện/i)) {
-      renderRelatedImages(relevantChunks);
-    }
+  // Gửi kèm hình ảnh minh họa nếu tiêu chuẩn thi công
+  if (relevantChunks.length > 0 && (currentTopic === 'tieu-chuan' || (text && text.match(/tiêu chuẩn|nghiệm thu|bê tông|cốt thép|tường xây|ống nước|điện/i)))) {
+    renderRelatedImages(relevantChunks);
   }
 
-  // After AI answers, show "Back to Topics" if we were in a topic
+  // Hiện lại nút câu hỏi gợi ý
   if (currentTopic) {
     renderQuestionButtons(currentTopic);
   } else {
