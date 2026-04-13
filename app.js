@@ -188,15 +188,21 @@ CÂU HỎI HIỆN TẠI CỦA QUÝ KHÁCH: "${userQuery}"
   const timeoutId = setTimeout(() => controller.abort(), 35000); 
 
   try {
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       signal: controller.signal,
       body: JSON.stringify({
         contents: [{ parts: [{ text: prompt }] }],
+        safetySettings: [
+          { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_ONLY_HIGH" },
+          { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_ONLY_HIGH" },
+          { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_ONLY_HIGH" },
+          { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_ONLY_HIGH" }
+        ],
         generationConfig: {
           maxOutputTokens: 2048,
-          temperature: 0.2, 
+          temperature: 0.2,
           topP: 0.8
         }
       })
@@ -361,8 +367,9 @@ async function handleSendMessage(predefinedQuery = null) {
   hideTyping();
   addBotMessage(response);
   
-  // Only show citations if AI responded successfully (doesn't start with ⚠️)
-  if (!response.startsWith("⚠️") && relevantChunks.length > 0 && geminiApiKey) {
+  // Only show citations if AI responded successfully (not an error message)
+  const isErrorResponse = response.startsWith("Dạ, hệ thống") || response.startsWith("Dạ, server") || response.startsWith("Dạ, kết nối") || response.startsWith("Dạ, câu hỏi này");
+  if (!isErrorResponse && relevantChunks.length > 0 && geminiApiKey) {
     renderCitations(relevantChunks);
   }
 
