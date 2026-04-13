@@ -4,65 +4,70 @@
 
 /* --- CSS Custom Properties --- */
 :root {
-  /* Colors */
-  --color-bg-primary: #0B1420;
-  --color-bg-secondary: #111E2E;
-  --color-bg-chat: #0F1923;
-  --color-surface: rgba(255, 255, 255, 0.04);
-  --color-surface-hover: rgba(255, 255, 255, 0.08);
+  /* Colors - Deep & Professional Palette */
+  --color-bg-primary: #04080F;
+  --color-bg-secondary: #0A121E;
+  --color-bg-chat: #060D17;
+  --color-surface: rgba(255, 255, 255, 0.03);
+  --color-surface-hover: rgba(255, 255, 255, 0.07);
   --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-glow: rgba(245, 166, 35, 0.3);
+  --color-border-glow: rgba(212, 175, 55, 0.4);
 
   --color-brand-blue: #1B3A5C;
   --color-brand-blue-light: #2A5A8C;
-  --color-brand-gold: #F5A623;
-  --color-brand-gold-light: #FFBE4F;
-  --color-brand-gold-dim: rgba(245, 166, 35, 0.15);
+  --color-brand-gold: #D4AF37; /* Metallic Gold */
+  --color-brand-gold-light: #F4D03F;
+  --color-brand-gold-dim: rgba(212, 175, 55, 0.15);
 
-  --color-bot-bubble: #162636;
-  --color-bot-bubble-border: rgba(42, 90, 140, 0.3);
-  --color-user-bubble: linear-gradient(135deg, #F5A623 0%, #E8941A 100%);
-  --color-user-text: #0B1420;
+  --color-bot-bubble: rgba(22, 38, 54, 0.7);
+  --color-bot-bubble-border: rgba(212, 175, 55, 0.15);
+  --color-user-bubble: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+  --color-user-text: #050A10;
 
-  --color-text-primary: #E8ECF1;
-  --color-text-secondary: #8A9BB5;
-  --color-text-muted: #5A6B80;
+  --color-text-primary: #F0F2F5;
+  --color-text-secondary: #A0AEC0;
+  --color-text-muted: #64748B;
 
-  /* Typography */
-  --font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Typography - Modern & Readable */
+  --font-family: 'Be Vietnam Pro', 'Inter', system-ui, sans-serif;
   --font-size-xs: 0.75rem;
-  --font-size-sm: 0.8125rem;
-  --font-size-base: 0.9375rem;
-  --font-size-md: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-md: 1.125rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
 
   /* Spacing */
-  --space-xs: 4px;
-  --space-sm: 8px;
-  --space-md: 12px;
-  --space-lg: 16px;
-  --space-xl: 20px;
-  --space-2xl: 28px;
+  --space-xs: 6px;
+  --space-sm: 10px;
+  --space-md: 16px;
+  --space-lg: 20px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
 
   /* Border Radius */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-  --radius-xl: 22px;
-  --radius-full: 50%;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
 
-  /* Shadows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
-  --shadow-glow-gold: 0 0 20px rgba(245, 166, 35, 0.15);
-  --shadow-glow-blue: 0 0 20px rgba(42, 90, 140, 0.2);
+  /* Shadows & Glows */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+  --shadow-glow-gold: 0 0 25px rgba(212, 175, 55, 0.2);
+  --shadow-glow-blue: 0 0 25px rgba(42, 90, 140, 0.25);
+
+  /* Glassmorphism */
+  --glass-bg: rgba(10, 18, 30, 0.8);
+  --glass-blur: blur(12px);
 
   /* Transitions */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 200ms cubic-bezier(0.2, 0, 0, 1);
+  --transition-normal: 350ms cubic-bezier(0.2, 0, 0, 1);
+  --transition-slow: 500ms cubic-bezier(0.2, 0, 0, 1);
+}2, 1);
 }
 
 /* --- Reset & Base --- */

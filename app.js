@@ -7,7 +7,7 @@
 // GLOBAL STATE & CONFIG
 // =============================================
 const BOT_NAME = "Trợ Lý Xây Nhà";
-const CONFIG_API_KEY = ""; // <--- CHƯA CÀI ĐẶT API KEY
+const CONFIG_API_KEY = "AIzaSyAjJIl7x24KMuMFdXjDine_9CX97mIp0NQ"; // <--- ĐÃ CẤU HÌNH API KEY CHÍNH THỨC
 let knowledgeBase = [];
 let geminiApiKey = CONFIG_API_KEY;
 let userData = null;
@@ -118,7 +118,7 @@ async function loadKnowledgeBase() {
 // =============================================
 // SEARCH ENGINE (Simple Semantic/Keyword Search)
 // =============================================
-function searchRelevantChunks(query, limit = 5) {
+function searchRelevantChunks(query, limit = 20) {
   const normalizedQuery = query.toLowerCase();
   const searchTerms = normalizedQuery.split(/\s+/).filter(t => t.length > 2);
   
@@ -164,48 +164,40 @@ async function askGemini(userQuery, contextChunks, retryCount = 0) {
   // Chuẩn bị Lịch sử hội thoại để Agent có "bộ nhớ"
   const historyText = chatHistory.length > 0
     ? chatHistory.map(m => `${m.role === 'user' ? 'Khách' : 'Trợ lý'}: ${m.content}`).join('\n')
-    : "Đây là câu hỏi đầu tiên của khách.";
+    : "Đây là câu hỏi đầu tiên của Quý khách.";
 
-  const prompt = `Bạn là "Trợ Lý Xây Nhà", một AI Consulting Agent chuyên nghiệp.
-Nhiệm vụ của bạn là tư vấn dựa trên TRI THỨC TÀI LIỆU và NGỮ CẢNH HỘI THOẠI.
+  const prompt = `BẠN LÀ: "Chuyên gia Cố vấn Xây dựng cấp cao" — một trợ lý thông minh, nghiêm túc và cực kỳ chuyên nghiệp.
+NHIỆM VỤ: Giải đáp mọi thắc mắc của chủ nhà dựa trên dữ liệu tri thức được cung cấp.
+
+NGUYÊN TẮC TƯ VẤN:
+1. NGÔN NGỮ: Sử dụng tiếng Việt chuẩn mực, chuyên nghiệp. Xưng "Tôi" và gọi khách hàng là "Quý khách" hoặc "Anh/Chị".
+2. ĐỘ CHÍNH XÁC: Chỉ trả lời dựa trên TRI THỨC TÀI LIỆU bên dưới. Nếu không có trong tài liệu, hãy dùng kiến thức chuyên gia để tư vấn nhưng phải ghi chú rõ là "Tư vấn dựa trên kinh nghiệm thực tế".
+3. TRÌNH BÀY: Sử dụng HTML (<strong>, <ul>, <li>) để trình bày đẹp mắt. Cần gãy gọn, tập trung vào giải pháp.
+4. TƯ DUY PHẢM BIỆN: Cảnh báo Quý khách nếu yêu cầu có rủi ro về kỹ thuật hoặc pháp lý.
 
 TRI THỨC TÀI LIỆU:
 ${contextText}
 
-LỊCH SỬ TRÒ CHUYỆN:
+LỊCH SỬ HỘI THOẠI:
 ${historyText}
 
-HƯỚNG DẪN TƯ DUY (AGENTIC RULES):
-1. KẾT NỐI NGỮ CẢNH: Nếu khách hỏi những câu như "Tại sao?", "Còn phần đó thì sao?", hãy nhìn vào Lịch sử trò chuyện để biết khách đang nói về vấn đề gì.
-2. PHONG CÁCH TƯ VẤN: Trả lời thân thiện ("Dạ", "Em", "Anh/Chị"). Không trả lời quá ngắn gọn kiểu máy móc, hãy giải thích lý do.
-3. TRÍCH DẪN: Luôn kèm [Tên File, Trang X] nếu thông tin có trong tài liệu.
-4. CHỦ ĐỘNG:
-   - Nếu tài liệu không đủ thông tin, hãy nói rõ và đưa ra lời khuyên dựa trên kinh nghiệm xây dựng thực tế (nhưng nhắc khách tham khảo thêm KS/KTS).
-   - Nếu câu hỏi quá chung chung, hãy ĐẶT CÂU HỎI NGƯỢC LẠI để làm rõ (VD: "Anh định xây nhà mấy tầng để em tư vấn kỹ hơn?").
-5. ĐỊNH DẠNG: Sử dụng HTML (<strong>, <ul>, <li>) để trình bày đẹp mắt. KHÔNG sử dụng Markdown hình ảnh.
-6. KẾT THÚC: Luôn kết thúc câu trả lời bằng 1 gợi ý hoặc câu hỏi tiếp theo để dẫn dắt khách (VD: "Anh/chị có muốn em tư vấn thêm về phần thanh toán không ạ?").
-
-CÂU HỎI HIỆN TẠI: "${userQuery}"`;
+CÂU HỎI HIỆN TẠI CỦA QUÝ KHÁCH: "${userQuery}"
+(Trả lời một cách đẳng cấp, sâu sắc và dẫn dắt giải pháp tiếp theo).`;
 
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 30000); // 30s timeout
+  const timeoutId = setTimeout(() => controller.abort(), 35000); 
 
   try {
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`, {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       signal: controller.signal,
       body: JSON.stringify({
         contents: [{ parts: [{ text: prompt }] }],
-        safetySettings: [
-          { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_ONLY_HIGH" },
-          { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_ONLY_HIGH" },
-          { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_ONLY_HIGH" },
-          { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_ONLY_HIGH" }
-        ],
         generationConfig: {
           maxOutputTokens: 2048,
-          temperature: 0.7
+          temperature: 0.2, 
+          topP: 0.8
         }
       })
     });
