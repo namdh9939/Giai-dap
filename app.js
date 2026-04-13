@@ -146,30 +146,30 @@ function searchRelevantChunks(query, limit = 8) {
   const normalizedQuery = query.toLowerCase();
   const searchTerms = normalizedQuery.split(/\s+/).filter(t => t.length > 1);
 
-  const scoredData = knowledgeBase.map(chunk => {
+  // CHỈ tìm trong KB đúng chủ đề đang chọn
+  const topicFilter = currentTopic || '';
+  const filtered = topicFilter
+    ? knowledgeBase.filter(c => c.id.includes(topicFilter))
+    : knowledgeBase;
+
+  const scoredData = filtered.map(chunk => {
     let score = 0;
     const contentLower = chunk.content.toLowerCase();
 
-    // Core Keyword Matching
     searchTerms.forEach(term => {
       if (contentLower.includes(term)) score += 10;
     });
 
-    // Smart Keywords Matching
     if (chunk.keywords) {
       chunk.keywords.forEach(kw => {
         if (normalizedQuery.includes(kw.toLowerCase())) score += 20;
       });
     }
 
-    // Boost if matches current topic
-    if (currentTopic && chunk.id.includes(currentTopic)) score += 15;
-
-    // BOOST chunks có số liệu cụ thể (%, VNĐ, ngày, tháng)
+    // BOOST chunks có số liệu cụ thể
     const hasData = /\d+%|\d[\d,.]+\s*(VNĐ|đồng|ngày|tháng|lần|mm|cm|m2|m²)|\bđiều\s+\d+\b/i.test(chunk.content);
     if (hasData && score > 0) score += 25;
 
-    // BOOST chunks có cấu trúc điều khoản (Điều X, Khoản Y)
     const hasClause = /ĐIỀU\s+\d+|Khoản\s+\d+|Mục\s+\d+|Bước\s+\d+/i.test(chunk.content);
     if (hasClause && score > 0) score += 15;
 
@@ -210,16 +210,23 @@ function buildPromptAndContext(userQuery, contextChunks) {
   const hotline = userCourse === 'tu-kiem-soat' ? '0981 982 029' : '0902 982 029';
   const hasImages = contextChunks.some(c => c.images && c.images.length > 0);
 
-  const systemPrompt = `Bạn là "Trợ Lý Xây Nhà" — chatbot hỗ trợ học viên khóa XNLĐ/TKSXN giải đáp thắc mắc xây dựng.
+  // Tên chủ đề hiện tại
+  const topicName = currentTopic && UI_TOPICS[currentTopic] ? UI_TOPICS[currentTopic].title : 'chung';
+
+  const systemPrompt = `Bạn là một CHUYÊN GIA TƯ VẤN XÂY DỰNG đang tư vấn trực tiếp cho CHỦ ĐẦU TƯ (người bỏ tiền xây nhà), KHÔNG phải tư vấn cho nhà thầu.
+
+CHỦ ĐỀ ĐANG TƯ VẤN: ${topicName}
+→ CHỈ trả lời trong phạm vi chủ đề "${topicName}". Nếu câu hỏi thuộc chủ đề khác, nhắc anh/chị chuyển sang chủ đề phù hợp.
 
 NGUYÊN TẮC:
-1. BẮT BUỘC trích dẫn số liệu cụ thể (%, VNĐ, ngày, mức phạt) từ TRI THỨC TÀI LIỆU. KHÔNG bịa số liệu. Nếu tài liệu ghi "…" thì nói "do hai bên thỏa thuận khi ký".
-2. VIẾT câu trả lời hoàn chỉnh cho khách đọc trực tiếp. KHÔNG nói "xem file X", "tham khảo tài liệu Y".
-3. Dùng HTML (<strong>, <ul>, <li>) trình bày rõ ràng.
-4. Xưng "em", gọi "anh/chị". Thân thiện, chuyên nghiệp.
-5. KHÔNG gửi URL/link. KHÔNG dẫn tên file.
-6. Ngoài phạm vi → "Hotline: ${hotline}"
-7. Kết thúc bằng 1 câu hỏi dẫn dắt tiếp.${hasImages ? '\n8. Hệ thống sẽ gửi hình minh họa kèm theo.' : ''}`;
+1. Trả lời CỤ THỂ với số liệu (%, VNĐ, ngày, mức phạt) từ kiến thức được cung cấp. KHÔNG bịa. Nếu dữ liệu ghi "…" thì nói "mức cụ thể do hai bên thỏa thuận khi ký".
+2. KHÔNG dẫn nguồn, KHÔNG nhắc tên file, tài liệu, trang số. Trả lời như kiến thức của chính bạn.
+3. Luôn đứng về phía quyền lợi của chủ đầu tư. Cảnh báo rủi ro khi cần.
+4. Dùng HTML (<strong>, <ul>, <li>) trình bày rõ ràng.
+5. Xưng "em", gọi "anh/chị". Thân thiện, chuyên nghiệp.
+6. KHÔNG gửi URL/link.
+7. Vấn đề nhạy cảm (pháp lý, tranh chấp) → trả lời khái quát + "Anh/chị nên tham khảo thêm ý kiến chuyên gia. Hotline: ${hotline}".
+8. Kết thúc bằng 1 câu hỏi dẫn dắt tiếp trong cùng chủ đề.${hasImages ? '\n9. Hệ thống sẽ gửi hình minh họa kèm theo.' : ''}`;
 
   const userMessage = `TRI THỨC TÀI LIỆU:\n${contextText}\n\n${historyText ? 'LỊCH SỬ:\n' + historyText + '\n\n' : ''}CÂU HỎI: "${userQuery}"`;
 
@@ -386,6 +393,13 @@ async function handleSendMessage(predefinedQuery = null) {
   const text = predefinedQuery || chatInput.value.trim();
   if (!text || isProcessing) return;
 
+  // Bắt buộc chọn chủ đề trước khi chat
+  if (!currentTopic) {
+    addUserMessage(text);
+    addBotMessage('Dạ, anh/chị vui lòng <strong>chọn 1 chủ đề</strong> trước để em tư vấn chính xác nhé. Nhấn vào icon 💬 bên phải hoặc chọn chủ đề ở sidebar ạ.');
+    return;
+  }
+
   isProcessing = true;
   chatInput.value = '';
 
@@ -393,8 +407,8 @@ async function handleSendMessage(predefinedQuery = null) {
   closeSuggestions();
   clearQuickReplies();
   showTyping();
-  
-  // RAG Pipeline
+
+  // RAG Pipeline — chỉ tìm trong KB đúng chủ đề
   const relevantChunks = searchRelevantChunks(text);
   const response = await askAI(text, relevantChunks);
   
@@ -402,8 +416,8 @@ async function handleSendMessage(predefinedQuery = null) {
   addBotMessage(response);
 
   // Only show citations if AI responded successfully (not an error message)
-  const isErrorResponse = response.startsWith("Dạ, hệ thống") || response.startsWith("Dạ, server") || response.startsWith("Dạ, kết nối") || response.startsWith("Dạ, câu hỏi này");
-  if (!isErrorResponse && relevantChunks.length > 0 && geminiApiKey) {
+  const isErrorResponse = response.startsWith("Dạ, hệ thống") || response.startsWith("Dạ, server") || response.startsWith("Dạ, kết nối") || response.startsWith("Dạ, câu hỏi này") || response.startsWith("Dạ, cả hai");
+  if (!isErrorResponse && relevantChunks.length > 0) {
     // Gửi kèm hình ảnh minh họa nếu topic là tiêu chuẩn thi công
     if (currentTopic === 'tieu-chuan' || text.match(/tiêu chuẩn|nghiệm thu|bê tông|cốt thép|tường xây|ống nước|điện/i)) {
       renderRelatedImages(relevantChunks);
