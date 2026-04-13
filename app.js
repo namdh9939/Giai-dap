@@ -13,6 +13,7 @@ let geminiApiKey = CONFIG_API_KEY;
 let userData = null;
 let currentTopic = null;
 let isProcessing = false;
+let chatHistory = []; // Bộ nhớ hội thoại (Lưu 6-8 tin nhắn gần nhất)
 
 // Predefined Topics for UI (Matching the original layout)
 const UI_TOPICS = {
@@ -155,19 +156,35 @@ function searchRelevantChunks(query, limit = 5) {
 async function askGemini(userQuery, contextChunks) {
   if (!geminiApiKey) return "⚠️ Thiếu API Key. Vui lòng cấu hình lại.";
 
-  const contextText = contextChunks.map(c => `[Nguồn: ${c.source}, Trang: ${c.page}]\nNội dung: ${c.content}`).join('\n\n---\n\n');
+  // Chuẩn bị Context từ tài liệu
+  const contextText = contextChunks.length > 0 
+    ? contextChunks.map(c => `[Nguồn: ${c.source}, Trang: ${c.page}]\nNội dung: ${c.content}`).join('\n\n---\n\n')
+    : "Không tìm thấy quy định cụ thể trong tài liệu tri thức cho câu hỏi này.";
   
-  const prompt = `Bạn là "Trợ Lý Xây Nhà", một chuyên gia tư vấn xây dựng. 
-Trả lời dựa TRỰC TIẾP vào tài liệu sau:
+  // Chuẩn bị Lịch sử hội thoại để Agent có "bộ nhớ"
+  const historyText = chatHistory.length > 0
+    ? chatHistory.map(m => `${m.role === 'user' ? 'Khách' : 'Trợ lý'}: ${m.content}`).join('\n')
+    : "Đây là câu hỏi đầu tiên của khách.";
+
+  const prompt = `Bạn là "Trợ Lý Xây Nhà", một AI Consulting Agent chuyên nghiệp.
+Nhiệm vụ của bạn là tư vấn dựa trên TRI THỨC TÀI LIỆU và NGỮ CẢNH HỘI THOẠI.
+
+TRI THỨC TÀI LIỆU:
 ${contextText}
 
-HƯỚNG DẪN:
-1. Trả lời thân thiện ("Dạ", "Em", "Anh/Chị").
-2. TRÍCH DẪN: [Tên File, Trang X] ở cuối câu.
-3. Nếu có hình ảnh minh họa phù hợp, hãy dùng định dạng Markdown: ![mô tả](link_ảnh).
-4. Sử dụng HTML cơ bản (<strong>, <ul>, <li>) để trình bày.
+LỊCH SỬ TRÒ CHUYỆN:
+${historyText}
 
-CÂU HỎI: "${userQuery}"`;
+HƯỚNG DẪN TƯ DUY (AGENTIC RULES):
+1. KẾT NỐI NGỮ CẢNH: Nếu khách hỏi những câu như "Tại sao?", "Còn phần đó thì sao?", hãy nhìn vào Lịch sử trò chuyện để biết khách đang nói về vấn đề gì.
+2. PHONG CÁCH TƯ VẤN: Trả lời thân thiện ("Dạ", "Em", "Anh/Chị"). Không trả lời quá ngắn gọn kiểu máy móc, hãy giải thích lý do.
+3. TRÍCH DẪN: Luôn kèm [Tên File, Trang X] nếu thông tin có trong tài liệu.
+4. CHỦ ĐỘNG: 
+   - Nếu tài liệu không đủ thông tin, hãy nói rõ và đưa ra lời khuyên dựa trên kinh nghiệm xây dựng thực tế (nhưng nhắc khách tham khảo thêm KS/KTS).
+   - Nếu câu hỏi quá chung chung, hãy ĐẶT CÂU HỎI NGƯỢC LẠI để làm rõ (VD: "Anh định xây nhà mấy tầng để em tư vấn kỹ hơn?").
+5. ĐỊNH DẠNG: Sử dụng HTML (<strong>, <ul>, <li>) để trình bày đẹp mắt.
+
+CÂU HỎI HIỆN TẠI: "${userQuery}"`;
 
   try {
     const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
@@ -178,11 +195,18 @@ CÂU HỎI: "${userQuery}"`;
 
     const data = await response.json();
     if (data.error) {
-      if (data.error.code === 429) return "⚠️ Hệ thống AI đang bận (Hết hạn mức). Anh/chị vui lòng đợi 1 phút rồi hỏi lại nhé.";
+      if (data.error.code === 429) return "⚠️ Hệ thống đang quá tải. Anh/chị đợi 1 phút rồi hỏi lại nhé.";
       return `⚠️ Lỗi AI: ${data.error.message}`;
     }
     
-    return data.candidates[0].content.parts[0].text;
+    const botResponse = data.candidates[0].content.parts[0].text;
+
+    // CẬP NHẬT BỘ NHỚ (GIỮ 8 TIN NHẮN GẦN NHẤT)
+    chatHistory.push({ role: 'user', content: userQuery });
+    chatHistory.push({ role: 'model', content: botResponse });
+    if (chatHistory.length > 8) chatHistory.splice(0, 2);
+
+    return botResponse;
   } catch (error) {
     return "⚠️ Không thể kết nối với AI. Vui lòng kiểm tra mạng.";
   }
