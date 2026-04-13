@@ -129,17 +129,16 @@ async function loadKnowledgeBase() {
 }
 
 // =============================================
-// SEARCH ENGINE (Simple Semantic/Keyword Search)
+// SEARCH ENGINE (Keyword + Data Priority)
 // =============================================
-function searchRelevantChunks(query, limit = 12) {
+function searchRelevantChunks(query, limit = 8) {
   const normalizedQuery = query.toLowerCase();
-  // KHẮC PHỤC LỖI TỪ KHÓA VIỆT NAM (giữ các từ như: đá, tô, la, bê)
   const searchTerms = normalizedQuery.split(/\s+/).filter(t => t.length > 1);
-  
+
   const scoredData = knowledgeBase.map(chunk => {
     let score = 0;
     const contentLower = chunk.content.toLowerCase();
-    
+
     // Core Keyword Matching
     searchTerms.forEach(term => {
       if (contentLower.includes(term)) score += 10;
@@ -152,8 +151,16 @@ function searchRelevantChunks(query, limit = 12) {
       });
     }
 
-    // Boost if matches source topic
-    if (currentTopic && chunk.id.includes(currentTopic)) score += 5;
+    // Boost if matches current topic
+    if (currentTopic && chunk.id.includes(currentTopic)) score += 15;
+
+    // BOOST chunks có số liệu cụ thể (%, VNĐ, ngày, tháng)
+    const hasData = /\d+%|\d[\d,.]+\s*(VNĐ|đồng|ngày|tháng|lần|mm|cm|m2|m²)|\bđiều\s+\d+\b/i.test(chunk.content);
+    if (hasData && score > 0) score += 25;
+
+    // BOOST chunks có cấu trúc điều khoản (Điều X, Khoản Y)
+    const hasClause = /ĐIỀU\s+\d+|Khoản\s+\d+|Mục\s+\d+|Bước\s+\d+/i.test(chunk.content);
+    if (hasClause && score > 0) score += 15;
 
     return { ...chunk, score };
   });
@@ -196,11 +203,13 @@ async function askGemini(userQuery, contextChunks, retryCount = 0) {
 
 ## Nguyên tắc trả lời
 
-1. **TRẢ LỜI BẰNG NỘI DUNG CỤ THỂ:**
-   - ĐỌC KỸ TRI THỨC TÀI LIỆU bên dưới rồi VIẾT LẠI thành câu trả lời hoàn chỉnh cho khách đọc trực tiếp.
-   - KHÔNG BAO GIỜ nói "xem file X", "tham khảo tài liệu Y", "mở biểu mẫu Z". Khách hàng KHÔNG có file nào cả.
-   - Trích xuất số liệu, điều khoản, quy định cụ thể từ tài liệu và trình bày trực tiếp trong tin nhắn.
-   - VD: Thay vì "Xem HĐ thi công phần thô", hãy viết ra các điều khoản thanh toán cụ thể.
+1. **BẮT BUỘC TRÍCH DẪN SỐ LIỆU CỤ THỂ:**
+   - ĐỌC KỸ TRI THỨC TÀI LIỆU bên dưới. Tìm mọi con số, tỷ lệ %, mức phạt VNĐ, số ngày, điều khoản cụ thể.
+   - VIẾT LẠI thành câu trả lời hoàn chỉnh VỚI ĐẦY ĐỦ SỐ LIỆU cho khách đọc trực tiếp.
+   - VD đúng: "Phạt chậm tiến độ: 1% giá trị HĐ/ngày, tối đa 8%. Bảo hành 12 tháng."
+   - VD sai: "Nhà thầu sẽ bị phạt theo quy định trong hợp đồng."
+   - KHÔNG BAO GIỜ nói "xem file X", "tham khảo tài liệu Y". Khách KHÔNG có file.
+   - KHÔNG BỊA SỐ LIỆU. Chỉ dùng số liệu có trong TRI THỨC TÀI LIỆU bên dưới. Nếu tài liệu ghi "…" (chưa điền) thì nói rõ "mức cụ thể do hai bên thỏa thuận khi ký".
 
 2. **Cấu trúc:** Dùng HTML (<strong>, <ul>, <li>) để trình bày rõ ràng. Chia thành các mục, đánh số.
 
