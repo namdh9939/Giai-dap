@@ -77,7 +77,27 @@
           <!-- Topic buttons rendered by JS -->
         </div>
       </nav>
+      <div class="sidebar-apikey">
+        <button id="btn-apikey" class="btn-apikey" title="Cài đặt API Key">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+          <span>API Key</span>
+        </button>
+      </div>
     </aside>
+
+    <!-- API Key Modal -->
+    <div id="apikey-modal" class="apikey-modal hidden">
+      <div class="apikey-card">
+        <h3 class="apikey-title">Cài đặt Gemini API Key</h3>
+        <p class="apikey-desc">Nhập API Key từ <strong>Google AI Studio</strong> để kích hoạt trợ lý AI.</p>
+        <input type="password" id="apikey-input" class="apikey-input" placeholder="AIzaSy...">
+        <div class="apikey-status" id="apikey-status"></div>
+        <div class="apikey-actions">
+          <button id="apikey-save" class="apikey-btn apikey-btn-save">Lưu & Kích hoạt</button>
+          <button id="apikey-close" class="apikey-btn apikey-btn-close">Đóng</button>
+        </div>
+      </div>
+    </div>
 
     <!-- ====== CHAT PANEL ====== -->
     <div class="chat-panel">

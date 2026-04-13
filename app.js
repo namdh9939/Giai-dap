@@ -7,9 +7,8 @@
 // GLOBAL STATE & CONFIG
 // =============================================
 const BOT_NAME = "Trợ Lý Xây Nhà";
-const CONFIG_API_KEY = "AIzaSyDLvpZzMNJhjMXHrqXZPOt9Y9BZ3pT-GR0"; // <--- GEMINI FREE API KEY
 let knowledgeBase = [];
-let geminiApiKey = CONFIG_API_KEY;
+let geminiApiKey = localStorage.getItem('gemini_api_key') || '';
 let userData = null;
 let currentTopic = null;
 let isProcessing = false;
@@ -695,16 +694,107 @@ function setupFabButtons() {
   if (fabDocs) fabDocs.addEventListener('click', toggleDocs);
 }
 
+// =============================================
+// API KEY MODAL
+// =============================================
+function setupApiKeyModal() {
+  const btnOpen = document.getElementById('btn-apikey');
+  const modal = document.getElementById('apikey-modal');
+  const input = document.getElementById('apikey-input');
+  const btnSave = document.getElementById('apikey-save');
+  const btnClose = document.getElementById('apikey-close');
+  const status = document.getElementById('apikey-status');
+
+  if (!btnOpen || !modal) return;
+
+  // Hiện key hiện tại (nếu có)
+  if (geminiApiKey) {
+    input.value = geminiApiKey;
+  }
+
+  btnOpen.addEventListener('click', () => {
+    modal.classList.remove('hidden');
+    updateApiKeyButton();
+  });
+
+  btnClose.addEventListener('click', () => {
+    modal.classList.add('hidden');
+  });
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.classList.add('hidden');
+  });
+
+  btnSave.addEventListener('click', async () => {
+    const key = input.value.trim();
+    if (!key) {
+      status.textContent = 'Vui lòng nhập API Key.';
+      status.className = 'apikey-status error';
+      return;
+    }
+
+    status.textContent = 'Đang kiểm tra...';
+    status.className = 'apikey-status checking';
+
+    // Test key
+    try {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contents: [{ parts: [{ text: 'test' }] }], generationConfig: { maxOutputTokens: 5 } })
+      });
+      const data = await res.json();
+
+      if (data.error) {
+        status.textContent = 'Key không hợp lệ: ' + data.error.message;
+        status.className = 'apikey-status error';
+        return;
+      }
+
+      // Key OK — save
+      geminiApiKey = key;
+      localStorage.setItem('gemini_api_key', key);
+      status.textContent = 'Kích hoạt thành công!';
+      status.className = 'apikey-status success';
+      updateApiKeyButton();
+
+      setTimeout(() => modal.classList.add('hidden'), 1000);
+    } catch (err) {
+      status.textContent = 'Lỗi kết nối. Thử lại.';
+      status.className = 'apikey-status error';
+    }
+  });
+}
+
+function updateApiKeyButton() {
+  const btn = document.getElementById('btn-apikey');
+  if (!btn) return;
+  if (geminiApiKey) {
+    btn.classList.add('active');
+    btn.title = 'API Key đã kích hoạt';
+  } else {
+    btn.classList.remove('active');
+    btn.title = 'Chưa có API Key — nhấn để cài đặt';
+  }
+}
+
 async function initChat() {
   renderSidebar();
   renderDocsPopup();
   setupFabButtons();
+  setupApiKeyModal();
+  updateApiKeyButton();
   renderTopicButtons();
   setupChatInput();
   await loadKnowledgeBase();
-  
+
   const firstName = userData ? userData.name.split(' ').pop() : 'bạn';
-  addBotMessage(`Chào mừng <strong>${firstName}</strong> quay trở lại. Em đã sẵn sàng hỗ trợ tra cứu quy chuẩn xây dựng cho anh/chị.`);
+
+  if (!geminiApiKey) {
+    addBotMessage(`Chào <strong>${firstName}</strong>! Để em có thể tư vấn, anh/chị cần cài đặt <strong>API Key</strong> trước. Nhấn nút ⚙️ <strong>API Key</strong> ở sidebar bên trái nhé.`);
+  } else {
+    addBotMessage(`Chào mừng <strong>${firstName}</strong> quay trở lại. Em đã sẵn sàng hỗ trợ anh/chị.`);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
