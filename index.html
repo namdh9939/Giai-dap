@@ -77,12 +77,6 @@
           <!-- Topic buttons rendered by JS -->
         </div>
       </nav>
-      <div class="sidebar-docs">
-        <p class="sidebar-nav-label">Tài liệu tham khảo</p>
-        <div id="sidebar-docs-list" class="sidebar-docs-list">
-          <!-- Document list rendered by JS -->
-        </div>
-      </div>
       <div class="sidebar-footer">
         <p class="sidebar-footer-text">Khóa học Xây Nhà Lần Đầu</p>
       </div>
@@ -90,29 +84,32 @@
 
     <!-- ====== CHAT PANEL ====== -->
     <div class="chat-panel">
-      <!-- Header -->
-      <header id="app-header" class="chat-header">
-        <div class="header-content">
-          <div class="header-avatar">
-            <span class="avatar-icon">🏠</span>
-            <span class="status-dot"></span>
-          </div>
-          <div class="header-info">
-            <h1 class="header-title">Trợ Lý Xây Nhà</h1>
-            <p id="header-subtitle" class="header-subtitle">Khóa học Xây Nhà Lần Đầu</p>
-          </div>
-        </div>
-      </header>
 
       <!-- Chat Messages Area -->
       <main id="chat-messages" class="chat-messages" role="log" aria-live="polite" aria-label="Khu vực tin nhắn">
         <!-- Messages will be injected here by JS -->
       </main>
 
-      <!-- Quick Replies Area -->
-      <section id="quick-replies" class="quick-replies" aria-label="Lựa chọn nhanh">
+      <!-- Quick Replies Popup (hidden by default) -->
+      <section id="quick-replies" class="quick-replies hidden" aria-label="Lựa chọn nhanh">
         <!-- Quick reply buttons will be injected here by JS -->
       </section>
+
+      <!-- Floating Toggle Buttons -->
+      <div class="fab-group">
+        <button id="fab-docs" class="fab-btn fab-docs" aria-label="Tài liệu tham khảo" title="Tài liệu tham khảo">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        </button>
+        <button id="fab-suggestions" class="fab-btn fab-suggestions" aria-label="Câu hỏi gợi ý" title="Câu hỏi gợi ý">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </button>
+      </div>
+
+      <!-- Docs Popup (hidden by default) -->
+      <div id="docs-popup" class="docs-popup hidden">
+        <div class="docs-popup-header">Tài liệu tham khảo</div>
+        <div id="docs-popup-list" class="docs-popup-list"></div>
+      </div>
 
       <!-- Typing Indicator -->
       <div id="typing-indicator" class="typing-indicator hidden" aria-label="Trợ lý đang soạn tin">

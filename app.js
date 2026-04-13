@@ -387,6 +387,7 @@ async function handleSendMessage(predefinedQuery = null) {
   chatInput.value = '';
 
   addUserMessage(text);
+  closeSuggestions();
   clearQuickReplies();
   showTyping();
   
@@ -472,6 +473,50 @@ function hideTyping() { typingIndicator.classList.add('hidden'); }
 function clearQuickReplies() { quickReplies.innerHTML = ''; }
 function scrollToBottom() { chatMessages.scrollTop = chatMessages.scrollHeight; }
 
+// =============================================
+// FAB TOGGLE BUTTONS
+// =============================================
+let suggestionsOpen = false;
+let docsOpen = false;
+
+function toggleSuggestions() {
+  suggestionsOpen = !suggestionsOpen;
+  const fabBtn = document.getElementById('fab-suggestions');
+  if (suggestionsOpen) {
+    quickReplies.classList.remove('hidden');
+    fabBtn.classList.add('active');
+    // Đóng docs nếu đang mở
+    if (docsOpen) toggleDocs();
+  } else {
+    quickReplies.classList.add('hidden');
+    fabBtn.classList.remove('active');
+  }
+}
+
+function toggleDocs() {
+  docsOpen = !docsOpen;
+  const popup = document.getElementById('docs-popup');
+  const fabBtn = document.getElementById('fab-docs');
+  if (docsOpen) {
+    popup.classList.remove('hidden');
+    fabBtn.classList.add('active');
+    // Đóng suggestions nếu đang mở
+    if (suggestionsOpen) toggleSuggestions();
+  } else {
+    popup.classList.add('hidden');
+    fabBtn.classList.remove('active');
+  }
+}
+
+function closeSuggestions() {
+  if (suggestionsOpen) {
+    suggestionsOpen = false;
+    quickReplies.classList.add('hidden');
+    const fabBtn = document.getElementById('fab-suggestions');
+    if (fabBtn) fabBtn.classList.remove('active');
+  }
+}
+
 function renderTopicButtons() {
   clearQuickReplies();
   currentTopic = null; // Reset current topic when at main menu
@@ -545,24 +590,34 @@ function renderSidebar() {
     });
     sidebarTopics.appendChild(btn);
   });
+}
 
-  // Render tài liệu tham khảo
-  const docsContainer = document.getElementById('sidebar-docs-list');
+function renderDocsPopup() {
+  const docsContainer = document.getElementById('docs-popup-list');
   if (!docsContainer) return;
   docsContainer.innerHTML = '';
   REFERENCE_DOCS.forEach(doc => {
     const item = document.createElement('div');
-    item.className = 'sidebar-doc-item';
+    item.className = 'docs-popup-item';
     item.innerHTML = `
-      <span class="sidebar-doc-icon">${doc.icon}</span>
-      <span class="sidebar-doc-name" title="${doc.file}">${doc.name}</span>
+      <span class="docs-popup-item-icon">${doc.icon}</span>
+      <span class="docs-popup-item-name" title="${doc.file}">${doc.name}</span>
     `;
     docsContainer.appendChild(item);
   });
 }
 
+function setupFabButtons() {
+  const fabSuggestions = document.getElementById('fab-suggestions');
+  const fabDocs = document.getElementById('fab-docs');
+  if (fabSuggestions) fabSuggestions.addEventListener('click', toggleSuggestions);
+  if (fabDocs) fabDocs.addEventListener('click', toggleDocs);
+}
+
 async function initChat() {
   renderSidebar();
+  renderDocsPopup();
+  setupFabButtons();
   renderTopicButtons();
   setupChatInput();
   await loadKnowledgeBase();
