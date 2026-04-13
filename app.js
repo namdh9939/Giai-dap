@@ -253,7 +253,7 @@ ${historyText}
 ## CÂU HỎI: "${userQuery}"`;
 
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 35000); 
+  const timeoutId = setTimeout(() => controller.abort(), 45000); // 45s timeout 
 
   try {
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`, {
@@ -286,15 +286,16 @@ ${historyText}
         await new Promise(r => setTimeout(r, 3000));
         return askGemini(userQuery, contextChunks, retryCount + 1);
       }
-      // Server error (500/503) — auto retry 1 lần
-      if ((response.status >= 500) && retryCount < 1) {
-        await new Promise(r => setTimeout(r, 2000));
+      // Server error (500/503) — auto retry tối đa 3 lần, chờ lâu hơn mỗi lần
+      if ((response.status >= 500) && retryCount < 3) {
+        const waitMs = (retryCount + 1) * 3000; // 3s, 6s, 9s
+        await new Promise(r => setTimeout(r, waitMs));
         return askGemini(userQuery, contextChunks, retryCount + 1);
       }
       if (response.status === 403) {
-        return "Dạ, API Key đã hết hạn. Anh/chị vui lòng cập nhật key mới (nhấn nút chìa khóa bên phải).";
+        return "Dạ, API Key không hợp lệ hoặc đã bị khóa. Anh/chị nhấn nút 🔑 bên phải để cập nhật key mới nhé.";
       }
-      return "Dạ, hệ thống đang bận. Anh/chị thử hỏi lại sau ít giây nhé.";
+      return "Dạ, server AI đang quá tải. Anh/chị đợi khoảng 30 giây rồi hỏi lại nhé.";
     }
 
     const data = await response.json();
