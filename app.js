@@ -73,7 +73,7 @@ const quickReplies = document.getElementById('quick-replies');
 const typingIndicator = document.getElementById('typing-indicator');
 const chatInput = document.getElementById('chat-input');
 const chatSendBtn = document.getElementById('chat-send-btn');
-const sidebarTopics = document.getElementById('sidebar-topics');
+// sidebar-topics đã xóa — không cần nữa
 const headerSubtitle = document.getElementById('header-subtitle');
 
 // DOM Elements — Registration
@@ -622,21 +622,7 @@ const REFERENCE_DOCS = [
 ];
 
 function renderSidebar() {
-  if (!sidebarTopics) return;
-  sidebarTopics.innerHTML = '';
-  // Sidebar hiển thị Tài liệu tham khảo (FOMO)
-  REFERENCE_DOCS.forEach(doc => {
-    const groupEl = document.createElement('div');
-    groupEl.className = 'sidebar-doc-group';
-    groupEl.innerHTML = `<div class="sidebar-doc-group-title">${doc.icon} ${doc.group}</div>`;
-    doc.items.forEach(name => {
-      const item = document.createElement('div');
-      item.className = 'sidebar-doc-item';
-      item.textContent = name;
-      groupEl.appendChild(item);
-    });
-    sidebarTopics.appendChild(groupEl);
-  });
+  // Sidebar chỉ giữ logo + subtitle, không render thêm gì
 }
 
 function renderDocsPopup() {
