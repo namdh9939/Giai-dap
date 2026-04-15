@@ -579,11 +579,6 @@ function selectTopic(topicKey) {
   updatePlaceholder();
   renderSuggestionChips();
   addBotMessage(`Dạ, em đã chọn chủ đề <strong>${topic.title}</strong>. Anh/chị muốn hỏi về nội dung nào dưới đây hay có câu hỏi riêng không ạ?`);
-  // Close mobile sidebar
-  const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('sidebar-overlay');
-  if (sidebar) sidebar.classList.remove('mobile-open');
-  if (overlay) overlay.classList.add('hidden');
 }
 
 function renderQuestionButtons(topicKey) {
@@ -695,27 +690,7 @@ function setupFabButtons() {
 // =============================================
 // API KEY MODAL
 // =============================================
-// =============================================
-// UI SPEC — CHANGE 1: Collapsible Sidebar
-// =============================================
-function setupSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  const toggle = document.getElementById('sidebar-toggle');
-  const overlay = document.getElementById('sidebar-overlay');
-  const mobileMenu = document.getElementById('mobile-menu-btn');
-
-  if (toggle) toggle.addEventListener('click', () => sidebar.classList.toggle('collapsed'));
-
-  // Mobile
-  if (mobileMenu) mobileMenu.addEventListener('click', () => {
-    sidebar.classList.toggle('mobile-open');
-    overlay.classList.toggle('hidden');
-  });
-  if (overlay) overlay.addEventListener('click', () => {
-    sidebar.classList.remove('mobile-open');
-    overlay.classList.add('hidden');
-  });
-}
+// Sidebar giữ nguyên giao diện cũ (không collapsible)
 
 // =============================================
 // UI SPEC — CHANGE 2: Suggestion Chips
@@ -848,7 +823,6 @@ function setupNewChatBtn() {
 // =============================================
 async function initChat() {
   renderSidebar();
-  setupSidebar();
   setupFileUpload();
   setupInputWatcher();
   setupNewChatBtn();

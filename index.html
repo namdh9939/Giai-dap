@@ -51,36 +51,27 @@
   <!-- ====== CHAT APP ====== -->
   <div id="app" class="app-container hidden">
 
-    <!-- CHANGE 1: Sidebar collapsible -->
-    <aside id="sidebar" class="sidebar collapsed">
-      <div class="sidebar-toggle-area">
-        <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Toggle sidebar">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        </button>
-        <span class="sidebar-logo-icon">🏠</span>
-      </div>
-      <div class="sidebar-expanded-content">
-        <div class="sidebar-header">
-          <h2 class="sidebar-title">Trợ Lý Xây Nhà</h2>
-          <p class="sidebar-subtitle">Công cụ tư vấn dành cho học viên</p>
-        </div>
+    <!-- ====== SIDEBAR — Desktop only ====== -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">🏠</div>
+        <h2 class="sidebar-title">Trợ Lý Xây Nhà</h2>
+        <p class="sidebar-subtitle">Công cụ tư vấn dành cho học viên</p>
       </div>
       <nav class="sidebar-nav">
-        <div id="sidebar-topics" class="sidebar-topics"></div>
+        <p class="sidebar-nav-label">Chủ đề tư vấn</p>
+        <div id="sidebar-topics" class="sidebar-topics">
+          <!-- Topic buttons rendered by JS -->
+        </div>
       </nav>
     </aside>
-    <!-- Sidebar overlay (mobile) -->
-    <div id="sidebar-overlay" class="sidebar-overlay hidden"></div>
 
     <!-- CHAT PANEL -->
     <div class="chat-panel">
 
-      <!-- CHANGE 6: Header breadcrumb + New chat -->
+      <!-- Header breadcrumb + New chat -->
       <header class="chat-header">
         <div class="header-left">
-          <button id="mobile-menu-btn" class="mobile-menu-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-          </button>
           <span class="header-breadcrumb">
             <span class="breadcrumb-home">Trợ Lý Xây Nhà</span>
             <span id="breadcrumb-topic" class="breadcrumb-topic"></span>
@@ -95,8 +86,22 @@
       <!-- Chat Messages -->
       <main id="chat-messages" class="chat-messages" role="log" aria-live="polite"></main>
 
-      <!-- CHANGE 2: Chip suggestions above input -->
+      <!-- Chip suggestions above input -->
       <div id="suggestion-chips" class="suggestion-chips"></div>
+
+      <!-- Docs Popup (hidden by default) -->
+      <div id="docs-popup" class="docs-popup hidden">
+        <div class="docs-popup-header">Tài liệu tham khảo</div>
+        <div id="docs-popup-list" class="docs-popup-list"></div>
+      </div>
+
+      <!-- Toolbar: Tài liệu tham khảo -->
+      <div class="chat-toolbar">
+        <button id="fab-docs" class="toolbar-btn" title="Tài liệu tham khảo">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <span>Tài liệu tham khảo</span>
+        </button>
+      </div>
 
       <!-- Typing Indicator -->
       <div id="typing-indicator" class="typing-indicator hidden">

@@ -1605,60 +1605,6 @@ body {
    UI SPEC CHANGES — TLXN_Chatbot_UI_Spec
    ======================================== */
 
-/* --- CHANGE 1: Collapsible Sidebar --- */
-.sidebar.collapsed {
-  width: 54px !important;
-  min-width: 54px;
-  overflow: hidden;
-}
-.sidebar.collapsed .sidebar-expanded-content,
-.sidebar.collapsed .sidebar-nav-label,
-.sidebar.collapsed .stb-title {
-  display: none;
-}
-.sidebar.collapsed .sidebar-topic-btn {
-  justify-content: center;
-  padding: var(--space-sm);
-}
-.sidebar.collapsed .stb-icon {
-  margin: 0;
-}
-.sidebar-toggle-area {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-sm);
-  border-bottom: 1px solid var(--color-border);
-}
-.sidebar-toggle-btn {
-  background: transparent;
-  border: none;
-  color: var(--color-text-muted);
-  cursor: pointer;
-  padding: 6px;
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  transition: all var(--transition-fast);
-}
-.sidebar-toggle-btn:hover { color: var(--color-text-primary); background: var(--color-surface-hover); }
-.sidebar-logo-icon { font-size: 1.3rem; }
-.sidebar.collapsed .sidebar-logo-icon { margin: 0 auto; }
-.sidebar:not(.collapsed) { width: 220px !important; transition: width 0.25s ease; }
-.sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 49; }
-.sidebar-overlay.hidden { display: none; }
-
-/* Mobile sidebar */
-@media (max-width: 767px) {
-  .sidebar { position: fixed; left: -260px; top: 0; bottom: 0; z-index: 50; width: 220px !important; transition: left 0.25s ease; }
-  .sidebar.collapsed { left: -260px; width: 220px !important; }
-  .sidebar.mobile-open { left: 0 !important; }
-  .sidebar.mobile-open .sidebar-expanded-content,
-  .sidebar.mobile-open .sidebar-nav-label,
-  .sidebar.mobile-open .stb-title { display: block; }
-  .sidebar-toggle-area { display: none; }
-}
-
 /* --- CHANGE 6: Header breadcrumb + New chat --- */
 .chat-header {
   display: flex;
