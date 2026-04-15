@@ -130,6 +130,34 @@ function switchTopic(newTopicKey) {
   startNewConversation(newTopicKey);
 }
 
+// Typewriter effect — hiện text từng phần
+function typewriterEffect(element, html) {
+  element.innerHTML = '';
+  // Chia HTML thành chunks nhỏ (mỗi 3-5 ký tự)
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
+  const fullText = tempDiv.innerHTML;
+  let i = 0;
+  const chunkSize = 4;
+  const interval = setInterval(() => {
+    i += chunkSize;
+    if (i >= fullText.length) {
+      element.innerHTML = fullText;
+      clearInterval(interval);
+      scrollToBottom();
+    } else {
+      // Tìm vị trí an toàn (không cắt giữa tag HTML)
+      let end = i;
+      if (fullText[end - 1] === '<' || fullText.substring(end - 5, end).includes('<')) {
+        const nextClose = fullText.indexOf('>', end);
+        if (nextClose !== -1) end = nextClose + 1;
+      }
+      element.innerHTML = fullText.substring(0, end);
+      scrollToBottom();
+    }
+  }, 15);
+}
+
 // DOM Elements — Chat
 const chatMessages = document.getElementById('chat-messages');
 const quickReplies = document.getElementById('quick-replies');
@@ -517,7 +545,7 @@ async function handleSendMessage(predefinedQuery = null) {
     const result = await askAI(query, aiOptions);
 
     hideTyping();
-    addBotMessage(result.answer);
+    addBotMessage(result.answer, true, true); // animate=true
   } catch (err) {
     console.error('Chat error:', err);
     hideTyping();
@@ -562,19 +590,28 @@ function renderDocLinksFromNames(sourceIds) {
 }
 
 
-function addBotMessage(content, showAvatar = true) {
+function addBotMessage(content, showAvatar = true, animate = false) {
   const row = document.createElement('div');
   row.className = 'message-row bot';
-  const avatarHtml = showAvatar ? '<div class="msg-avatar">🏠</div>' : '<div class="msg-avatar" style="visibility:hidden">🏠</div>';
+  const avatarHtml = showAvatar ? '<div class="msg-avatar"><img src="assets/bot-avatar.png" alt="" class="avatar-img"></div>' : '<div class="msg-avatar" style="visibility:hidden"></div>';
+  const htmlContent = markdownToHtml(content);
 
   row.innerHTML = `
     ${avatarHtml}
     <div>
-      <div class="message-bubble">${markdownToHtml(content)}</div>
+      <div class="message-bubble"></div>
       <div class="message-time">${new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</div>
     </div>
   `;
   chatMessages.appendChild(row);
+
+  const bubble = row.querySelector('.message-bubble');
+  if (animate && content.length > 20) {
+    // Typewriter effect
+    typewriterEffect(bubble, htmlContent);
+  } else {
+    bubble.innerHTML = htmlContent;
+  }
   scrollToBottom();
 }
 
@@ -792,10 +829,72 @@ function renderTopicSelector() {
   addBotMessage(html);
 }
 
+// History Panel
+function setupHistoryPanel() {
+  const btnHistory = document.getElementById('btn-history');
+  const btnNew = document.getElementById('btn-new-conv');
+  const panel = document.getElementById('history-panel');
+  const closeBtn = document.getElementById('history-close');
+
+  if (btnHistory) btnHistory.addEventListener('click', () => {
+    renderHistoryList();
+    panel.classList.toggle('hidden');
+  });
+  if (closeBtn) closeBtn.addEventListener('click', () => panel.classList.add('hidden'));
+  if (btnNew) btnNew.addEventListener('click', () => {
+    saveConversation();
+    currentTopic = null;
+    currentConvId = null;
+    chatHistory = [];
+    chatMessages.innerHTML = '';
+    const firstName = userData ? userData.name.split(' ').pop() : 'bạn';
+    addBotMessage(`Chào <strong>${firstName}</strong>! Chọn chủ đề để bắt đầu:`);
+    renderTopicSelector();
+  });
+}
+
+function renderHistoryList() {
+  const list = document.getElementById('history-list');
+  if (!list) return;
+  list.innerHTML = '';
+  if (conversations.length === 0) {
+    list.innerHTML = '<p class="history-empty">Chưa có lịch sử tư vấn</p>';
+    return;
+  }
+  conversations.forEach(conv => {
+    const div = document.createElement('div');
+    div.className = 'history-item';
+    const date = new Date(conv.timestamp).toLocaleDateString('vi-VN');
+    const preview = conv.messages[0] ? conv.messages[0].content.slice(0, 60) + '...' : '';
+    div.innerHTML = `
+      <div class="history-item-title">${conv.topicTitle}</div>
+      <div class="history-item-preview">${preview}</div>
+      <div class="history-item-date">${date}</div>
+    `;
+    div.addEventListener('click', () => loadConversation(conv));
+    list.appendChild(div);
+  });
+}
+
+function loadConversation(conv) {
+  saveConversation();
+  currentConvId = conv.id;
+  currentTopic = conv.topic;
+  chatHistory = [...conv.messages];
+  chatMessages.innerHTML = '';
+  // Replay messages
+  conv.messages.forEach(m => {
+    if (m.role === 'user' || m.role === 'Khách') addUserMessage(m.content);
+    else addBotMessage(m.content);
+  });
+  document.getElementById('history-panel').classList.add('hidden');
+}
+
 async function initChat() {
   renderSidebar();
   setupFileUpload();
   setupChatInput();
+  setupHistoryPanel();
   await loadFileUrlMap();
 
   const firstName = userData ? userData.name.split(' ').pop() : 'bạn';

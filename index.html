@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Trợ lý tư vấn xây nhà dành cho học viên khóa học Xây Nhà Lần Đầu. Giải đáp 5 vấn đề quan trọng: Hợp đồng, Pháp lý, Báo giá, Tiêu chuẩn thi công, Thắc mắc.">
   <title>Trợ Lý Xây Nhà | Khóa Học Xây Nhà Lần Đầu</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -19,7 +20,7 @@
   <div id="register-screen" class="register-screen">
     <div class="register-card">
       <div class="register-header">
-        <div class="register-logo">🏠</div>
+        <div class="register-logo"><img src="assets/logo-register.png" alt="Trợ Lý Xây Nhà" class="register-logo-img"></div>
         <h1 class="register-title">Trợ Lý Xây Nhà</h1>
         <p class="register-desc">Vui lòng điền đầy đủ thông tin bên dưới để sử dụng công cụ tư vấn dành riêng cho học viên.</p>
       </div>
@@ -71,7 +72,7 @@
     <!-- ====== SIDEBAR — Desktop only ====== -->
     <aside id="sidebar" class="sidebar">
       <div class="sidebar-header">
-        <div class="sidebar-logo">🏠</div>
+        <div class="sidebar-logo"><img src="assets/logo-sidebar.png" alt="Logo" class="sidebar-logo-img"></div>
         <h2 class="sidebar-title">Trợ Lý Xây Nhà</h2>
         <p class="sidebar-subtitle">Công cụ tư vấn<br>DÀNH CHO HỌC VIÊN</p>
       </div>
@@ -79,7 +80,26 @@
         <p class="sidebar-nav-label">Tài liệu tham khảo</p>
         <div id="sidebar-topics" class="sidebar-topics"></div>
       </nav>
+      <div class="sidebar-history">
+        <button id="btn-history" class="sidebar-history-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <span>Lịch sử tư vấn</span>
+        </button>
+        <button id="btn-new-conv" class="sidebar-new-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span>Hỏi mới</span>
+        </button>
+      </div>
     </aside>
+
+    <!-- History Panel (hidden) -->
+    <div id="history-panel" class="history-panel hidden">
+      <div class="history-header">
+        <span>Lịch sử tư vấn</span>
+        <button id="history-close" class="history-close">&times;</button>
+      </div>
+      <div id="history-list" class="history-list"></div>
+    </div>
 
     <!-- API Key Modal -->
     <div id="apikey-modal" class="apikey-modal hidden">
@@ -105,7 +125,7 @@
 
       <!-- Typing Indicator -->
       <div id="typing-indicator" class="typing-indicator hidden" aria-label="Trợ lý đang soạn tin">
-        <div class="typing-avatar">🏠</div>
+        <div class="typing-avatar"><img src="assets/bot-avatar.png" alt="" class="avatar-img"></div>
         <div class="typing-bubble">
           <span class="dot"></span>
           <span class="dot"></span>
