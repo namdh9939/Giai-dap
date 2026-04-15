@@ -365,12 +365,7 @@ async function handleSendMessage(predefinedQuery = null) {
   if (!text && !hasFile) return;
   if (isProcessing) return;
 
-  // Bắt buộc chọn chủ đề trước khi chat
-  if (!currentTopic) {
-    if (text) addUserMessage(text);
-    addBotMessage('Dạ, anh/chị vui lòng <strong>chọn 1 chủ đề</strong> trước để em tư vấn chính xác nhé.');
-    return;
-  }
+  // Không bắt buộc chọn chủ đề — chat tự do
 
   isProcessing = true;
   chatInput.value = '';
@@ -632,18 +627,18 @@ const REFERENCE_DOCS = [
 function renderSidebar() {
   if (!sidebarTopics) return;
   sidebarTopics.innerHTML = '';
-  Object.keys(UI_TOPICS).forEach(key => {
-    const topic = UI_TOPICS[key];
-    const btn = document.createElement('button');
-    btn.className = 'sidebar-topic-btn';
-    btn.innerHTML = `
-      <span class="stb-icon">${topic.icon}</span>
-      <span class="stb-title">${topic.title}</span>
-    `;
-    btn.addEventListener('click', () => {
-      selectTopic(key);
+  // Sidebar hiển thị Tài liệu tham khảo (FOMO)
+  REFERENCE_DOCS.forEach(doc => {
+    const groupEl = document.createElement('div');
+    groupEl.className = 'sidebar-doc-group';
+    groupEl.innerHTML = `<div class="sidebar-doc-group-title">${doc.icon} ${doc.group}</div>`;
+    doc.items.forEach(name => {
+      const item = document.createElement('div');
+      item.className = 'sidebar-doc-item';
+      item.textContent = name;
+      groupEl.appendChild(item);
     });
-    sidebarTopics.appendChild(btn);
+    sidebarTopics.appendChild(groupEl);
   });
 }
 
@@ -684,10 +679,8 @@ function setupFabButtons() {
 // =============================================
 async function initChat() {
   renderSidebar();
-  renderDocsPopup();
   setupFabButtons();
   setupFileUpload();
-  renderTopicButtons();
   setupChatInput();
   await loadFileUrlMap();
 
@@ -695,8 +688,7 @@ async function initChat() {
 
   addBotMessage(`Chào <strong>${firstName}</strong>! Em là chuyên gia tư vấn xây dựng, sẵn sàng hỗ trợ anh/chị.
 
-Anh/chị vui lòng <strong>chọn 1 chủ đề</strong> bên dưới để em tư vấn chính xác nhé:`);
-  renderTopicButtons();
+Anh/chị có thể hỏi em bất kỳ vấn đề nào về <strong>hợp đồng, báo giá, tiêu chuẩn thi công, pháp lý, phong thủy</strong> — em sẽ tư vấn dựa trên tài liệu chuyên môn nhé!`);
 }
 
 document.addEventListener('DOMContentLoaded', () => {

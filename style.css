@@ -1601,3 +1601,24 @@ body {
 
    
  
+/* --- Sidebar: Tài liệu tham khảo (FOMO) --- */
+.sidebar-doc-group {
+  margin-bottom: var(--space-sm);
+}
+
+.sidebar-doc-group-title {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-brand-gold);
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.sidebar-doc-item {
+  font-size: 0.7rem;
+  color: var(--color-text-secondary);
+  padding: 3px var(--space-sm) 3px var(--space-lg);
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
