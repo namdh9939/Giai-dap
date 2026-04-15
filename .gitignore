@@ -1,3 +1,15 @@
-node_modules/
+# Data & test files
+data/
+test_env/
+
+# Claude settings
+.claude/
+
+# OS files
 .DS_Store
 Thumbs.db
+*.tmp
+
+# Large PDF files (>100MB)
+Quy chuẩn kiểm tra_nhà thầu.pdf
+Quy chuẩn thi công_cđt.pdf
