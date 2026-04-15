@@ -449,11 +449,6 @@ async function handleSendMessage(predefinedQuery = null) {
     hideTyping();
     addBotMessage("Dạ, có lỗi xảy ra. Anh/chị thử hỏi lại nhé.");
   } finally {
-    if (currentTopic) {
-      renderQuestionButtons(currentTopic);
-    } else {
-      renderTopicButtons();
-    }
     isProcessing = false;
   }
 }
@@ -524,7 +519,7 @@ function addUserMessage(text) {
 
 function showTyping() { typingIndicator.classList.remove('hidden'); scrollToBottom(); }
 function hideTyping() { typingIndicator.classList.add('hidden'); }
-function clearQuickReplies() { quickReplies.innerHTML = ''; }
+function clearQuickReplies() { if (quickReplies) quickReplies.innerHTML = ''; }
 function scrollToBottom() { chatMessages.scrollTop = chatMessages.scrollHeight; }
 
 // =============================================
@@ -534,6 +529,7 @@ let suggestionsOpen = false;
 let docsOpen = false;
 
 function toggleSuggestions() {
+  if (!quickReplies) return;
   suggestionsOpen = !suggestionsOpen;
   const fabBtn = document.getElementById('fab-suggestions');
   if (suggestionsOpen) {
@@ -563,7 +559,7 @@ function toggleDocs() {
 }
 
 function closeSuggestions() {
-  if (suggestionsOpen) {
+  if (suggestionsOpen && quickReplies) {
     suggestionsOpen = false;
     quickReplies.classList.add('hidden');
     const fabBtn = document.getElementById('fab-suggestions');
@@ -572,8 +568,9 @@ function closeSuggestions() {
 }
 
 function renderTopicButtons() {
+  if (!quickReplies) return;
   clearQuickReplies();
-  currentTopic = null; // Reset current topic when at main menu
+  currentTopic = null;
   Object.keys(UI_TOPICS).forEach(key => {
     const topic = UI_TOPICS[key];
     const btn = document.createElement('button');
@@ -600,6 +597,7 @@ function selectTopic(topicKey) {
 }
 
 function renderQuestionButtons(topicKey) {
+  if (!quickReplies) return;
   clearQuickReplies();
   const topic = UI_TOPICS[topicKey];
   
