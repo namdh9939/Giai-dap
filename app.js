@@ -545,7 +545,16 @@ async function handleSendMessage(predefinedQuery = null) {
     const result = await askAI(query, aiOptions);
 
     hideTyping();
-    addBotMessage(result.answer, true, true); // animate=true
+    // Hiện answer + noData hotline (ẩn DATA_USED)
+    let finalAnswer = result.answer || '';
+    const noData = result.noData || [];
+    if (noData.length > 0) {
+      const noDataClean = noData.filter(s => s && !s.startsWith('-') && !s.includes('FOLLOWUP'));
+      if (noDataClean.length > 0) {
+        finalAnswer += '\n\nAnh/chị liên hệ **Hotline: 0902 982 029** để được hỗ trợ thêm ạ.';
+      }
+    }
+    addBotMessage(finalAnswer, true, true);
   } catch (err) {
     console.error('Chat error:', err);
     hideTyping();
