@@ -1601,3 +1601,176 @@ body {
 
    
  
+/* ========================================
+   UI SPEC CHANGES — TLXN_Chatbot_UI_Spec
+   ======================================== */
+
+/* --- CHANGE 1: Collapsible Sidebar --- */
+.sidebar.collapsed {
+  width: 54px !important;
+  min-width: 54px;
+  overflow: hidden;
+}
+.sidebar.collapsed .sidebar-expanded-content,
+.sidebar.collapsed .sidebar-nav-label,
+.sidebar.collapsed .stb-title {
+  display: none;
+}
+.sidebar.collapsed .sidebar-topic-btn {
+  justify-content: center;
+  padding: var(--space-sm);
+}
+.sidebar.collapsed .stb-icon {
+  margin: 0;
+}
+.sidebar-toggle-area {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border-bottom: 1px solid var(--color-border);
+}
+.sidebar-toggle-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  transition: all var(--transition-fast);
+}
+.sidebar-toggle-btn:hover { color: var(--color-text-primary); background: var(--color-surface-hover); }
+.sidebar-logo-icon { font-size: 1.3rem; }
+.sidebar.collapsed .sidebar-logo-icon { margin: 0 auto; }
+.sidebar:not(.collapsed) { width: 220px !important; transition: width 0.25s ease; }
+.sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 49; }
+.sidebar-overlay.hidden { display: none; }
+
+/* Mobile sidebar */
+@media (max-width: 767px) {
+  .sidebar { position: fixed; left: -260px; top: 0; bottom: 0; z-index: 50; width: 220px !important; transition: left 0.25s ease; }
+  .sidebar.collapsed { left: -260px; width: 220px !important; }
+  .sidebar.mobile-open { left: 0 !important; }
+  .sidebar.mobile-open .sidebar-expanded-content,
+  .sidebar.mobile-open .sidebar-nav-label,
+  .sidebar.mobile-open .stb-title { display: block; }
+  .sidebar-toggle-area { display: none; }
+}
+
+/* --- CHANGE 6: Header breadcrumb + New chat --- */
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-secondary);
+  flex-shrink: 0;
+}
+.header-left { display: flex; align-items: center; gap: var(--space-sm); }
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 4px;
+}
+@media (max-width: 767px) { .mobile-menu-btn { display: flex; } }
+.header-breadcrumb { font-size: 13px; color: var(--color-text-muted); }
+.breadcrumb-home { color: var(--color-text-secondary); font-weight: 600; }
+.breadcrumb-topic { color: var(--color-brand-gold); }
+.breadcrumb-topic::before { content: '  ›  '; color: var(--color-text-muted); }
+.breadcrumb-topic:empty { display: none; }
+.btn-new-chat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  color: var(--color-text-muted);
+  font-family: var(--font-family);
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.btn-new-chat:hover { color: var(--color-brand-gold); border-color: var(--color-border-glow); }
+
+/* --- CHANGE 2: Suggestion Chips --- */
+.suggestion-chips {
+  display: flex;
+  gap: 6px;
+  padding: 6px var(--space-lg);
+  overflow-x: auto;
+  flex-shrink: 0;
+  scrollbar-width: none;
+}
+.suggestion-chips::-webkit-scrollbar { display: none; }
+.suggestion-chips:empty { display: none; }
+.suggestion-chip {
+  display: inline-flex;
+  white-space: nowrap;
+  padding: 6px 14px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-full);
+  color: var(--color-text-secondary);
+  font-family: var(--font-family);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+.suggestion-chip:hover {
+  background: var(--color-brand-gold-dim);
+  border-color: var(--color-border-glow);
+  color: var(--color-brand-gold-light);
+}
+
+/* --- CHANGE 3: Follow-up chips in bot message --- */
+.followup-section {
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.followup-label {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+}
+.followup-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.followup-chip {
+  padding: 4px 10px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-full);
+  color: var(--color-text-secondary);
+  font-family: var(--font-family);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.followup-chip:hover {
+  background: var(--color-brand-gold-dim);
+  border-color: var(--color-border-glow);
+  color: var(--color-brand-gold-light);
+}
+
+/* --- CHANGE 5: Improved input --- */
+.chat-send-btn.disabled { opacity: 0.35; cursor: not-allowed; }
+.input-hint {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: 2px 0 4px;
+  opacity: 0.6;
+}
+.input-hint.hidden { display: none; }

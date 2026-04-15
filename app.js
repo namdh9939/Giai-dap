@@ -391,30 +391,39 @@ async function handleSendMessage(predefinedQuery = null) {
   // Lấy file data rồi clear preview
   const currentFile = pendingFile;
   clearPendingFile();
-  closeSuggestions();
-  clearQuickReplies();
+  hideSuggestionChips();
   showTyping();
 
+  // Hide input hint after first message
+  const hint = document.getElementById('input-hint');
+  if (hint) hint.classList.add('hidden');
+
   try {
-    // Chuẩn bị options cho n8n
     const aiOptions = {};
     if (currentFile && currentFile.base64) {
-      const mimeType = `image/${currentFile.type === 'jpg' ? 'jpeg' : currentFile.type}`;
       aiOptions.imageData = currentFile.base64;
-      aiOptions.imageMime = mimeType;
+      aiOptions.imageMime = `image/${currentFile.type === 'jpg' ? 'jpeg' : currentFile.type}`;
     }
     if (currentFile && currentFile.textContent) {
       aiOptions.fileText = currentFile.textContent;
       aiOptions.fileName = currentFile.name;
     }
 
-    // Gọi n8n webhook
     const result = await askAI(text || `Phân tích file "${currentFile?.name || ''}"`, aiOptions);
 
     hideTyping();
-    addBotMessage(result.answer);
 
-    // Hiện link tài liệu liên quan (từ n8n trả về)
+    // CHANGE 3: Parse follow-up questions from response
+    const { mainAnswer, followUps } = parseFollowUps(result.answer);
+    const msgEl = addBotMessage(mainAnswer);
+
+    // Render follow-up chips inside the message bubble
+    if (followUps.length > 0 && msgEl) {
+      const bubble = msgEl.querySelector('.message-bubble');
+      if (bubble) renderFollowUpChips(followUps, bubble);
+    }
+
+    // Doc links
     if (result.docLinks && result.docLinks.length > 0) {
       renderDocLinksFromNames(result.docLinks);
     }
@@ -423,11 +432,7 @@ async function handleSendMessage(predefinedQuery = null) {
     hideTyping();
     addBotMessage("Dạ, có lỗi xảy ra. Anh/chị thử hỏi lại nhé.");
   } finally {
-    if (currentTopic) {
-      renderQuestionButtons(currentTopic);
-    } else {
-      renderTopicButtons();
-    }
+    updateInputState();
     isProcessing = false;
   }
 }
@@ -481,6 +486,7 @@ function addBotMessage(content, showAvatar = true) {
   `;
   chatMessages.appendChild(row);
   scrollToBottom();
+  return row; // Return for follow-up chips attachment
 }
 
 function addUserMessage(text) {
@@ -569,8 +575,15 @@ function renderTopicButtons() {
 function selectTopic(topicKey) {
   currentTopic = topicKey;
   const topic = UI_TOPICS[topicKey];
+  updateBreadcrumb();
+  updatePlaceholder();
+  renderSuggestionChips();
   addBotMessage(`Dạ, em đã chọn chủ đề <strong>${topic.title}</strong>. Anh/chị muốn hỏi về nội dung nào dưới đây hay có câu hỏi riêng không ạ?`);
-  renderQuestionButtons(topicKey);
+  // Close mobile sidebar
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebar-overlay');
+  if (sidebar) sidebar.classList.remove('mobile-open');
+  if (overlay) overlay.classList.add('hidden');
 }
 
 function renderQuestionButtons(topicKey) {
@@ -682,21 +695,172 @@ function setupFabButtons() {
 // =============================================
 // API KEY MODAL
 // =============================================
+// =============================================
+// UI SPEC — CHANGE 1: Collapsible Sidebar
+// =============================================
+function setupSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const toggle = document.getElementById('sidebar-toggle');
+  const overlay = document.getElementById('sidebar-overlay');
+  const mobileMenu = document.getElementById('mobile-menu-btn');
+
+  if (toggle) toggle.addEventListener('click', () => sidebar.classList.toggle('collapsed'));
+
+  // Mobile
+  if (mobileMenu) mobileMenu.addEventListener('click', () => {
+    sidebar.classList.toggle('mobile-open');
+    overlay.classList.toggle('hidden');
+  });
+  if (overlay) overlay.addEventListener('click', () => {
+    sidebar.classList.remove('mobile-open');
+    overlay.classList.add('hidden');
+  });
+}
+
+// =============================================
+// UI SPEC — CHANGE 2: Suggestion Chips
+// =============================================
+const DEFAULT_CHIPS = [
+  "Hợp đồng thi công cần có những điều khoản nào?",
+  "Tạm ứng cho nhà thầu bao nhiêu % là hợp lý?",
+  "Khi nào cần nghiệm thu từng phần?",
+  "Báo giá thi công cần kiểm tra những gì?"
+];
+
+function renderSuggestionChips() {
+  const container = document.getElementById('suggestion-chips');
+  if (!container) return;
+  container.innerHTML = '';
+
+  const chips = currentTopic && UI_TOPICS[currentTopic]
+    ? UI_TOPICS[currentTopic].questions.slice(0, 4)
+    : DEFAULT_CHIPS;
+
+  chips.forEach(text => {
+    const chip = document.createElement('button');
+    chip.className = 'suggestion-chip';
+    chip.textContent = text;
+    chip.addEventListener('click', () => {
+      container.innerHTML = ''; // ẩn chips sau khi click
+      handleSendMessage(text);
+    });
+    container.appendChild(chip);
+  });
+}
+
+function hideSuggestionChips() {
+  const container = document.getElementById('suggestion-chips');
+  if (container) container.innerHTML = '';
+}
+
+// =============================================
+// UI SPEC — CHANGE 3: Follow-up Chips in response
+// =============================================
+function parseFollowUps(answer) {
+  // AI trả về follow-ups sau separator ---FOLLOWUP---
+  const parts = answer.split('---FOLLOWUP---');
+  const mainAnswer = parts[0].trim();
+  let followUps = [];
+  if (parts[1]) {
+    followUps = parts[1].trim().split('\n').map(s => s.replace(/^[-*]\s*/, '').trim()).filter(Boolean).slice(0, 3);
+  }
+  return { mainAnswer, followUps };
+}
+
+function renderFollowUpChips(followUps, parentBubble) {
+  if (!followUps.length) return;
+  const section = document.createElement('div');
+  section.className = 'followup-section';
+  section.innerHTML = `<div class="followup-label">Bạn có thể hỏi thêm:</div><div class="followup-chips"></div>`;
+  const chipsContainer = section.querySelector('.followup-chips');
+  followUps.forEach(text => {
+    const chip = document.createElement('button');
+    chip.className = 'followup-chip';
+    chip.textContent = text;
+    chip.addEventListener('click', () => handleSendMessage(text));
+    chipsContainer.appendChild(chip);
+  });
+  parentBubble.appendChild(section);
+}
+
+// =============================================
+// UI SPEC — CHANGE 5: Input state management
+// =============================================
+const TOPIC_PLACEHOLDERS = {
+  'hop-dong': 'Ví dụ: Điều khoản bảo hành nên ghi như thế nào?',
+  'bao-gia': 'Ví dụ: Báo giá 5 triệu/m² có hợp lý không?',
+  'tieu-chuan': 'Ví dụ: Kiểm tra cốt thép trước khi đổ bê tông?',
+  'phap-ly': 'Ví dụ: Xây nhà cần xin phép những gì?',
+  'thac-mac': 'Ví dụ: Cúng động thổ cần chuẩn bị gì?'
+};
+
+function updateInputState() {
+  const btn = document.getElementById('chat-send-btn');
+  const input = document.getElementById('chat-input');
+  if (btn) btn.classList.toggle('disabled', !input.value.trim() && !pendingFile);
+}
+
+function updatePlaceholder() {
+  const input = document.getElementById('chat-input');
+  if (!input) return;
+  input.placeholder = currentTopic && TOPIC_PLACEHOLDERS[currentTopic]
+    ? TOPIC_PLACEHOLDERS[currentTopic]
+    : "Hỏi về hợp đồng, báo giá, tiêu chuẩn thi công...";
+}
+
+function setupInputWatcher() {
+  const input = document.getElementById('chat-input');
+  if (input) input.addEventListener('input', updateInputState);
+}
+
+// =============================================
+// UI SPEC — CHANGE 6: Breadcrumb + New Chat
+// =============================================
+function updateBreadcrumb() {
+  const el = document.getElementById('breadcrumb-topic');
+  if (!el) return;
+  el.textContent = currentTopic && UI_TOPICS[currentTopic] ? UI_TOPICS[currentTopic].title : '';
+}
+
+function setupNewChatBtn() {
+  const btn = document.getElementById('btn-new-chat');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    if (!confirm('Bắt đầu cuộc trò chuyện mới?')) return;
+    chatMessages.innerHTML = '';
+    chatHistory = [];
+    currentTopic = null;
+    updateBreadcrumb();
+    updatePlaceholder();
+    renderSuggestionChips();
+    // Hide input hint after first use
+    const hint = document.getElementById('input-hint');
+    if (hint) hint.classList.add('hidden');
+
+    const firstName = userData ? userData.name.split(' ').pop() : 'bạn';
+    addBotMessage(`Chào <strong>${firstName}</strong>! Anh/chị vui lòng <strong>chọn 1 chủ đề</strong> để em tư vấn nhé:`);
+    renderTopicButtons();
+  });
+}
+
+// =============================================
+// INIT
+// =============================================
 async function initChat() {
   renderSidebar();
-  renderDocsPopup();
-  setupFabButtons();
+  setupSidebar();
   setupFileUpload();
-  renderTopicButtons();
+  setupInputWatcher();
+  setupNewChatBtn();
   setupChatInput();
   await loadFileUrlMap();
 
   const firstName = userData ? userData.name.split(' ').pop() : 'bạn';
-
   addBotMessage(`Chào <strong>${firstName}</strong>! Em là chuyên gia tư vấn xây dựng, sẵn sàng hỗ trợ anh/chị.
 
 Anh/chị vui lòng <strong>chọn 1 chủ đề</strong> bên dưới để em tư vấn chính xác nhé:`);
   renderTopicButtons();
+  renderSuggestionChips();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
