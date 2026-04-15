@@ -409,10 +409,7 @@ async function handleSendMessage(predefinedQuery = null) {
     hideTyping();
     addBotMessage(result.answer);
 
-    // Hiện link tài liệu liên quan (từ n8n trả về)
-    if (result.docLinks && result.docLinks.length > 0) {
-      renderDocLinksFromNames(result.docLinks);
-    }
+    // Không hiện link tài liệu — bot đã trả nội dung trực tiếp
   } catch (err) {
     console.error('Chat error:', err);
     hideTyping();
