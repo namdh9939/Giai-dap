@@ -73,7 +73,7 @@ const quickReplies = document.getElementById('quick-replies');
 const typingIndicator = document.getElementById('typing-indicator');
 const chatInput = document.getElementById('chat-input');
 const chatSendBtn = document.getElementById('chat-send-btn');
-// sidebar-topics đã xóa — không cần nữa
+const sidebarTopics = document.getElementById('sidebar-topics');
 const headerSubtitle = document.getElementById('header-subtitle');
 
 // DOM Elements — Registration
@@ -622,7 +622,20 @@ const REFERENCE_DOCS = [
 ];
 
 function renderSidebar() {
-  // Sidebar chỉ giữ logo + subtitle, không render thêm gì
+  if (!sidebarTopics) return;
+  sidebarTopics.innerHTML = '';
+  REFERENCE_DOCS.forEach(doc => {
+    const groupEl = document.createElement('div');
+    groupEl.className = 'sidebar-doc-group';
+    groupEl.innerHTML = `<div class="sidebar-doc-group-title">${doc.icon} ${doc.group}</div>`;
+    doc.items.forEach(name => {
+      const item = document.createElement('div');
+      item.className = 'sidebar-doc-item';
+      item.textContent = name;
+      groupEl.appendChild(item);
+    });
+    sidebarTopics.appendChild(groupEl);
+  });
 }
 
 function renderDocsPopup() {
