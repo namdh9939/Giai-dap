@@ -256,9 +256,14 @@ async function processFile(file) {
 
   try {
     if (file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = () => { if (pendingFile) pendingFile.base64 = reader.result.split(',')[1]; };
-      reader.readAsDataURL(file);
+      // Đọc ảnh thành base64 — dùng Promise để chờ xong mới cho gửi
+      const base64 = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+      if (pendingFile) pendingFile.base64 = base64;
     } else if (ext === 'pdf') {
       const arrayBuf = await file.arrayBuffer();
       const pdf = await pdfjsLib.getDocument({ data: arrayBuf }).promise;
