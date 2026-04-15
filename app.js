@@ -396,42 +396,35 @@ async function handleSendMessage(predefinedQuery = null) {
   if (isProcessing) return;
 
   isProcessing = true;
-  chatInput.value = '';
-
-  // Hiển thị tin nhắn user
-  const fileNames = pendingFiles.map(f => f.name);
-  const userText = text || `[Gửi ${pendingFiles.length} file]`;
-  addUserMessage(userText);
-
-  // Hiện thumbnails ảnh + badges file trong chat
-  pendingFiles.forEach(f => {
-    if (f.base64) {
-      addBotMessage(`<img src="data:image/${f.type};base64,${f.base64}" class="msg-uploaded-image" alt="${f.name}">`, false);
-    } else {
-      addUserMessage(`<span class="file-badge">📎 ${f.name}</span>`);
-    }
-  });
-
-  // Lấy files rồi clear
-  const currentFiles = [...pendingFiles];
-  clearPendingFiles();
-  showTyping();
 
   try {
-    // Gộp tất cả files thành options cho n8n
-    const aiOptions = {};
+    chatInput.value = '';
 
-    // Ảnh: gửi ảnh đầu tiên cho vision (Claude chỉ nhận 1 ảnh/request)
+    // Lấy files rồi clear ngay
+    const currentFiles = [...pendingFiles];
+    const fileNames = currentFiles.map(f => f.name);
+    clearPendingFiles();
+
+    // Hiển thị tin nhắn user
+    addUserMessage(text || `[Gửi ${currentFiles.length} file]`);
+
+    // Hiện badges file (không hiện ảnh base64 lớn trong chat để tránh crash)
+    currentFiles.forEach(f => {
+      const icon = f.base64 ? '🖼️' : '📎';
+      addUserMessage(`<span class="file-badge">${icon} ${f.name}</span>`);
+    });
+
+    showTyping();
+
+    // Gộp files thành options cho n8n
+    const aiOptions = {};
     const imageFile = currentFiles.find(f => f.base64);
     if (imageFile) {
       aiOptions.imageData = imageFile.base64;
       aiOptions.imageMime = `image/${imageFile.type === 'jpg' ? 'jpeg' : imageFile.type}`;
     }
 
-    // Text: gộp tất cả file text
-    const textParts = currentFiles
-      .filter(f => f.textContent)
-      .map(f => `[${f.name}]:\n${f.textContent}`);
+    const textParts = currentFiles.filter(f => f.textContent).map(f => `[${f.name}]:\n${f.textContent}`);
     if (textParts.length > 0) {
       aiOptions.fileText = textParts.join('\n\n---\n\n').slice(0, 12000);
       aiOptions.fileName = fileNames.join(', ');
@@ -442,8 +435,6 @@ async function handleSendMessage(predefinedQuery = null) {
 
     hideTyping();
     addBotMessage(result.answer);
-
-    // Không hiện link tài liệu — bot đã trả nội dung trực tiếp
   } catch (err) {
     console.error('Chat error:', err);
     hideTyping();
