@@ -1,0 +1,113 @@
+{
+  "name": "Trợ Lý Xây Nhà - Claude AI",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "chat-xaynha",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "node-webhook",
+      "name": "Webhook Chat",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 340],
+      "webhookId": "chat-xaynha"
+    },
+    {
+      "parameters": {
+        "url": "=https://raw.githubusercontent.com/namdh9939/Giai-dap/main/kb_{{ $json.body.topic_file }}.json",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "id": "node-fetch-kb",
+      "name": "Fetch KB từ GitHub",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 340]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Dữ liệu từ webhook\nconst webhook = $('Webhook Chat').first().json.body;\nconst query = webhook.query || '';\nconst topic = webhook.topic || '';\nconst history = webhook.history || '';\nconst imageData = webhook.imageData || null;\nconst imageMime = webhook.imageMime || null;\nconst fileText = webhook.fileText || null;\nconst fileName = webhook.fileName || null;\n\n// KB data fetched from GitHub\nlet kbChunks = [];\ntry {\n  const fetched = $('Fetch KB từ GitHub').first().json;\n  kbChunks = Array.isArray(fetched) ? fetched : [];\n} catch(e) { kbChunks = []; }\n\n// Search relevant chunks\nconst searchTerms = query.toLowerCase().split(/\\s+/).filter(t => t.length > 1);\nconst scored = kbChunks.map(chunk => {\n  let score = 0;\n  const cl = chunk.content.toLowerCase();\n  searchTerms.forEach(term => { if (cl.includes(term)) score += 10; });\n  if (chunk.keywords) chunk.keywords.forEach(kw => { if (query.toLowerCase().includes(kw.toLowerCase())) score += 20; });\n  // Boost chunks có số liệu\n  if (/\\d+%|\\d[\\d,.]+\\s*(VNĐ|đồng|ngày|tháng|lần|mm)/i.test(chunk.content) && score > 0) score += 25;\n  if (/ĐIỀU\\s+\\d+/i.test(chunk.content) && score > 0) score += 15;\n  return { ...chunk, score };\n}).filter(c => c.score > 0).sort((a,b) => b.score - a.score).slice(0, 8);\n\n// Build context (max 6000 chars)\nlet context = '';\nlet totalLen = 0;\nfor (const c of scored) {\n  const entry = `[${c.source}, P${c.page}]: ${c.content}`;\n  if (totalLen + entry.length > 6000) break;\n  context += entry + '\\n---\\n';\n  totalLen += entry.length;\n}\n\n// Thêm nội dung file khách gửi\nif (fileText) {\n  context = `[Tài liệu khách gửi: ${fileName}]:\\n${fileText.slice(0,3000)}\\n---\\n` + context;\n}\n\n// System prompt\nconst hotline = '0902 982 029';\nconst systemPrompt = `Bạn là CHUYÊN GIA TƯ VẤN XÂY DỰNG, tư vấn trực tiếp cho CHỦ ĐẦU TƯ.\\n\\nCHỦ ĐỀ: ${topic}\\n→ CHỈ trả lời trong phạm vi \"${topic}\". Ngoài chủ đề → nhắc chuyển.\\n→ Ngoài lĩnh vực xây nhà → từ chối.\\n\\nNGUYÊN TẮC:\\n1. Trả lời CỤ THỂ với số liệu (%, VNĐ, ngày). KHÔNG bịa. Dữ liệu ghi \"…\" → \"do hai bên thỏa thuận\".\\n2. KHÔNG dẫn nguồn. KHÔNG nói \"Theo Điều X\". Trả lời như kiến thức của bạn.\\n3. Đứng về phía chủ đầu tư. Cảnh báo rủi ro.\\n4. Dùng Markdown (**bold**, - bullet). \\n5. Xưng \"em\", gọi \"anh/chị\".\\n6. KHÔNG gửi URL/link.\\n7. Pháp lý, tranh chấp → khái quát + \"Hotline: ${hotline}\".\\n8. Kết thúc bằng 1 câu hỏi dẫn dắt.`;\n\nconst userMessage = `TRI THỨC TÀI LIỆU:\\n${context}\\n\\n${history ? 'LỊCH SỬ:\\n' + history + '\\n\\n' : ''}CÂU HỎI: \"${query}\"`;\n\n// Build Claude messages\nconst messages = [];\nconst userParts = [];\n\n// Nếu có ảnh\nif (imageData && imageMime) {\n  userParts.push({\n    type: 'image',\n    source: { type: 'base64', media_type: imageMime, data: imageData }\n  });\n}\nuserParts.push({ type: 'text', text: userMessage });\nmessages.push({ role: 'user', content: userParts });\n\n// Document links từ chunks\nconst docLinks = [...new Set(scored.map(c => c.source))].slice(0, 3);\n\nreturn [{ json: { systemPrompt, messages, docLinks } }];"
+      },
+      "id": "node-search",
+      "name": "Search KB & Build Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 340]
+    },
+    {
+      "parameters": {
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "x-api-key", "value": "YOUR_CLAUDE_API_KEY_HERE" },
+            { "name": "anthropic-version", "value": "2023-06-01" },
+            { "name": "content-type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"claude-sonnet-4-20250514\",\n  \"max_tokens\": 1500,\n  \"system\": {{ JSON.stringify($json.systemPrompt) }},\n  \"messages\": {{ JSON.stringify($json.messages) }}\n}",
+        "options": {
+          "timeout": 45000
+        }
+      },
+      "id": "node-claude",
+      "name": "Claude AI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [900, 340]
+    },
+    {
+      "parameters": {
+        "jsCode": "const claudeResponse = $('Claude AI').first().json;\nconst promptData = $('Search KB & Build Prompt').first().json;\nlet answer = '';\n\ntry {\n  if (claudeResponse.content && claudeResponse.content[0]) {\n    answer = claudeResponse.content[0].text;\n  } else if (claudeResponse.error) {\n    answer = 'Dạ, hệ thống đang bận. Anh/chị thử lại sau nhé.';\n  }\n} catch(e) {\n  answer = 'Dạ, có lỗi xảy ra. Anh/chị thử hỏi lại nhé.';\n}\n\nreturn [{ json: { answer, docLinks: promptData.docLinks || [] } }];"
+      },
+      "id": "node-extract",
+      "name": "Extract Answer",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 340]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ answer: $json.answer, docLinks: $json.docLinks }) }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              { "name": "Access-Control-Allow-Origin", "value": "*" },
+              { "name": "Access-Control-Allow-Headers", "value": "Content-Type" }
+            ]
+          }
+        }
+      },
+      "id": "node-respond",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1340, 340]
+    }
+  ],
+  "connections": {
+    "Webhook Chat": {
+      "main": [[{ "node": "Fetch KB từ GitHub", "type": "main", "index": 0 }]]
+    },
+    "Fetch KB từ GitHub": {
+      "main": [[{ "node": "Search KB & Build Prompt", "type": "main", "index": 0 }]]
+    },
+    "Search KB & Build Prompt": {
+      "main": [[{ "node": "Claude AI", "type": "main", "index": 0 }]]
+    },
+    "Claude AI": {
+      "main": [[{ "node": "Extract Answer", "type": "main", "index": 0 }]]
+    },
+    "Extract Answer": {
+      "main": [[{ "node": "Respond", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" }
+}

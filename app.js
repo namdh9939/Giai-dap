@@ -7,25 +7,12 @@
 // GLOBAL STATE & CONFIG
 // =============================================
 const BOT_NAME = "Trợ Lý Xây Nhà";
+const N8N_WEBHOOK = "https://nhacuaminh.com/webhook/chat-xaynha";
 
 // PDF.js worker
 if (typeof pdfjsLib !== 'undefined') {
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 }
-let knowledgeBase = [];
-
-// Auto-import API keys from URL params (1 lần, lưu localStorage, xóa khỏi URL)
-(function() {
-  const params = new URLSearchParams(window.location.search);
-  const groqKey = params.get('groq');
-  const geminiKey = params.get('key');
-  if (groqKey) localStorage.setItem('groq_api_key', groqKey);
-  if (geminiKey && geminiKey.startsWith('AIza')) localStorage.setItem('gemini_api_key', geminiKey);
-  if (groqKey || geminiKey) window.history.replaceState({}, '', window.location.pathname);
-})();
-
-let groqApiKey = localStorage.getItem('groq_api_key') || '';
-let geminiApiKey = localStorage.getItem('gemini_api_key') || '';
 let userData = null;
 let currentTopic = null;
 let isProcessing = false;
@@ -121,214 +108,69 @@ function markdownToHtml(text) {
 }
 
 // =============================================
-// DATA LOADING (5 topic-specific knowledge bases)
+// DATA (file URL map for doc links)
 // =============================================
-const KB_FILES = {
-  'hop-dong': 'kb_hop_dong.json',
-  'bao-gia': 'kb_bao_gia.json',
-  'tieu-chuan': 'kb_tieu_chuan.json',
-  'phap-ly': 'kb_phap_ly.json',
-  'thac-mac': 'kb_thac_mac.json'
+let fileUrlMap = {};
+
+async function loadFileUrlMap() {
+  try {
+    fileUrlMap = await fetch('file_urls.json').then(r => r.ok ? r.json() : {}).catch(() => ({}));
+    console.log("File URLs loaded:", Object.keys(fileUrlMap).length);
+  } catch (e) { /* ignore */ }
+}
+
+// =============================================
+// AI ENGINE — Gọi n8n Webhook (Claude AI backend)
+// =============================================
+const TOPIC_FILE_MAP = {
+  'hop-dong': 'hop_dong',
+  'bao-gia': 'bao_gia',
+  'tieu-chuan': 'tieu_chuan',
+  'phap-ly': 'phap_ly',
+  'thac-mac': 'thac_mac'
 };
 
-let fileUrlMap = {}; // source name -> { file, url }
+async function askAI(query, options = {}) {
+  const { fileText, fileName, imageData, imageMime } = options;
 
-async function loadKnowledgeBase() {
+  const topicName = currentTopic && UI_TOPICS[currentTopic] ? UI_TOPICS[currentTopic].title : 'chung';
+  const topicFile = TOPIC_FILE_MAP[currentTopic] || 'hop_dong';
+  const historyText = chatHistory.map(m => `${m.role === 'user' ? 'Khách' : 'Trợ lý'}: ${m.content}`).join('\n');
+
+  const payload = {
+    query,
+    topic: topicName,
+    topic_file: topicFile,
+    history: historyText,
+    fileText: fileText || null,
+    fileName: fileName || null,
+    imageData: imageData || null,
+    imageMime: imageMime || null
+  };
+
   try {
-    const [kbResults, urlMap] = await Promise.all([
-      Promise.all(Object.values(KB_FILES).map(file =>
-        fetch(file).then(r => r.ok ? r.json() : []).catch(() => [])
-      )),
-      fetch('file_urls.json').then(r => r.ok ? r.json() : {}).catch(() => ({}))
-    ]);
-    knowledgeBase = kbResults.flat();
-    fileUrlMap = urlMap;
-    console.log("KB loaded:", knowledgeBase.length, "chunks. File URLs:", Object.keys(fileUrlMap).length);
-  } catch (error) {
-    console.error("Error loading knowledge base:", error);
-  }
-}
-
-// =============================================
-// SEARCH ENGINE (Keyword + Data Priority)
-// =============================================
-function searchRelevantChunks(query, limit = 8) {
-  const normalizedQuery = query.toLowerCase();
-  const searchTerms = normalizedQuery.split(/\s+/).filter(t => t.length > 1);
-
-  // CHỈ tìm trong KB đúng chủ đề đang chọn
-  const topicFilter = currentTopic || '';
-  const filtered = topicFilter
-    ? knowledgeBase.filter(c => c.id.includes(topicFilter))
-    : knowledgeBase;
-
-  const scoredData = filtered.map(chunk => {
-    let score = 0;
-    const contentLower = chunk.content.toLowerCase();
-
-    searchTerms.forEach(term => {
-      if (contentLower.includes(term)) score += 10;
+    const res = await fetch(N8N_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
     });
 
-    if (chunk.keywords) {
-      chunk.keywords.forEach(kw => {
-        if (normalizedQuery.includes(kw.toLowerCase())) score += 20;
-      });
-    }
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-    // BOOST chunks có số liệu cụ thể
-    const hasData = /\d+%|\d[\d,.]+\s*(VNĐ|đồng|ngày|tháng|lần|mm|cm|m2|m²)|\bđiều\s+\d+\b/i.test(chunk.content);
-    if (hasData && score > 0) score += 25;
+    const data = await res.json();
+    const answer = data.answer || 'Dạ, em chưa tìm được câu trả lời. Anh/chị thử hỏi lại nhé.';
 
-    const hasClause = /ĐIỀU\s+\d+|Khoản\s+\d+|Mục\s+\d+|Bước\s+\d+/i.test(chunk.content);
-    if (hasClause && score > 0) score += 15;
+    // Cập nhật lịch sử
+    chatHistory.push({ role: 'user', content: query });
+    chatHistory.push({ role: 'model', content: answer });
+    if (chatHistory.length > 8) chatHistory.splice(0, 2);
 
-    return { ...chunk, score };
-  });
-
-  return scoredData
-    .filter(item => item.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, limit);
-}
-
-// =============================================
-// AI ENGINE — Groq (chính) + Gemini (dự phòng)
-// =============================================
-function buildPromptAndContext(userQuery, contextChunks) {
-  // Context — giới hạn 6000 ký tự
-  let contextText = "";
-  if (contextChunks.length > 0) {
-    let totalLen = 0;
-    const selected = [];
-    for (const c of contextChunks) {
-      const entry = `[${c.source}, P${c.page}]: ${c.content}`;
-      if (totalLen + entry.length > 6000) break;
-      selected.push(entry);
-      totalLen += entry.length;
-    }
-    contextText = selected.join('\n---\n');
-  } else {
-    contextText = "Không tìm thấy quy định cụ thể trong tài liệu tri thức.";
+    // Trả về cả answer và docLinks (nếu có)
+    return { answer, docLinks: data.docLinks || [] };
+  } catch (err) {
+    console.error('n8n error:', err);
+    return { answer: 'Dạ, hệ thống đang bận. Anh/chị thử lại sau ít giây nhé.', docLinks: [] };
   }
-
-  const historyText = chatHistory.length > 0
-    ? chatHistory.map(m => `${m.role === 'user' ? 'Khách' : 'Trợ lý'}: ${m.content}`).join('\n')
-    : "";
-
-  const userCourse = userData ? userData.course : '';
-  const hotline = userCourse === 'tu-kiem-soat' ? '0981 982 029' : '0902 982 029';
-  const hasImages = contextChunks.some(c => c.images && c.images.length > 0);
-
-  // Tên chủ đề hiện tại
-  const topicName = currentTopic && UI_TOPICS[currentTopic] ? UI_TOPICS[currentTopic].title : 'chung';
-
-  const systemPrompt = `Bạn là CHUYÊN GIA TƯ VẤN XÂY DỰNG, đang tư vấn trực tiếp cho CHỦ ĐẦU TƯ (người bỏ tiền xây nhà).
-
-CHỦ ĐỀ: ${topicName}
-→ CHỈ trả lời trong phạm vi "${topicName}". Câu hỏi chủ đề khác → nhắc chuyển chủ đề.
-→ Câu hỏi NGOÀI lĩnh vực xây nhà → từ chối: "Em chỉ hỗ trợ các vấn đề liên quan đến xây dựng nhà ở ạ."
-
-NGUYÊN TẮC:
-1. Trả lời CỤ THỂ: đưa ra số liệu (%, VNĐ, ngày, mức phạt) trực tiếp. KHÔNG bịa. Nếu dữ liệu ghi "…" → "mức do hai bên thỏa thuận khi ký".
-2. KHÔNG dẫn nguồn. KHÔNG nói "Theo Điều X", "Theo tài liệu Y", "Theo quy định Z". Trả lời trực tiếp như kiến thức của chính bạn.
-3. Đứng về phía chủ đầu tư. Cảnh báo rủi ro khi cần.
-4. HTML (<strong>, <ul>, <li>) trình bày rõ ràng.
-5. Xưng "em", gọi "anh/chị".
-6. KHÔNG gửi URL/link.
-7. Pháp lý, tranh chấp → khái quát + "Hotline: ${hotline}".
-8. Kết thúc bằng 1 câu hỏi dẫn dắt trong cùng chủ đề.${hasImages ? '\n9. Hệ thống gửi hình minh họa kèm theo.' : ''}`;
-
-  const userMessage = `TRI THỨC TÀI LIỆU:\n${contextText}\n\n${historyText ? 'LỊCH SỬ:\n' + historyText + '\n\n' : ''}CÂU HỎI: "${userQuery}"`;
-
-  return { systemPrompt, userMessage };
-}
-
-// --- GROQ API (Llama 3.3 70B — nhanh, ổn định) ---
-async function callGroq(systemPrompt, userMessage) {
-  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${groqApiKey}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      model: 'llama-3.3-70b-versatile',
-      messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: userMessage }
-      ],
-      max_tokens: 1024,
-      temperature: 0.2
-    })
-  });
-
-  if (!response.ok) {
-    const err = await response.text().catch(() => '');
-    throw new Error(`Groq ${response.status}: ${err}`);
-  }
-
-  const data = await response.json();
-  return data.choices[0].message.content;
-}
-
-// --- GEMINI API (dự phòng) ---
-async function callGemini(systemPrompt, userMessage) {
-  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: systemPrompt + '\n\n' + userMessage }] }],
-      generationConfig: { maxOutputTokens: 1024, temperature: 0.2 }
-    })
-  });
-
-  if (!response.ok) throw new Error(`Gemini ${response.status}`);
-
-  const data = await response.json();
-  if (data.error) throw new Error(data.error.message);
-  if (!data.candidates?.[0]?.content?.parts?.[0]?.text) throw new Error('Empty response');
-
-  return data.candidates[0].content.parts[0].text;
-}
-
-// --- MAIN: Groq trước, Gemini fallback ---
-async function askAI(userQuery, contextChunks) {
-  if (!groqApiKey && !geminiApiKey) {
-    return "Dạ, anh/chị cần cài đặt API Key trước. Nhấn nút 🔑 bên phải để nhập key nhé.";
-  }
-
-  const { systemPrompt, userMessage } = buildPromptAndContext(userQuery, contextChunks);
-
-  // Thử Groq trước (nhanh, ổn định)
-  if (groqApiKey) {
-    try {
-      const result = await callGroq(systemPrompt, userMessage);
-      console.log('AI engine: Groq');
-      chatHistory.push({ role: 'user', content: userQuery });
-      chatHistory.push({ role: 'model', content: result });
-      if (chatHistory.length > 8) chatHistory.splice(0, 2);
-      return result;
-    } catch (err) {
-      console.warn('Groq failed:', err.message);
-    }
-  }
-
-  // Fallback sang Gemini
-  if (geminiApiKey) {
-    try {
-      const result = await callGemini(systemPrompt, userMessage);
-      console.log('AI engine: Gemini (fallback)');
-      chatHistory.push({ role: 'user', content: userQuery });
-      chatHistory.push({ role: 'model', content: result });
-      if (chatHistory.length > 8) chatHistory.splice(0, 2);
-      return result;
-    } catch (err) {
-      console.warn('Gemini failed:', err.message);
-    }
-  }
-
-  return "Dạ, cả hai server AI đều đang bận. Anh/chị thử lại sau 30 giây nhé.";
 }
 
 // =============================================
@@ -498,32 +340,6 @@ function setupFileUpload() {
 }
 
 // Gọi Gemini Vision API cho ảnh
-async function analyzeImageWithGemini(base64Data, mimeType, userQuery) {
-  if (!geminiApiKey) return null;
-  try {
-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{
-          parts: [
-            { text: `Bạn là chuyên gia xây dựng. Phân tích hình ảnh này và trả lời câu hỏi của chủ đầu tư. Trả lời bằng tiếng Việt, dùng HTML (<strong>, <ul>, <li>). Xưng "em", gọi "anh/chị".\n\nCâu hỏi: ${userQuery || 'Phân tích hình ảnh này giúp em'}` },
-            { inlineData: { mimeType: mimeType, data: base64Data } }
-          ]
-        }],
-        generationConfig: { maxOutputTokens: 1024, temperature: 0.3 }
-      })
-    });
-    const data = await res.json();
-    if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
-      return data.candidates[0].content.parts[0].text;
-    }
-  } catch (err) {
-    console.warn('Gemini Vision error:', err);
-  }
-  return null;
-}
-
 // =============================================
 // CHAT LOGIC
 // =============================================
@@ -554,11 +370,11 @@ async function handleSendMessage(predefinedQuery = null) {
   isProcessing = true;
   chatInput.value = '';
 
-  // Hiển thị tin nhắn user + file preview
+  // Hiển thị tin nhắn user
   const userText = text || `[Gửi file: ${pendingFile?.name}]`;
   addUserMessage(userText);
 
-  // Nếu có ảnh, hiện thumbnail trong chat
+  // Hiện thumbnail ảnh trong chat
   if (hasFile && pendingFile.base64) {
     const imgHtml = `<img src="data:image/${pendingFile.type};base64,${pendingFile.base64}" class="msg-uploaded-image" alt="${pendingFile.name}">`;
     addBotMessage(imgHtml, false);
@@ -567,49 +383,41 @@ async function handleSendMessage(predefinedQuery = null) {
     addUserMessage(`<span class="file-badge">📎 ${pendingFile.name}</span>`);
   }
 
-  // Clear file preview
+  // Lấy file data rồi clear preview
   const currentFile = pendingFile;
   clearPendingFile();
-
   closeSuggestions();
   clearQuickReplies();
   showTyping();
 
-  let response = '';
-  let relevantChunks = [];
-
   try {
+    // Chuẩn bị options cho n8n
+    const aiOptions = {};
     if (currentFile && currentFile.base64) {
       const mimeType = `image/${currentFile.type === 'jpg' ? 'jpeg' : currentFile.type}`;
-      response = await analyzeImageWithGemini(currentFile.base64, mimeType, text);
-      if (!response) response = "Dạ, em không thể phân tích hình ảnh lúc này. Anh/chị thử mô tả bằng văn bản giúp em nhé.";
-    } else if (currentFile && currentFile.textContent) {
-      relevantChunks = searchRelevantChunks(text || currentFile.name);
-      const fakeChunk = { source: currentFile.name, page: 1, content: currentFile.textContent, keywords: [], images: [] };
-      response = await askAI(text || `Phân tích tài liệu "${currentFile.name}"`, [fakeChunk, ...relevantChunks]);
-    } else {
-      relevantChunks = searchRelevantChunks(text);
-      response = await askAI(text, relevantChunks);
+      aiOptions.imageData = currentFile.base64;
+      aiOptions.imageMime = mimeType;
+    }
+    if (currentFile && currentFile.textContent) {
+      aiOptions.fileText = currentFile.textContent;
+      aiOptions.fileName = currentFile.name;
+    }
+
+    // Gọi n8n webhook
+    const result = await askAI(text || `Phân tích file "${currentFile?.name || ''}"`, aiOptions);
+
+    hideTyping();
+    addBotMessage(result.answer);
+
+    // Hiện link tài liệu liên quan (từ n8n trả về)
+    if (result.docLinks && result.docLinks.length > 0) {
+      renderDocLinksFromNames(result.docLinks);
     }
   } catch (err) {
     console.error('Chat error:', err);
-    response = "Dạ, có lỗi xảy ra. Anh/chị thử hỏi lại nhé.";
-  } finally {
-    // LUÔN reset trạng thái dù lỗi hay không
     hideTyping();
-    if (response) addBotMessage(response);
-
-    // Link tài liệu liên quan + hình ảnh minh họa
-    try {
-      if (relevantChunks.length > 0) {
-        renderDocLinks(relevantChunks);
-        if (currentTopic === 'tieu-chuan' || (text && text.match(/tiêu chuẩn|nghiệm thu|bê tông|cốt thép|tường xây|ống nước|điện/i))) {
-          renderRelatedImages(relevantChunks);
-        }
-      }
-    } catch (e) { /* ignore */ }
-
-    // Hiện lại nút câu hỏi gợi ý
+    addBotMessage("Dạ, có lỗi xảy ra. Anh/chị thử hỏi lại nhé.");
+  } finally {
     if (currentTopic) {
       renderQuestionButtons(currentTopic);
     } else {
@@ -619,17 +427,11 @@ async function handleSendMessage(predefinedQuery = null) {
   }
 }
 
-function renderDocLinks(chunks) {
-  // Tìm file tài liệu liên quan từ chunks đã dùng
+function renderDocLinksFromNames(sourceNames) {
   const links = [];
-  const seen = new Set();
-  for (const chunk of chunks) {
-    const source = chunk.source;
-    if (seen.has(source)) continue;
-    // Tìm trong fileUrlMap
-    if (fileUrlMap[source]) {
-      seen.add(source);
-      links.push({ name: source, url: fileUrlMap[source].url, file: fileUrlMap[source].file });
+  for (const name of sourceNames) {
+    if (fileUrlMap[name]) {
+      links.push({ name, url: fileUrlMap[name].url, file: fileUrlMap[name].file });
     }
   }
   if (links.length === 0) return;
@@ -647,61 +449,6 @@ function renderDocLinks(chunks) {
   addBotMessage(html, false);
 }
 
-function renderCitations(chunks) {
-  // Loại bỏ trùng lặp nguồn
-  const uniqueSources = [];
-  const seen = new Set();
-  chunks.forEach(c => {
-    const key = `${c.source}_${c.page}`;
-    if (!seen.has(key)) { seen.add(key); uniqueSources.push(c); }
-  });
-
-  const citationHtml = `
-    <div class="citation">
-      <div class="citation-header">📚 Nguồn tham khảo</div>
-      ${uniqueSources.map(c => `
-        <div class="citation-item">
-          <span class="citation-icon">📄</span>
-          <div class="citation-content">
-            <span class="citation-source">${c.source}</span>
-            <span class="citation-page">Trang ${c.page}</span>
-          </div>
-        </div>
-      `).join('')}
-    </div>
-  `;
-  addBotMessage(citationHtml, false);
-}
-
-function renderRelatedImages(chunks) {
-  // Collect unique images from relevant chunks (max 4 images)
-  const images = [];
-  const seen = new Set();
-  for (const chunk of chunks) {
-    if (chunk.images && chunk.images.length > 0) {
-      for (const imgPath of chunk.images) {
-        if (!seen.has(imgPath) && images.length < 4) {
-          seen.add(imgPath);
-          images.push({ path: imgPath, source: chunk.source, page: chunk.page });
-        }
-      }
-    }
-  }
-  if (images.length === 0) return;
-
-  const imagesHtml = `
-    <div class="msg-images-grid">
-      <div class="msg-images-label">Hình ảnh minh họa từ tài liệu:</div>
-      ${images.map(img => `
-        <div class="msg-image-item">
-          <img src="${img.path}" alt="Trang ${img.page}" class="msg-image" onclick="window.open('${img.path}', '_blank')" loading="lazy">
-          <span class="msg-image-caption">${img.source} — Trang ${img.page}</span>
-        </div>
-      `).join('')}
-    </div>
-  `;
-  addBotMessage(imagesHtml, false);
-}
 
 function addBotMessage(content, showAvatar = true) {
   const row = document.createElement('div');
@@ -918,114 +665,14 @@ function setupFabButtons() {
 // =============================================
 // API KEY MODAL
 // =============================================
-function setupApiKeyModal() {
-  const btnOpen = document.getElementById('btn-apikey');
-  const modal = document.getElementById('apikey-modal');
-  const input = document.getElementById('apikey-input');
-  const btnSave = document.getElementById('apikey-save');
-  const btnClose = document.getElementById('apikey-close');
-  const status = document.getElementById('apikey-status');
-
-  if (!btnOpen || !modal) return;
-
-  // Hiện key hiện tại (ưu tiên Groq)
-  if (groqApiKey) {
-    input.value = groqApiKey;
-  } else if (geminiApiKey) {
-    input.value = geminiApiKey;
-  }
-
-  btnOpen.addEventListener('click', () => {
-    modal.classList.remove('hidden');
-    updateApiKeyButton();
-  });
-
-  btnClose.addEventListener('click', () => {
-    modal.classList.add('hidden');
-  });
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) modal.classList.add('hidden');
-  });
-
-  btnSave.addEventListener('click', async () => {
-    const key = input.value.trim();
-    if (!key) {
-      status.textContent = 'Vui lòng nhập API Key.';
-      status.className = 'apikey-status error';
-      return;
-    }
-
-    status.textContent = 'Đang kiểm tra...';
-    status.className = 'apikey-status checking';
-
-    try {
-      // Detect key type: Groq (gsk_) vs Gemini (AIza)
-      if (key.startsWith('gsk_')) {
-        // Test Groq key
-        const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-          method: 'POST',
-          headers: { 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ model: 'llama-3.3-70b-versatile', messages: [{ role: 'user', content: 'test' }], max_tokens: 5 })
-        });
-        if (!res.ok) { status.textContent = 'Groq Key không hợp lệ.'; status.className = 'apikey-status error'; return; }
-        groqApiKey = key;
-        localStorage.setItem('groq_api_key', key);
-        status.textContent = 'Groq API — Kích hoạt thành công!';
-      } else if (key.startsWith('AIza')) {
-        // Test Gemini key
-        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`, {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ contents: [{ parts: [{ text: 'test' }] }], generationConfig: { maxOutputTokens: 5 } })
-        });
-        const data = await res.json();
-        if (data.error) { status.textContent = 'Gemini Key lỗi: ' + data.error.message; status.className = 'apikey-status error'; return; }
-        geminiApiKey = key;
-        localStorage.setItem('gemini_api_key', key);
-        status.textContent = 'Gemini API — Kích hoạt thành công!';
-      } else {
-        status.textContent = 'Key không đúng định dạng (Groq: gsk_... / Gemini: AIza...)';
-        status.className = 'apikey-status error';
-        return;
-      }
-
-      status.className = 'apikey-status success';
-      updateApiKeyButton();
-      setTimeout(() => modal.classList.add('hidden'), 1000);
-    } catch (err) {
-      status.textContent = 'Lỗi kết nối. Thử lại.';
-      status.className = 'apikey-status error';
-    }
-  });
-}
-
-function updateApiKeyButton() {
-  const hasKey = !!(groqApiKey || geminiApiKey);
-  const label = groqApiKey ? 'Groq' : geminiApiKey ? 'Gemini' : '';
-  // Update sidebar button
-  const btn = document.getElementById('btn-apikey');
-  if (btn) {
-    btn.classList.toggle('active', hasKey);
-    btn.title = hasKey ? `${label} API đã kích hoạt` : 'Chưa có API Key';
-  }
-  // Update FAB button
-  const fab = document.getElementById('fab-apikey');
-  if (fab) {
-    fab.classList.toggle('active', hasKey);
-    fab.title = hasKey ? `${label} API đã kích hoạt` : 'Nhấn để cài API Key';
-  }
-}
-
 async function initChat() {
   renderSidebar();
   renderDocsPopup();
   setupFabButtons();
   setupFileUpload();
-  setupApiKeyModal();
-  updateApiKeyButton();
   renderTopicButtons();
   setupChatInput();
-  await loadKnowledgeBase();
+  await loadFileUrlMap();
 
   const firstName = userData ? userData.name.split(' ').pop() : 'bạn';
 
