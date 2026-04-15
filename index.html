@@ -73,14 +73,8 @@
       <div class="sidebar-header">
         <div class="sidebar-logo">🏠</div>
         <h2 class="sidebar-title">Trợ Lý Xây Nhà</h2>
-        <p class="sidebar-subtitle">Công cụ tư vấn dành cho học viên</p>
+        <p class="sidebar-subtitle">Công cụ tư vấn<br>dành cho học viên</p>
       </div>
-      <nav class="sidebar-nav">
-        <p class="sidebar-nav-label">Tài liệu tham khảo</p>
-        <div id="sidebar-topics" class="sidebar-topics">
-          <!-- Topic buttons rendered by JS -->
-        </div>
-      </nav>
     </aside>
 
     <!-- API Key Modal -->
@@ -104,29 +98,6 @@
       <main id="chat-messages" class="chat-messages" role="log" aria-live="polite" aria-label="Khu vực tin nhắn">
         <!-- Messages will be injected here by JS -->
       </main>
-
-      <!-- Quick Replies Popup (hidden by default) -->
-      <section id="quick-replies" class="quick-replies hidden" aria-label="Lựa chọn nhanh">
-        <!-- Quick reply buttons will be injected here by JS -->
-      </section>
-
-      <!-- Docs Popup (hidden by default) -->
-      <div id="docs-popup" class="docs-popup hidden">
-        <div class="docs-popup-header">Tài liệu tham khảo</div>
-        <div id="docs-popup-list" class="docs-popup-list"></div>
-      </div>
-
-      <!-- Toolbar: Gợi ý + Tài liệu -->
-      <div class="chat-toolbar">
-        <button id="fab-suggestions" class="toolbar-btn" title="Câu hỏi gợi ý">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-          <span>Câu hỏi gợi ý</span>
-        </button>
-        <button id="fab-docs" class="toolbar-btn" title="Tài liệu tham khảo">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-          <span>Tài liệu tham khảo</span>
-        </button>
-      </div>
 
       <!-- Typing Indicator -->
       <div id="typing-indicator" class="typing-indicator hidden" aria-label="Trợ lý đang soạn tin">
