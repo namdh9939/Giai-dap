@@ -251,12 +251,31 @@ async function processFile(file) {
 
   try {
     if (file.type.startsWith('image/')) {
+      // Resize ảnh xuống max 1200px để không vượt giới hạn Claude API
       entry.base64 = await new Promise((resolve, reject) => {
         const reader = new FileReader();
-        reader.onload = () => resolve(reader.result.split(',')[1]);
         reader.onerror = reject;
+        reader.onload = () => {
+          const img = new Image();
+          img.onload = () => {
+            const MAX = 1200;
+            let w = img.width, h = img.height;
+            if (w > MAX || h > MAX) {
+              const ratio = Math.min(MAX / w, MAX / h);
+              w = Math.round(w * ratio);
+              h = Math.round(h * ratio);
+            }
+            const canvas = document.createElement('canvas');
+            canvas.width = w; canvas.height = h;
+            canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+            resolve(canvas.toDataURL('image/jpeg', 0.85).split(',')[1]);
+          };
+          img.onerror = reject;
+          img.src = reader.result;
+        };
         reader.readAsDataURL(file);
       });
+      entry.type = 'jpeg'; // sau resize luôn là jpeg
     } else if (ext === 'pdf') {
       const arrayBuf = await file.arrayBuffer();
       const pdf = await pdfjsLib.getDocument({ data: arrayBuf }).promise;
