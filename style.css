@@ -1622,3 +1622,22 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* --- Multi-file Preview List --- */
+.file-preview-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.file-preview-list:empty { display: none; }
+
+.file-preview-list .file-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-xs) var(--space-lg);
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+}

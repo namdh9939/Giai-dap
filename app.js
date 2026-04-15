@@ -230,40 +230,33 @@ function checkExistingUser() {
 }
 
 // =============================================
-// FILE UPLOAD SYSTEM
+// FILE UPLOAD SYSTEM (Multi-file)
 // =============================================
-let pendingFile = null; // { name, type, data, textContent, base64 }
+let pendingFiles = []; // Array of { name, type, base64, textContent }
+const ICON_MAP = { pdf:'📄', xlsx:'📊', xls:'📊', docx:'📝', doc:'📝', jpg:'🖼️', jpeg:'🖼️', png:'🖼️', gif:'🖼️', webp:'🖼️' };
 
-// Xử lý 1 file (dùng chung cho input, drag-drop, paste)
 async function processFile(file) {
-  const preview = document.getElementById('file-preview');
-  const previewName = document.getElementById('file-preview-name');
-  const previewIcon = document.getElementById('file-preview-icon');
-
   if (!file) return;
   if (file.size > 10 * 1024 * 1024) {
     addBotMessage('Dạ, file quá lớn (tối đa 10MB). Anh/chị chọn file nhỏ hơn nhé.');
     return;
   }
+  if (pendingFiles.length >= 10) {
+    addBotMessage('Dạ, tối đa 10 file mỗi lần. Anh/chị gửi đi rồi đính kèm tiếp nhé.');
+    return;
+  }
 
   const ext = file.name.split('.').pop().toLowerCase();
-  const iconMap = { pdf: '📄', xlsx: '📊', xls: '📊', docx: '📝', doc: '📝', jpg: '🖼️', jpeg: '🖼️', png: '🖼️', gif: '🖼️', webp: '🖼️' };
-  previewIcon.textContent = iconMap[ext] || '📎';
-  previewName.textContent = file.name;
-  preview.classList.remove('hidden');
-
-  pendingFile = { name: file.name, type: ext, data: file, textContent: null, base64: null };
+  const entry = { name: file.name, type: ext, base64: null, textContent: null };
 
   try {
     if (file.type.startsWith('image/')) {
-      // Đọc ảnh thành base64 — dùng Promise để chờ xong mới cho gửi
-      const base64 = await new Promise((resolve, reject) => {
+      entry.base64 = await new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = () => resolve(reader.result.split(',')[1]);
         reader.onerror = reject;
         reader.readAsDataURL(file);
       });
-      if (pendingFile) pendingFile.base64 = base64;
     } else if (ext === 'pdf') {
       const arrayBuf = await file.arrayBuffer();
       const pdf = await pdfjsLib.getDocument({ data: arrayBuf }).promise;
@@ -273,58 +266,78 @@ async function processFile(file) {
         const content = await page.getTextContent();
         text += content.items.map(item => item.str).join(' ') + '\n';
       }
-      pendingFile.textContent = text.slice(0, 8000);
+      entry.textContent = text.slice(0, 5000);
     } else if (ext === 'xlsx' || ext === 'xls') {
       const arrayBuf = await file.arrayBuffer();
       const wb = XLSX.read(arrayBuf, { type: 'array' });
       let text = '';
       wb.SheetNames.forEach(name => { text += `[${name}]\n` + XLSX.utils.sheet_to_csv(wb.Sheets[name]) + '\n'; });
-      pendingFile.textContent = text.slice(0, 8000);
+      entry.textContent = text.slice(0, 5000);
     } else if (ext === 'docx' || ext === 'doc') {
       const arrayBuf = await file.arrayBuffer();
       const result = await mammoth.extractRawText({ arrayBuffer: arrayBuf });
-      pendingFile.textContent = result.value.slice(0, 8000);
+      entry.textContent = result.value.slice(0, 5000);
     }
   } catch (err) {
     console.warn('File parse error:', err);
-    if (pendingFile) pendingFile.textContent = `[Không thể đọc file ${file.name}]`;
+    entry.textContent = `[Không thể đọc file ${file.name}]`;
   }
+
+  pendingFiles.push(entry);
+  renderFilePreviewList();
 }
 
-function clearPendingFile() {
-  pendingFile = null;
+function renderFilePreviewList() {
+  const container = document.getElementById('file-preview-list');
+  if (!container) return;
+  container.innerHTML = '';
+  pendingFiles.forEach((f, idx) => {
+    const div = document.createElement('div');
+    div.className = 'file-preview';
+    div.innerHTML = `
+      <div class="file-preview-info">
+        <span class="file-preview-icon">${ICON_MAP[f.type] || '📎'}</span>
+        <span class="file-preview-name">${f.name}</span>
+      </div>
+      <button class="file-preview-remove" data-idx="${idx}">&times;</button>
+    `;
+    div.querySelector('.file-preview-remove').addEventListener('click', () => {
+      pendingFiles.splice(idx, 1);
+      renderFilePreviewList();
+    });
+    container.appendChild(div);
+  });
+}
+
+function clearPendingFiles() {
+  pendingFiles = [];
   document.getElementById('file-upload').value = '';
-  document.getElementById('file-preview').classList.add('hidden');
+  const container = document.getElementById('file-preview-list');
+  if (container) container.innerHTML = '';
 }
 
 function setupFileUpload() {
   const fileInput = document.getElementById('file-upload');
   const btnAttach = document.getElementById('btn-attach');
-  const previewRemove = document.getElementById('file-preview-remove');
   const chatPanel = document.querySelector('.chat-panel');
 
-  // 1. Nút đính kèm
+  // 1. Nút đính kèm (multi-file)
   btnAttach.addEventListener('click', () => fileInput.click());
-  previewRemove.addEventListener('click', clearPendingFile);
-  fileInput.addEventListener('change', (e) => { if (e.target.files[0]) processFile(e.target.files[0]); });
-
-  // 2. Drag & Drop vào khung chat
-  chatPanel.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    chatPanel.classList.add('drag-over');
-  });
-  chatPanel.addEventListener('dragleave', (e) => {
-    e.preventDefault();
-    chatPanel.classList.remove('drag-over');
-  });
-  chatPanel.addEventListener('drop', (e) => {
-    e.preventDefault();
-    chatPanel.classList.remove('drag-over');
-    const file = e.dataTransfer.files[0];
-    if (file) processFile(file);
+  fileInput.addEventListener('change', async (e) => {
+    for (const file of e.target.files) { await processFile(file); }
+    fileInput.value = '';
   });
 
-  // 3. Paste ảnh từ clipboard (Ctrl+V / Cmd+V)
+  // 2. Drag & Drop (multi-file)
+  chatPanel.addEventListener('dragover', (e) => { e.preventDefault(); chatPanel.classList.add('drag-over'); });
+  chatPanel.addEventListener('dragleave', (e) => { e.preventDefault(); chatPanel.classList.remove('drag-over'); });
+  chatPanel.addEventListener('drop', async (e) => {
+    e.preventDefault();
+    chatPanel.classList.remove('drag-over');
+    for (const file of e.dataTransfer.files) { await processFile(file); }
+  });
+
+  // 3. Paste ảnh (thêm vào danh sách)
   document.addEventListener('paste', (e) => {
     const items = e.clipboardData?.items;
     if (!items) return;
@@ -333,10 +346,8 @@ function setupFileUpload() {
         e.preventDefault();
         const file = item.getAsFile();
         if (file) {
-          // Đặt tên cho ảnh paste
           const ext = file.type.split('/')[1] || 'png';
-          const namedFile = new File([file], `paste_${Date.now()}.${ext}`, { type: file.type });
-          processFile(namedFile);
+          processFile(new File([file], `paste_${Date.now()}.${ext}`, { type: file.type }));
         }
         return;
       }
@@ -360,51 +371,55 @@ function setupChatInput() {
 
 async function handleSendMessage(predefinedQuery = null) {
   const text = predefinedQuery || chatInput.value.trim();
-  const hasFile = !!pendingFile;
+  const hasFiles = pendingFiles.length > 0;
 
-  if (!text && !hasFile) return;
+  if (!text && !hasFiles) return;
   if (isProcessing) return;
-
-  // Không bắt buộc chọn chủ đề — chat tự do
 
   isProcessing = true;
   chatInput.value = '';
 
   // Hiển thị tin nhắn user
-  const userText = text || `[Gửi file: ${pendingFile?.name}]`;
+  const fileNames = pendingFiles.map(f => f.name);
+  const userText = text || `[Gửi ${pendingFiles.length} file]`;
   addUserMessage(userText);
 
-  // Hiện thumbnail ảnh trong chat
-  if (hasFile && pendingFile.base64) {
-    const imgHtml = `<img src="data:image/${pendingFile.type};base64,${pendingFile.base64}" class="msg-uploaded-image" alt="${pendingFile.name}">`;
-    addBotMessage(imgHtml, false);
-  }
-  if (hasFile && !pendingFile.base64 && pendingFile.name) {
-    addUserMessage(`<span class="file-badge">📎 ${pendingFile.name}</span>`);
-  }
+  // Hiện thumbnails ảnh + badges file trong chat
+  pendingFiles.forEach(f => {
+    if (f.base64) {
+      addBotMessage(`<img src="data:image/${f.type};base64,${f.base64}" class="msg-uploaded-image" alt="${f.name}">`, false);
+    } else {
+      addUserMessage(`<span class="file-badge">📎 ${f.name}</span>`);
+    }
+  });
 
-  // Lấy file data rồi clear preview
-  const currentFile = pendingFile;
-  clearPendingFile();
-  closeSuggestions();
-  clearQuickReplies();
+  // Lấy files rồi clear
+  const currentFiles = [...pendingFiles];
+  clearPendingFiles();
   showTyping();
 
   try {
-    // Chuẩn bị options cho n8n
+    // Gộp tất cả files thành options cho n8n
     const aiOptions = {};
-    if (currentFile && currentFile.base64) {
-      const mimeType = `image/${currentFile.type === 'jpg' ? 'jpeg' : currentFile.type}`;
-      aiOptions.imageData = currentFile.base64;
-      aiOptions.imageMime = mimeType;
-    }
-    if (currentFile && currentFile.textContent) {
-      aiOptions.fileText = currentFile.textContent;
-      aiOptions.fileName = currentFile.name;
+
+    // Ảnh: gửi ảnh đầu tiên cho vision (Claude chỉ nhận 1 ảnh/request)
+    const imageFile = currentFiles.find(f => f.base64);
+    if (imageFile) {
+      aiOptions.imageData = imageFile.base64;
+      aiOptions.imageMime = `image/${imageFile.type === 'jpg' ? 'jpeg' : imageFile.type}`;
     }
 
-    // Gọi n8n webhook
-    const result = await askAI(text || `Phân tích file "${currentFile?.name || ''}"`, aiOptions);
+    // Text: gộp tất cả file text
+    const textParts = currentFiles
+      .filter(f => f.textContent)
+      .map(f => `[${f.name}]:\n${f.textContent}`);
+    if (textParts.length > 0) {
+      aiOptions.fileText = textParts.join('\n\n---\n\n').slice(0, 12000);
+      aiOptions.fileName = fileNames.join(', ');
+    }
+
+    const query = text || `Phân tích ${currentFiles.length} file: ${fileNames.join(', ')}`;
+    const result = await askAI(query, aiOptions);
 
     hideTyping();
     addBotMessage(result.answer);
