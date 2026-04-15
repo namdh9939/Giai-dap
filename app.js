@@ -432,11 +432,23 @@ async function handleSendMessage(predefinedQuery = null) {
   }
 }
 
-function renderDocLinksFromNames(sourceNames) {
+// Map ASCII ID từ n8n → tên đẹp + URL
+const DOC_DISPLAY_MAP = {
+  'HOP_DONG_CHINH_NHA_THAU_PHU_2025': { name: 'HĐ Nhà thầu phụ 2025', key: 'HOP_DONG_CHINH_NHA_THAU_PHU_2025' },
+  'HOP_DONG_CUNG_CAP_VAT_TU': { name: 'HĐ Cung cấp vật tư', key: 'HOP_DONG_CUNG_CAP_VAT_TU' },
+  'BIEN_BAN_LAM_VIEC': { name: 'Biên bản làm việc', key: 'BIEN_BAN_LAM_VIEC' },
+  'PHU_LUC_HOP_DONG_SAT': { name: 'Phụ lục HĐ Sắt', key: 'PHU_LUC_HOP_DONG_SAT' },
+  'PHU_LUC_HOP_DONG_DA_HOA_CUONG': { name: 'Phụ lục HĐ Đá hoa cương', key: 'PHU_LUC_HOP_DONG_DA_HOA_CUONG' },
+};
+
+function renderDocLinksFromNames(sourceIds) {
   const links = [];
-  for (const name of sourceNames) {
-    if (fileUrlMap[name]) {
-      links.push({ name, url: fileUrlMap[name].url, file: fileUrlMap[name].file });
+  for (const id of sourceIds) {
+    const display = DOC_DISPLAY_MAP[id];
+    if (display && fileUrlMap[display.key]) {
+      links.push({ name: display.name, url: fileUrlMap[display.key].url, file: fileUrlMap[display.key].file });
+    } else if (fileUrlMap[id]) {
+      links.push({ name: id, url: fileUrlMap[id].url, file: fileUrlMap[id].file });
     }
   }
   if (links.length === 0) return;
