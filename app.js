@@ -389,7 +389,8 @@ function setupChatInput() {
 }
 
 async function handleSendMessage(predefinedQuery = null) {
-  const text = predefinedQuery || chatInput.value.trim();
+  // Guard: click event truyền PointerEvent thay vì string
+  const text = (typeof predefinedQuery === 'string' ? predefinedQuery : '') || chatInput.value.trim();
   const hasFiles = pendingFiles.length > 0;
 
   if (!text && !hasFiles) return;
