@@ -16,56 +16,119 @@ if (typeof pdfjsLib !== 'undefined') {
 let userData = null;
 let currentTopic = null;
 let isProcessing = false;
-let chatHistory = []; // Bộ nhớ hội thoại (Lưu 6-8 tin nhắn gần nhất)
+let chatHistory = [];
 
-// Predefined Topics for UI (Matching the original layout)
+// Lịch sử conversations
+let conversations = JSON.parse(localStorage.getItem('xnld_conversations') || '[]');
+let currentConvId = null;
+
+// 5 Chủ đề — mapping sang KB file
 const UI_TOPICS = {
   "hop-dong": {
-    icon: "📋", title: "Hợp đồng", description: "Chọn thầu, ký hợp đồng, thanh toán",
+    icon: "📋", title: "Hợp đồng & Pháp lý",
+    description: "HĐ thi công, thiết kế, vật tư, pháp lý xây dựng",
+    kb_file: "kb_1_hopdong",
+    keywords: ["hợp đồng", "thanh toán", "phạt", "bảo hành", "pháp lý", "giấy phép", "hoàn công"],
     questions: [
       "Hợp đồng thi công phần thô gồm những điều khoản chính nào?",
-      "Điều khoản phạt vi phạm hợp đồng quy định mức phạt bao nhiêu?",
-      "Tiến độ thanh toán theo hợp đồng chia thành mấy đợt?",
-      "Quy định bảo hành công trình sau khi hoàn thành?",
-      "Hợp đồng cung cấp vật tư cần lưu ý những gì?"
+      "Mức phạt vi phạm hợp đồng cụ thể bao nhiêu?",
+      "Tiến độ thanh toán chia thành mấy đợt?",
+      "Quy định bảo hành công trình sau thi công?"
     ]
   },
   "bao-gia": {
-    icon: "💰", title: "Báo giá thi công", description: "Dự toán, ngân sách, đơn giá",
+    icon: "💰", title: "Báo giá & Dự toán",
+    description: "Dự toán, ngân sách, đơn giá, phụ lục báo giá",
+    kb_file: "kb_2_baogia",
+    keywords: ["báo giá", "dự toán", "ngân sách", "chi phí", "đơn giá", "vật tư"],
     questions: [
       "Khai toán ngân sách xây nhà gồm những hạng mục nào?",
-      "Báo giá thi công phần thô tính theo diện tích như thế nào?",
-      "Dự toán vật tư hoàn thiện gồm những khoản gì?",
-      "Nhóm mua vật tư chung có những loại nào?"
+      "Báo giá thi công phần thô tính theo diện tích thế nào?",
+      "Dự toán vật tư hoàn thiện gồm những khoản gì?"
     ]
   },
   "tieu-chuan": {
-    icon: "📐", title: "Tiêu chuẩn thi công", description: "Nghiệm thu, kiểm tra, giám sát",
+    icon: "📐", title: "Tiêu chuẩn thi công",
+    description: "Quy chuẩn, nghiệm thu, checklist, kiểm tra",
+    kb_file: "kb_3_tieuchuan",
+    keywords: ["tiêu chuẩn", "nghiệm thu", "kiểm tra", "bê tông", "cốt thép", "tường", "điện", "nước"],
     questions: [
-      "Chủ nhà cần có mặt tại công trình ở những giai đoạn nào?",
-      "Kiểm tra an toàn lao động tại công trình cần những gì?",
-      "Kiểm tra vật tư sắt thép trước khi thi công ra sao?",
-      "Nghiệm thu tường xây cần kiểm tra những tiêu chí nào?",
-      "Kiểm tra hệ thống ống cấp thoát nước trước khi đổ bê tông?"
+      "Chủ nhà cần có mặt ở những giai đoạn nào?",
+      "Kiểm tra vật tư sắt thép trước khi thi công?",
+      "Nghiệm thu tường xây cần kiểm tra gì?",
+      "Kiểm tra hệ thống ống cấp thoát nước?"
     ]
   },
-  "phap-ly": {
-    icon: "⚖️", title: "Pháp lý & Thủ tục", description: "Giấy phép, hoàn công",
+  "lua-chon": {
+    icon: "🏗️", title: "Lựa chọn nhà thầu & Thiết kế",
+    description: "Đánh giá, so sánh, chọn nhà thầu và đơn vị thiết kế",
+    kb_file: "kb_4_luachon",
+    keywords: ["nhà thầu", "thiết kế", "lựa chọn", "đánh giá", "năng lực", "kinh nghiệm"],
     questions: [
-      "Thủ tục xin giấy phép xây dựng cần chuẩn bị gì?",
-      "Quy định khoảng lùi, mật độ, số tầng theo lộ giới?",
-      "Hoàn công nhà ở cần những thủ tục gì?"
+      "Tiêu chí đánh giá nhà thầu xây dựng gồm những gì?",
+      "Cách chọn đơn vị thiết kế uy tín?",
+      "Checklist phỏng vấn nhà thầu trước khi ký HĐ?"
     ]
   },
-  "thac-mac": {
-    icon: "❓", title: "Giải đáp thắc mắc", description: "Phong thủy, nghi lễ, phát sinh",
+  "phong-thuy": {
+    icon: "📿", title: "Phong thủy & Nghi lễ",
+    description: "Cúng động thổ, nhập trạch, mượn tuổi",
+    kb_file: "kb_5_phongtuy",
+    keywords: ["cúng", "động thổ", "nhập trạch", "phong thủy", "mượn tuổi", "nghi lễ"],
     questions: [
-      "Cúng động thổ cho người được tuổi chuẩn bị những gì?",
+      "Cúng động thổ cho người được tuổi chuẩn bị gì?",
       "Cúng động thổ mượn tuổi quy trình ra sao?",
-      "Bàn giao mặt bằng và ngoại giao hàng xóm nên làm thế nào?"
+      "Lễ nhập trạch cần chuẩn bị những gì?"
     ]
   }
 };
+
+// Detect topic từ keywords trong câu hỏi
+function detectTopic(query) {
+  const q = query.toLowerCase();
+  let bestMatch = null;
+  let bestScore = 0;
+  for (const [key, topic] of Object.entries(UI_TOPICS)) {
+    let score = 0;
+    topic.keywords.forEach(kw => { if (q.includes(kw)) score += 1; });
+    if (score > bestScore) { bestScore = score; bestMatch = key; }
+  }
+  return bestScore > 0 ? bestMatch : null;
+}
+
+// Conversation management
+function saveConversation() {
+  if (!currentConvId || chatHistory.length === 0) return;
+  const conv = {
+    id: currentConvId,
+    topic: currentTopic,
+    topicTitle: currentTopic ? UI_TOPICS[currentTopic].title : 'Chung',
+    messages: [...chatHistory],
+    timestamp: new Date().toISOString()
+  };
+  const idx = conversations.findIndex(c => c.id === currentConvId);
+  if (idx >= 0) conversations[idx] = conv;
+  else conversations.unshift(conv);
+  if (conversations.length > 20) conversations = conversations.slice(0, 20);
+  localStorage.setItem('xnld_conversations', JSON.stringify(conversations));
+}
+
+function startNewConversation(topicKey) {
+  // Save current conversation
+  saveConversation();
+  // Start new
+  currentConvId = 'conv_' + Date.now();
+  currentTopic = topicKey;
+  chatHistory = [];
+  chatMessages.innerHTML = '';
+  const topic = UI_TOPICS[topicKey];
+  addBotMessage(`Anh/chị đã chọn chủ đề <strong>${topic.title}</strong>. Em sẵn sàng tư vấn ạ!`);
+}
+
+function switchTopic(newTopicKey) {
+  saveConversation();
+  startNewConversation(newTopicKey);
+}
 
 // DOM Elements — Chat
 const chatMessages = document.getElementById('chat-messages');
@@ -134,7 +197,7 @@ async function askAI(query, options = {}) {
   const { fileText, fileName, imageData, imageMime } = options;
 
   const topicName = currentTopic && UI_TOPICS[currentTopic] ? UI_TOPICS[currentTopic].title : 'chung';
-  const topicFile = TOPIC_FILE_MAP[currentTopic] || 'hop_dong';
+  const topicFile = currentTopic && UI_TOPICS[currentTopic] ? UI_TOPICS[currentTopic].kb_file : 'kb_1_hopdong';
   const historyText = chatHistory.map(m => `${m.role === 'user' ? 'Khách' : 'Trợ lý'}: ${m.content}`).join('\n');
 
   const payload = {
@@ -395,6 +458,25 @@ async function handleSendMessage(predefinedQuery = null) {
 
   if (!text && !hasFiles) return;
   if (isProcessing) return;
+
+  // Bắt buộc chọn chủ đề
+  if (!currentTopic) {
+    if (text) addUserMessage(text);
+    addBotMessage('Dạ, anh/chị vui lòng <strong>chọn 1 chủ đề</strong> bên trên để em tư vấn chính xác nhé.');
+    return;
+  }
+
+  // Detect off-topic → gợi ý chuyển
+  if (text) {
+    const detectedTopic = detectTopic(text);
+    if (detectedTopic && detectedTopic !== currentTopic) {
+      const suggestedTitle = UI_TOPICS[detectedTopic].title;
+      const currentTitle = UI_TOPICS[currentTopic].title;
+      addUserMessage(text);
+      addBotMessage(`Vấn đề này thuộc chủ đề <strong>${suggestedTitle}</strong>, hiện anh/chị đang ở <strong>${currentTitle}</strong>.<br><br><button class="switch-topic-btn" onclick="switchTopic('${detectedTopic}')">Chuyển sang ${suggestedTitle}</button> <button class="stay-topic-btn" onclick="this.parentElement.style.display='none'">Tiếp tục ở đây</button>`);
+      return;
+    }
+  }
 
   isProcessing = true;
 
@@ -697,18 +779,31 @@ function setupFabButtons() {
 // =============================================
 // API KEY MODAL
 // =============================================
+function renderTopicSelector() {
+  const html = Object.entries(UI_TOPICS).map(([key, topic]) =>
+    `<button class="topic-select-btn" onclick="startNewConversation('${key}')">
+      <span class="topic-select-icon">${topic.icon}</span>
+      <span class="topic-select-content">
+        <strong>${topic.title}</strong>
+        <small>${topic.description}</small>
+      </span>
+    </button>`
+  ).join('');
+  addBotMessage(html);
+}
+
 async function initChat() {
   renderSidebar();
-  setupFabButtons();
   setupFileUpload();
   setupChatInput();
   await loadFileUrlMap();
 
   const firstName = userData ? userData.name.split(' ').pop() : 'bạn';
 
-  addBotMessage(`Chào <strong>${firstName}</strong>! Em là chuyên gia tư vấn xây dựng, sẵn sàng hỗ trợ anh/chị.
+  addBotMessage(`Chào <strong>${firstName}</strong>! Em là chuyên gia tư vấn xây dựng.
 
-Anh/chị có thể hỏi em bất kỳ vấn đề nào về <strong>hợp đồng, báo giá, tiêu chuẩn thi công, pháp lý, phong thủy</strong> — em sẽ tư vấn dựa trên tài liệu chuyên môn nhé!`);
+Anh/chị vui lòng <strong>chọn 1 chủ đề</strong> để em tư vấn chính xác nhé:`);
+  renderTopicSelector();
 }
 
 document.addEventListener('DOMContentLoaded', () => {

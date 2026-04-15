@@ -1,0 +1,1025 @@
+[
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part1",
+    "source": "Dự toán NCM",
+    "page": 1,
+    "content": "[Sheet: Ngân sách & Vật tư]\nTên công việc/Vật tư | Phụ trách | Không gian | Phòng | Mức độ hoàn thiện | Vị trí | Phân loại vật tư | ĐVT | Khối lượng | Đơn giá | Thành tiền | Hình ảnh sản phẩm | Mã vật tư | Ghi chú\nPHẦN NGẦM\nMóng nhà | Nhà thầu chính | Phần ngầm | Khung nhà | Phần thô | Phần thô | Phần thô | m2 | 19.6 | 3950000.0 | ₫77,420,000\nCọc bê tông 200x200 | Nhà thầu ép cọc bê tông | Phần ngầm | Khung nhà | Phần thô | Phần thô | Phần thô | md | 98.0 | 265000.0 | ₫25,970,000\nMáy và nhân công ép cọc | Nhà thầu ép cọc bê tông | Phần ngầm | Khung nhà | Phần thô | Phần thô | Phần thô | md | 98.0 | 170000.0 | ₫16,660,000\nTẦNG TRỆT\nPhân thô tầng trệt (sàn và sân) | Nhà thầu chính | Tầng trệt | Khung nhà | Phần thô | Phần thô | Phần thô | m2 | 56.0 | 3950000.0 | ₫221,200,000\nSân trước\nNền đá tam cấp | Đơn vị thi công đá hoa cương | Tầng trệt | Sân trước | Hoàn thiện cơ bản | Nền | Đá | m2 | 3.0 | 1900000.0 | ₫5,700,000\nLen chân tường | Đơn vị thi công đá hoa cương | Tầng trệt | Sân trước | Hoàn thiện cơ bản | Nền | Đá | m2 | 0.285 | 4200000.0 | ₫1,197,000\nSơn nước tường hoàn thiện_màu xám | Nhà cung cấp sơn nước | Tầng trệt | Sân trước | Hoàn thiện cơ bản | Tường | Sơn | m2 | 11.45 | 50000.0 | ₫572,500\nTrần sảnh trước | Đội thi công thạch cao | Tầng trệt | Sân trước | Hoàn thiện cơ bản | Trần | Thạch cao | m2 | 1.74 | 195000.0 | ₫339,300\nĐèn downlight - 10w | Nhà cung cấp thiết bị điện | Tầng trệt | Sân trước | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 1.0 | 332000.0 | ₫332,000\nĐồng hồ điện | Tầng trệt | Sân trước | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 180000.0 | ₫180,000\nĐồng hồ nước | Đội thi công điện nước | Tầng trệt | Sân trước | Hoàn thiện cơ bản | Nền | Thiết bị nước | Cái | 1.0 | 320000.0 | ₫320,000\nVòi rumine | Nhà cung cấp thiết bị vệ sinh | Tầng trệt | Sân trước | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 250000.0 | ₫250,000\nCamera ngoài trời 4MP | NCC và lắp đặt điện thông minh | Tầng trệt | Sân trước | Hoàn thiện",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part2",
+    "source": "Dự toán NCM",
+    "page": 2,
+    "content": " cơ bản | Tường | Điện thông minh | Bộ | 2.0 | 2530000.0 | ₫5,060,000\nCamera trong nhà 4MP | NCC và lắp đặt điện thông minh | Tầng trệt | Sân trước | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 2.0 | 2530000.0 | ₫5,060,000\nPhòng khách\nNgạch cửa 100 | Đơn vị thi công đá hoa cương | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Nền | Đá | md | 1.35 | 220000.0 | ₫297,000\nSơn nước hoàn thiện tường | Nhà cung cấp sơn nước | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Tường | Sơn | m2 | 14.0 | 50000.0 | ₫700,000\nCửa đi D1 | Đơn vị thi công nhôm kính | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 36556000.0 | ₫36,556,000\nTrần phòng khách | Đội thi công thạch cao | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Trần | Thạch cao | m2 | 14.16 | 195000.0 | ₫2,761,200\nỔ cắm đôi 3 chấu | Nhà cung cấp thiết bị điện | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 5.0 | 69300.0 | ₫346,500\nMặt nạ ổ cắm đôi 3 chấu | Nhà cung cấp thiết bị điện | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 5.0 | 27300.0 | ₫136,500\nỔ cắm internet | Nhà cung cấp thiết bị điện | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 130000.0 | ₫130,000\nMặt nạ ổ cắm internet | Nhà cung cấp thiết bị điện | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 27300.0 | ₫27,300\nKhóa thông minh cửa D1 | Đơn vị thi công nhôm kính | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 20000000.0 | ₫20,000,000\nSơn nước lót tường (sau tủ, vách thạch cao) | Nhà cung cấp sơn nước | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Tường | Sơn | m2 | 12.0 | 50000.0 | ₫600,000\nMáy lạnh âm trần 2.5 HP | Đơn vị cung cấp máy lạnh | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 26800000.0 | ₫26,800,000\nDây đồng | Thi công ống đồng máy lạnh | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Trần | Thiết bị điện | md | 30.0 | 65",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part3",
+    "source": "Dự toán NCM",
+    "page": 3,
+    "content": "0000.0 | ₫19,500,000\nĐèn downlight - 10w | Nhà cung cấp thiết bị điện | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 2.0 | 332000.0 | ₫664,000\nRay đèn nam châm 2m | Nhà cung cấp thiết bị điện | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 2.0 | 576000.0 | ₫1,152,000\nĐèn  ray rọi 7w | Nhà cung cấp thiết bị điện | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 9.0 | 360000.0 | ₫3,240,000\nBộ nối ray | Nhà cung cấp thiết bị điện | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 6.0 | 56000.0 | ₫336,000\nTrần bo cong | Đội thi công thạch cao | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Trần | Thạch cao | md | 29.69 | 117000.0 | ₫3,473,730\nNền phòng khách | Đơn vị thi công đá hoa cương | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Nền | Đá | m2 | 18.0 | 1900000.0 | ₫34,200,000\nNguồn ray led nam châm | Nhà cung cấp thiết bị điện | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 1.0 | 496000.0 | ₫496,000\nĐèn spotligt - 7w | Nhà cung cấp thiết bị điện | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 2.0 | 280000.0 | ₫560,000\nCông tắc 2 nút | NCC và lắp đặt điện thông minh | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1815000.0 | ₫1,815,000\nCông tắc 3 nút | NCC và lắp đặt điện thông minh | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1870000.0 | ₫1,870,000\nCông tắc 4 nút | NCC và lắp đặt điện thông minh | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1925000.0 | ₫1,925,000\nLed 16 triệu màu | NCC và lắp đặt điện thông minh | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Trần | Điện thông minh | Bộ | 4.0 | 935000.0 | ₫3,740,000\nĐiều khiển máy lạnh | NCC và lắp đặt điện thông minh | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1650000.0 | ₫1,650,000\nModule 5 ",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part4",
+    "source": "Dự toán NCM",
+    "page": 4,
+    "content": "in 1 | NCC và lắp đặt điện thông minh | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Trần | Điện thông minh | Bộ | 1.0 | 1485000.0 | ₫1,485,000\nNguồn  led | NCC và lắp đặt điện thông minh | Tầng trệt | Phòng khách | Hoàn thiện cơ bản | Trần | Điện thông minh | Bộ | 1.0 | 660000.0 | ₫660,000\nVách sofa (1)_Ván MDF chống ẩm sơn 2k hoàn thiện | Đơn vị thi công nội thất | Tầng trệt | Phòng khách | Hoàn thiện nội thất | Tường | Nội thất | m2 | 7.8 | 1300000.0 | ₫10,140,000\nSofa | Đơn vị thi công nội thất | Tầng trệt | Phòng khách | Hoàn thiện nội thất | Nền | Nội thất | Bộ | 1.0 | ₫0\nBàn trà | Đơn vị thi công nội thất | Tầng trệt | Phòng khách | Hoàn thiện nội thất | Nền | Nội thất | Bộ | 1.0 | 12000000.0 | ₫12,000,000\nKệ tivi | Đơn vị thi công nội thất | Tầng trệt | Phòng khách | Hoàn thiện nội thất | Nền | Nội thất | Cái | 1.0 | ₫0\nBàn  thờ thần tài | Đơn vị thi công nội thất | Tầng trệt | Phòng khách | Hoàn thiện nội thất | Nền | Nội thất | Bộ | 1.0 | ₫0\nTủ giày | Đơn vị thi công nội thất | Tầng trệt | Phòng khách | Hoàn thiện nội thất | Tường | Nội thất | m2 | 3.45 | 3100000.0 | ₫10,695,000\nVách sofa (2)_Ván MDF chống ẩm phủ melamine An Cường | Đơn vị thi công nội thất | Tầng trệt | Phòng khách | Hoàn thiện nội thất | Tường | Nội thất | m2 | 2.55 | 2300000.0 | ₫5,865,000\nVách sofa (3)_vách bo cong | Đơn vị thi công nội thất | Tầng trệt | Phòng khách | Hoàn thiện nội thất | Tường | Nội thất | m2 | 1.5 | 1850000.0 | ₫2,775,000\nĐợt kệ trang trí | Đơn vị thi công nội thất | Tầng trệt | Phòng khách | Hoàn thiện nội thất | Tường | Nội thất | Cái | 1.0 | 920000.0 | ₫920,000\nLen chân tường nhựa | Đơn vị thi công nội thất | Tầng trệt | Phòng khách | Hoàn thiện nội thất | Tường | Nội thất | md | 3.0 | 95000.0 | ₫285,000\nTivi | Nhà thầu điện máy | Tầng trệt | Phòng khách | Hoàn thiện nội thất | Tường | Thiết bị điện | Cái | 1.0 | 52498000.0 | ₫52,498,000\nGara_khu đậu xe\nGạch nền | Nhà cung cấp gạch ốp lát | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Nền | Gạch | m2 | 17.",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part5",
+    "source": "Dự toán NCM",
+    "page": 5,
+    "content": "5 | 380000.0 | ₫6,650,000\nKeo chà gon | Nhà cung cấp gạch ốp lát | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Nền | Gạch | Kg | 3.5 | 50000.0 | ₫175,000\nSơn nước hoàn thiện tường_màu trắng | Nhà cung cấp sơn nước | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Sơn | m2 | 10.0 | 50000.0 | ₫500,000\nỔ cắm đôi 3 chấu | Nhà cung cấp thiết bị điện | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 2.0 | 74000.0 | ₫148,000\nVòi rumine | Nhà cung cấp thiết bị vệ sinh | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 250000.0 | ₫250,000\nTrần nhà xe | Đội thi công thạch cao | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Trần | Thạch cao | m2 | 18.48 | 195000.0 | ₫3,603,600\nSơn nước lót tường (sau tủ, vách thạch cao) | Nhà cung cấp sơn nước | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Sơn | m2 | 9.36 | 50000.0 | ₫468,000\nCửa cuốn | Đơn vị thi công nhôm kính | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Cửa | m2 | 1.0 | 26000000.0 | ₫26,000,000\nMặt nạ ổ cắm đôi 3 chấu | Nhà cung cấp thiết bị điện | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 2.0 | 51000.0 | ₫102,000\nĐèn downlight - 10w | Nhà cung cấp thiết bị điện | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 4.0 | 177500.0 | ₫710,000\nRay đèn nam châm 2m | Nhà cung cấp thiết bị điện | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 2.0 | 576000.0 | ₫1,152,000\nBộ nối ray | Nhà cung cấp thiết bị điện | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 1.0 | 156000.0 | ₫156,000\nĐèn  ray rọi 7w | Nhà cung cấp thiết bị điện | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 3.0 | 758000.0 | ₫2,274,000\nNguồn ray led nam châm | Nhà cung cấp thiết bị điện | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 1.0 | 496000.0 | ₫496",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part6",
+    "source": "Dự toán NCM",
+    "page": 6,
+    "content": ",000\nSơn nước hoàn thiện tường_màu xám | Nhà cung cấp sơn nước | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Sơn | m2 | 8.8 | 50000.0 | ₫440,000\nTủ điện tầng 24-32 modules | Nhà cung cấp thiết bị điện | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Thiết bị điện | Bộ | 1.0 | 626500.0 | ₫626,500\nMCB 4P - 50A | Nhà cung cấp thiết bị điện | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 720000.0 | ₫720,000\nMCB 1P - 16A | Nhà cung cấp thiết bị điện | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 2.0 | 66750.0 | ₫133,500\nMCB 1P - 20A | Nhà cung cấp thiết bị điện | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 2.0 | 66750.0 | ₫133,500\nMCB 1P - 25A | Nhà cung cấp thiết bị điện | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 66750.0 | ₫66,750\nRCBO  1P  - 25A | Nhà cung cấp thiết bị điện | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 449000.0 | ₫449,000\nMCB 4P - 40A | Nhà cung cấp thiết bị điện | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 2.0 | 1087500.0 | ₫2,175,000\nMCB 2P - 40A | Nhà cung cấp thiết bị điện | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 2.0 | 341000.0 | ₫682,000\nMCB 2P - 50A | Nhà cung cấp thiết bị điện | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 341000.0 | ₫341,000\nRCBO  2P  - 32A | Nhà cung cấp thiết bị điện | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 637000.0 | ₫637,000\nRCBO  2P  - 20A | Nhà cung cấp thiết bị điện | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 419000.0 | ₫419,000\nCửa sổ S1 | Đơn vị thi công nhôm kính | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Cửa | m2 | 1.41 | 4362502.0 | ₫6,151,128\nPhụ kiện cửa S1 | Đơn vị thi cô",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part7",
+    "source": "Dự toán NCM",
+    "page": 7,
+    "content": "ng nhôm kính | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 306000.0 | ₫306,000\nNắp hố ga 60x60 | Đội thi công điện nước | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Nền | Thiết bị nước | Cái | 1.0 | 2735000.0 | ₫2,735,000\nCông tắc 2 nút | NCC và lắp đặt điện thông minh | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1815000.0 | ₫1,815,000\nCông tắc 3 nút | NCC và lắp đặt điện thông minh | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1870000.0 | ₫1,870,000\nĐầu ghi 16 IP | NCC và lắp đặt điện thông minh | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 2700000.0 | ₫2,700,000\nBộ điều khiển cửa cuốn | NCC và lắp đặt điện thông minh | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1870000.0 | ₫1,870,000\nĐiều khiển trung tâm | NCC và lắp đặt điện thông minh | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 2585000.0 | ₫2,585,000\nỔ cứng 4TB | NCC và lắp đặt điện thông minh | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 2490000.0 | ₫2,490,000\nBộ Swtich nguồn POE 8 cổng | NCC và lắp đặt điện thông minh | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1900000.0 | ₫1,900,000\nBộ AI HUB | NCC và lắp đặt điện thông minh | Tầng trệt | Gara_khu đậu xe | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 12650000.0 | ₫12,650,000\nTủ treo tường | Đơn vị thi công nội thất | Tầng trệt | Gara_khu đậu xe | Hoàn thiện nội thất | Tường | Nội thất | m2 | 2.0 | 2900000.0 | ₫5,800,000\nKính thủy ốp tủ | Đơn vị thi công nội thất | Tầng trệt | Gara_khu đậu xe | Hoàn thiện nội thất | Tường | Kính | m2 | 4.8 | 1312500.0 | ₫6,300,000\nVách gỗ đán kính thủy | Đơn vị thi công nội thất | Tầng trệt | Gara_khu đậu xe | Hoàn thiện nội thất | Tường | Nội thất | m2 | 5.28 | 1500000.0 | ₫7",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part8",
+    "source": "Dự toán NCM",
+    "page": 8,
+    "content": ",920,000\nKính thủy | Đơn vị thi công nội thất | Tầng trệt | Gara_khu đậu xe | Hoàn thiện nội thất | Tường | Nội thất | m2 | 5.28 | 850000.0 | ₫4,488,000\nLen chân tường nhựa | Đơn vị thi công nội thất | Tầng trệt | Gara_khu đậu xe | Hoàn thiện nội thất | Tường | Nội thất | md | 7.0 | 95000.0 | ₫665,000\nSảnh thang tầng trệt\nNgạch cửa 200 | Đơn vị thi công đá hoa cương | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Nền | Đá | md | 1.45 | 280000.0 | ₫406,000\nMặt đá thang máy | Đơn vị thi công đá hoa cương | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Tường | Đá | m2 | 1.8 | 2800000.0 | ₫5,040,000\nSơn nước trần | Nhà cung cấp sơn nước | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Trần | Sơn | m2 | 2.54 | 50000.0 | ₫127,000\nSơn nước tường | Nhà cung cấp sơn nước | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Tường | Sơn | m2 | 24.0 | 50000.0 | ₫1,200,000\nCửa D3 | Đơn vị thi công nhôm kính | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Tường | Cửa | m2 | 3.48 | 2425896.0 | ₫8,442,118\nPhụ kiện cửa  D3 | Đơn vị thi công nhôm kính | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 792000.0 | ₫792,000\nInox ốp thang máy | NCC và lắp đặt thang máy | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Tường | Sắt, inox | Bộ | 1.0 | 14475000.0 | ₫14,475,000\nTrần sảnh thang | Đội thi công thạch cao | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Trần | Thạch cao | m2 | 2.92 | 195000.0 | ₫569,400\nĐèn tường thang | Nhà cung cấp thiết bị điện | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 912000.0 | ₫912,000\nỔ cắm đôi 3 chấu | Nhà cung cấp thiết bị điện | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 69300.0 | ₫69,300\nMặt nạ ổ cắm đôi 3 chấu | Nhà cung cấp thiết bị điện | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 27300.0 | ₫27,300\nRay đèn nam châm 1.5m |",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part9",
+    "source": "Dự toán NCM",
+    "page": 9,
+    "content": " Nhà cung cấp thiết bị điện | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 4.0 | 432000.0 | ₫1,728,000\nBộ nối ray | Nhà cung cấp thiết bị điện | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 4.0 | 156000.0 | ₫624,000\nĐèn  ray rọi 7w | Nhà cung cấp thiết bị điện | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 2.0 | 758000.0 | ₫1,516,000\nThang máy | NCC và lắp đặt thang máy | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Nền | Khác | Bộ | 1.0 | 323000000.0 | ₫323,000,000\nVách kính S1A | Đơn vị thi công nhôm kính | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Tường | Cửa | m2 | 1.41 | 1710784.0 | ₫2,412,205\nPhụ thu uốn công cửa S1A | Đơn vị thi công nhôm kính | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 80000.0 | ₫80,000\nSàn thang máy | Đơn vị thi công đá hoa cương | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Nền | Đá | m2 | 1.08 | 1900000.0 | ₫2,052,000\nĐèn spotligt - 7w | Nhà cung cấp thiết bị điện | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Thiết bị điện | Cái | 2.0 | 280000.0 | ₫560,000\nNguồn ray led nam châm | Nhà cung cấp thiết bị điện | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 1.0 | 496000.0 | ₫496,000\nCông tắc 3 nút | NCC và lắp đặt điện thông minh | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1870000.0 | ₫1,870,000\nCảm biến hiện diện | NCC và lắp đặt điện thông minh | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Trần | Điện thông minh | Bộ | 1.0 | 1540000.0 | ₫1,540,000\nTủ kho dưới thang | Đơn vị thi công nội thất | Tầng trệt | Sảnh thang tầng trệt | Hoàn thiện nội thất | Tường | Thiết bị điện | Cái | 1.4 | 3900000.0 | ₫5,460,000\nSân sau\nGạch nền | Nhà cung cấp gạch ốp lát | Tầng trệt | Sân sau | Hoàn thiện cơ bản | Nền | Gạch | m2 | 3.65 | 380000.0 | ₫1,387,000\nKeo ch",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part10",
+    "source": "Dự toán NCM",
+    "page": 10,
+    "content": "à gon | Nhà cung cấp gạch ốp lát | Tầng trệt | Sân sau | Hoàn thiện cơ bản | Nền | Gạch | Kg | 1.0 | 50000.0 | ₫50,000\nLen chân tường | Nhà cung cấp gạch ốp lát | Tầng trệt | Sân sau | Hoàn thiện cơ bản | Nền | Gạch | m2 | 0.9 | 380000.0 | ₫342,000\nSơn nước tường hoàn thiện | Nhà cung cấp sơn nước | Tầng trệt | Sân sau | Hoàn thiện cơ bản | Tường | Sơn | m2 | 16.4 | 50000.0 | ₫820,000\nĐèn tường tường trang trí | Nhà cung cấp thiết bị điện | Tầng trệt | Sân sau | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 2.0 | 995200.0 | ₫1,990,400\nVòi nước rumine | Nhà cung cấp thiết bị vệ sinh | Tầng trệt | Sân sau | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 250000.0 | ₫250,000\nỔ cắm 3 chấu | Nhà cung cấp thiết bị điện | Tầng trệt | Sân sau | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 3.0 | 69300.0 | ₫207,900\nMặt nạ ổ cắm có nắp che | Nhà cung cấp thiết bị điện | Tầng trệt | Sân sau | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 3.0 | 27300.0 | ₫81,900\nMáy bơm đẩy | Đội thi công điện nước | Tầng trệt | Sân sau | Hoàn thiện cơ bản | Nền | Thiết bị nước | Cái | 1.0 | 2583400.0 | ₫2,583,400\nLavabo treo tường mini | Nhà cung cấp thiết bị vệ sinh | Tầng trệt | Sân sau | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 1770000.0 | ₫1,770,000\nPhễu thu sàn | Nhà cung cấp thiết bị vệ sinh | Tầng trệt | Sân sau | Hoàn thiện cơ bản | Nền | Thiết bị vệ sinh | Cái | 1.0 | 364000.0 | ₫364,000\nMáy giặt | Tầng trệt | Sân sau | Hoàn thiện nội thất | Nền | Thiết bị bếp | Cái | 1.0 | 9990000.0 | ₫9,990,000\nTủ máy giặt | Đơn vị thi công nội thất | Tầng trệt | Sân sau | Hoàn thiện nội thất | Tường | Nội thất | Cái | 1.0 | 7500000.0 | ₫7,500,000\nVệ sinh tầng trệt\nGạch nền GA - 02 | Nhà cung cấp gạch ốp lát | Tầng trệt | Vệ sinh tầng trệt | Hoàn thiện cơ bản | Nền | Gạch | m2 | 1.3 | 380000.0 | ₫494,000\nGạch ốp tường GA-02 | Nhà cung cấp gạch ốp lát | Tầng trệt | Vệ sinh tầng trệt | Hoàn thiện cơ bản | Tường | Gạch | m2 | 8.0 | 400000.0 | ₫3,200,000\nSơn nước ",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part11",
+    "source": "Dự toán NCM",
+    "page": 11,
+    "content": "trần | Nhà cung cấp sơn nước | Tầng trệt | Vệ sinh tầng trệt | Hoàn thiện cơ bản | Trần | Sơn | m2 | 1.3 | 50000.0 | ₫65,000\nBồn cầu | Nhà cung cấp thiết bị vệ sinh | Tầng trệt | Vệ sinh tầng trệt | Hoàn thiện cơ bản | Nền | Thiết bị vệ sinh | Cái | 1.0 | 6595000.0 | ₫6,595,000\nKeo chà ron | Nhà cung cấp gạch ốp lát | Tầng trệt | Vệ sinh tầng trệt | Hoàn thiện cơ bản | Nền | Gạch | Kg | 0.3 | 50000.0 | ₫15,000\nCửa lùa DW1 | Đơn vị thi công nhôm kính | Tầng trệt | Vệ sinh tầng trệt | Hoàn thiện cơ bản | Tường | Cửa | m2 | 1.5 | 2949242.0 | ₫4,423,863\nĐèn downlight - 10w | Nhà cung cấp thiết bị điện | Tầng trệt | Vệ sinh tầng trệt | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 1.0 | 332000.0 | ₫332,000\nQuạt hút mùi | Nhà cung cấp thiết bị điện | Tầng trệt | Vệ sinh tầng trệt | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 1.0 | 459000.0 | ₫459,000\nVòi xịt | Nhà cung cấp thiết bị vệ sinh | Tầng trệt | Vệ sinh tầng trệt | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 342000.0 | ₫342,000\nMóc treo giấy vệ sinh | Nhà cung cấp thiết bị vệ sinh | Tầng trệt | Vệ sinh tầng trệt | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 720000.0 | ₫720,000\nPhễu thu sàn | Nhà cung cấp thiết bị vệ sinh | Tầng trệt | Vệ sinh tầng trệt | Hoàn thiện cơ bản | Nền | Thiết bị vệ sinh | Cái | 1.0 | 364000.0 | ₫364,000\nKeo chà ron | Nhà cung cấp gạch ốp lát | Tầng trệt | Vệ sinh tầng trệt | Hoàn thiện cơ bản | Tường | Gạch | Kg | 1.6 | 50000.0 | ₫80,000\nPhụ kiện cửa  DW1 | Đơn vị thi công nhôm kính | Tầng trệt | Vệ sinh tầng trệt | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 792000.0 | ₫792,000\nCông tắc 1 nút | NCC và lắp đặt điện thông minh | Tầng trệt | Vệ sinh tầng trệt | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1760000.0 | ₫1,760,000\nLẦU 1\nPhân thô lầu 1 | Nhà thầu chính | Lầu 1 | Khung nhà | Phần thô | Phần thô | Phần thô | m2 | 48.0 | 3950000.0 | ₫189,600,000\nNgạch cửa 100 | Đơn vị thi công đá hoa cương | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện ",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part12",
+    "source": "Dự toán NCM",
+    "page": 12,
+    "content": "cơ bản | Nền | Đá | md | 0.95 | 220000.0 | ₫209,000\nMặt đá thang máy | Đơn vị thi công đá hoa cương | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Tường | Đá | m2 | 1.8 | 2800000.0 | ₫5,040,000\nSơn nước tường | Nhà cung cấp sơn nước | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Tường | Sơn | m2 | 24.0 | 50000.0 | ₫1,200,000\nSơn nước trần | Nhà cung cấp sơn nước | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Trần | Sơn | m2 | 2.54 | 50000.0 | ₫127,000\nTrần sảnh thang | Đội thi công thạch cao | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Trần | Thạch cao | m2 | 3.05 | 195000.0 | ₫594,750\nĐèn downlight 7w | Nhà cung cấp thiết bị điện | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 2.0 | 280000.0 | ₫560,000\nMCB 2P - 40A | Nhà cung cấp thiết bị điện | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 341000.0 | ₫341,000\nTủ điện tầng 4-8 modules | Nhà cung cấp thiết bị điện | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Tường | Thiết bị điện | Bộ | 1.0 | 132000.0 | ₫132,000\nInox ốp thang máy | NCC và lắp đặt thang máy | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Tường | Sắt, inox | Bộ | 1.0 | 14475000.0 | ₫14,475,000\nMCB 1P - 16A | Nhà cung cấp thiết bị điện | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 66750.0 | ₫66,750\nMCB 1P - 20A | Nhà cung cấp thiết bị điện | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 2.0 | 66750.0 | ₫133,500\nMCB 1P - 25A | Nhà cung cấp thiết bị điện | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 66750.0 | ₫66,750\nRCBO  2P  - 20A | Nhà cung cấp thiết bị điện | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 419000.0 | ₫419,000\nỔ cắm đôi 3 chấu | Nhà cung cấp thiết bị điện | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 69300.0 | ₫69,300\nMặt nạ ổ cắm đôi 3 chấu | Nhà cung cấp thiết bị điện | Lầ",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part13",
+    "source": "Dự toán NCM",
+    "page": 13,
+    "content": "u 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 27300.0 | ₫27,300\nĐèn tường thang | Nhà cung cấp thiết bị điện | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 912000.0 | ₫912,000\nVách kính S1A | Đơn vị thi công nhôm kính | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Tường | Cửa | m2 | 1.41 | 1710784.0 | ₫2,412,205\nPhụ thu uốn công cửa S1A | Đơn vị thi công nhôm kính | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 80000.0 | ₫80,000\nCửa S2 | Đơn vị thi công nhôm kính | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Tường | Cửa | m2 | 3.48 | 2425896.0 | ₫8,442,118\nPhụ kiện cửa S2 | Đơn vị thi công nhôm kính | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 792000.0 | ₫792,000\nCông tắc 3 nút | NCC và lắp đặt điện thông minh | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1870000.0 | ₫1,870,000\nCảm biến hiện diện | NCC và lắp đặt điện thông minh | Lầu 1 | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Trần | Điện thông minh | Bộ | 1.0 | 1540000.0 | ₫1,540,000\nSơn nước hoàn thiện tường | Nhà cung cấp sơn nước | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Tường | Sơn | m2 | 22.3 | 50000.0 | ₫1,115,000\nCửa sổ S4 | Đơn vị thi công nhôm kính | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Tường | Cửa | m2 | 6.0 | 2459803.0 | ₫14,758,818\nTrần phòng ngủ | Đội thi công thạch cao | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Trần | Thạch cao | m2 | 29.57 | 195000.0 | ₫5,766,150\nNgạch cửa 100 | Đơn vị thi công đá hoa cương | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Nền | Đá | md | 0.9 | 220000.0 | ₫198,000\nSàn gạch giả gỗ | Nhà cung cấp gạch ốp lát | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Nền | Gạch | m2 | 28.7 | 750000.0 | ₫21,525,000\nSơn nước trần | Nhà cung cấp sơn nước | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Trần | Sơn | m2 | 26.0 | 50000.0 | ₫1,300,000\nỔ cắm 3 chấu | Nhà cung cấp thiết bị điện | Lầu 1 | Phòng ngủ ",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part14",
+    "source": "Dự toán NCM",
+    "page": 14,
+    "content": "con | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 5.0 | 74000.0 | ₫370,000\nMặt nạ ổ cắm đôi 3 chấu | Nhà cung cấp thiết bị điện | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 5.0 | 51000.0 | ₫255,000\nMáy lạnh cục bộ 1.5hp | Đơn vị cung cấp máy lạnh | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 9873500.0 | ₫9,873,500\nSơn nước lót tường (sau tủ, vách thạch cao) | Nhà cung cấp sơn nước | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Tường | Sơn | m2 | 42.0 | 50000.0 | ₫2,100,000\nMặt nạ công tắc 1 thiết bị | Nhà cung cấp thiết bị điện | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 51000.0 | ₫51,000\nỔ cắm internet | Nhà cung cấp thiết bị điện | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 130000.0 | ₫130,000\nMặt nạ ổ cắm internet | Nhà cung cấp thiết bị điện | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 27300.0 | ₫27,300\nĐèn downlight - 10w | Nhà cung cấp thiết bị điện | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 8.0 | 332000.0 | ₫2,656,000\nDây đồng | Thi công ống đồng máy lạnh | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Trần | Thiết bị điện | md | 11.0 | 430000.0 | ₫4,730,000\nPhụ kiện cửa sổ S4 | Đơn vị thi công nhôm kính | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 2.0 | 306000.0 | ₫612,000\nCửa đi D4 | Đơn vị thi công nội thất | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 9000000.0 | ₫9,000,000\nTay nắm + khóa cửa cửa D4 | Đơn vị thi công nội thất | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Tường | Cửa | Cái | 1.0 | 3000000.0 | ₫3,000,000\nKeo chà ron | Nhà cung cấp gạch ốp lát | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Nền | Gạch | m2 | 5.7 | 500000.0 | ₫2,850,000\nĐộng cơ rèm 2 lớp | NCC và lắp đặt điện thông minh | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Trần | Điện thông minh | Bộ | 2.0 | 3520000.0 | ₫7,040,000\n",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part15",
+    "source": "Dự toán NCM",
+    "page": 15,
+    "content": "Thanh rèm | NCC và lắp đặt điện thông minh | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Trần | Điện thông minh | md | 8.0 | 400000.0 | ₫3,200,000\nCông tắc 3 nút | NCC và lắp đặt điện thông minh | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 2.0 | 1870000.0 | ₫3,740,000\nCông tắc 1 nút | NCC và lắp đặt điện thông minh | Lầu 1 | Phòng ngủ con | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1760000.0 | ₫1,760,000\nGiường ngủ + Vách đầu giường | Đơn vị thi công nội thất | Lầu 1 | Phòng ngủ con | Hoàn thiện nội thất | Tường | Nội thất | m2 | 3.655 | 3200000.0 | ₫11,696,000\nTủ đồ chơi | Đơn vị thi công nội thất | Lầu 1 | Phòng ngủ con | Hoàn thiện nội thất | Tường | Nội thất | m2 | 7.29 | 3500000.0 | ₫25,515,000\nTường đường đua | Đơn vị thi công nội thất | Lầu 1 | Phòng ngủ con | Hoàn thiện nội thất | Tường | Nội thất | m2 | 2.86 | 3800000.0 | ₫10,868,000\nBàn học | Đơn vị thi công nội thất | Lầu 1 | Phòng ngủ con | Hoàn thiện nội thất | Tường | Nội thất | m2 | 2.05 | 2800000.0 | ₫5,740,000\nTab đầu giường | Đơn vị thi công nội thất | Lầu 1 | Phòng ngủ con | Hoàn thiện nội thất | Tường | Nội thất | Cái | 1.0 | 3000000.0 | ₫3,000,000\nVách ốp sau tab | Đơn vị thi công nội thất | Lầu 1 | Phòng ngủ con | Hoàn thiện nội thất | Tường | Nội thất | Cái | 1.0 | 2500000.0 | ₫2,500,000\nTủ quần áo 01 | Đơn vị thi công nội thất | Lầu 1 | Phòng ngủ con | Hoàn thiện nội thất | Tường | Nội thất | m2 | 4.59 | 3100000.0 | ₫14,229,000\nTrần bo cong | Đội thi công thạch cao | Lầu 1 | Phòng ngủ con | Hoàn thiện nội thất | Trần | Thạch cao | Gói | 1.0 | 3500000.0 | ₫3,500,000\nVách thạch cao trang trí | Đội thi công thạch cao | Lầu 1 | Phòng ngủ con | Hoàn thiện nội thất | Tường | Thạch cao | m2 | 4.07 | 1170000.0 | ₫4,761,900\nTủ quần áo 02 | Đơn vị thi công nội thất | Lầu 1 | Phòng ngủ con | Hoàn thiện nội thất | Tường | Nội thất | m2 | 5.53 | 3800000.0 | ₫21,014,000\nGương treo tường | Đơn vị thi công nội thất | Lầu 1 | Phòng ngủ con | Hoàn thiện nội thất |",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part16",
+    "source": "Dự toán NCM",
+    "page": 16,
+    "content": " Tường | Nội thất | Cái | 1.0 | 4000000.0 | ₫4,000,000\nĐôn ngồi | Đơn vị thi công nội thất | Lầu 1 | Phòng ngủ con | Hoàn thiện nội thất | Tường | Nội thất | Cái | 1.0 | 6500000.0 | ₫6,500,000\nRèm vải 2 lớp | Đơn vị thi công rèm cửa | Lầu 1 | Phòng ngủ con | Hoàn thiện nội thất | Tường | Nội thất | md | 3.4 | 1575000.0 | ₫5,355,000\nBảng trắng dán tường | Đơn vị thi công nội thất | Lầu 1 | Phòng ngủ con | Hoàn thiện nội thất | Tường | Nội thất | Bộ | 1.0 | 2500000.0 | ₫2,500,000\nĐợt kệ bàn học | Đơn vị thi công nội thất | Lầu 1 | Phòng ngủ con | Hoàn thiện nội thất | Tường | Nội thất | md | 5.4 | 450000.0 | ₫2,430,000\nBọc vải gường | Đơn vị thi công nội thất | Lầu 1 | Phòng ngủ con | Hoàn thiện nội thất | Tường | Nội thất | Gói | 1.0 | 3500000.0 | ₫3,500,000\nPhụ kiện cửa lùa | Đơn vị thi công nội thất | Lầu 1 | Phòng ngủ con | Hoàn thiện nội thất | Tường | Nội thất | Bộ | 1.0 | 2660000.0 | ₫2,660,000\nRèm sáo | Đơn vị thi công rèm cửa | Lầu 1 | Phòng ngủ con | Hoàn thiện nội thất | Tường | Nội thất | m2 | 2.34 | 400000.0 | ₫936,000\nLen chân tường nhựa | Đơn vị thi công nội thất | Lầu 1 | Phòng ngủ con | Hoàn thiện nội thất | Tường | Nội thất | md | 10.0 | 95000.0 | ₫950,000\nGạch nền | Nhà cung cấp gạch ốp lát | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Nền | Gạch | m2 | 4.86 | 750000.0 | ₫3,645,000\nVòi xịt | Nhà cung cấp thiết bị vệ sinh | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 342000.0 | ₫342,000\nSen tắm | Nhà cung cấp thiết bị vệ sinh | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 8490000.0 | ₫8,490,000\nLavabo âm bàn | Nhà cung cấp thiết bị vệ sinh | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 1228500.0 | ₫1,228,500\nNgạch cửa | Đơn vị thi công đá hoa cương | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Nền | Đá | md | 0.8 | 220000.0 | ₫176,000\nKeo chà ron | Nhà cung cấp gạch ốp lát | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ b",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part17",
+    "source": "Dự toán NCM",
+    "page": 17,
+    "content": "ản | Nền | Gạch | Kg | 5.5 | 50000.0 | ₫275,000\nGạch ốp tường GA-03 | Nhà cung cấp gạch ốp lát | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Gạch | m2 | 8.1 | 750000.0 | ₫6,075,000\nCửa sổ S5 | Đơn vị thi công nhôm kính | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Cửa | m2 | 2.8 | 3046534.0 | ₫8,530,295\nPhụ kiện cửa sổ S5 | Đơn vị thi công nhôm kính | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 792000.0 | ₫792,000\nGạch ốp tường GA-07 | Nhà cung cấp gạch ốp lát | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Gạch | m2 | 12.65 | 350000.0 | ₫4,427,500\nVách kính tắm | Đơn vị thi công nhôm kính | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Kính | m2 | 3.41 | 600000.0 | ₫2,046,000\nPhụ kiện vách kính | Đơn vị thi công nhôm kính | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Kính | Bộ | 1.0 | 6500000.0 | ₫6,500,000\nSơn nước trần | Nhà cung cấp sơn nước | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Trần | Sơn | m2 | 4.18 | 50000.0 | ₫209,000\nTrần vệ sinh | Đội thi công thạch cao | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Trần | Thạch cao | m2 | 7.11 | 205000.0 | ₫1,457,550\nBồn cầu thông minh | Nhà cung cấp thiết bị vệ sinh | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 18360000.0 | ₫18,360,000\nVòi lavabo | Nhà cung cấp thiết bị vệ sinh | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 2470000.0 | ₫2,470,000\nMóc treo giấy vệ sinh | Nhà cung cấp thiết bị vệ sinh | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 720000.0 | ₫720,000\nMặt đá lavabo | Đơn vị thi công đá hoa cương | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Đá | Bộ | 1.0 | 3500000.0 | ₫3,500,000\nKhung sắt gia cố mặt đá | Đội thi công cơ khí | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Sắt, inox | Cái | 1.0 | 1000000.0 | ₫1,000,000\nỔ cắm 3 chấu | Nhà cung cấp thiết bị điện | Lầ",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part18",
+    "source": "Dự toán NCM",
+    "page": 18,
+    "content": "u 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 2.0 | 69300.0 | ₫138,600\nMặt nạ ổ cắm đôi 3 chấu | Nhà cung cấp thiết bị điện | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 2.0 | 27300.0 | ₫54,600\nĐèn downlight - 10w | Nhà cung cấp thiết bị điện | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 2.0 | 332000.0 | ₫664,000\nQuạt hút mùi | Nhà cung cấp thiết bị vệ sinh | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 1.0 | 3445000.0 | ₫3,445,000\nPhễu thu sàn | Nhà cung cấp thiết bị vệ sinh | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Nền | Thiết bị vệ sinh | Cái | 1.0 | 312000.0 | ₫312,000\nCửa đi Dw2 | Đơn vị thi công nhôm kính | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 9000000.0 | ₫9,000,000\nTay nắm + khóa cửacửa Dw2 | Đơn vị thi công nhôm kính | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 3000000.0 | ₫3,000,000\nMặt đá viền bệ bồn cầu | Đơn vị thi công đá hoa cương | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Đá | Bộ | 1.0 | 1000000.0 | ₫1,000,000\nMặt đá viền cửa sổ | Đơn vị thi công đá hoa cương | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Đá | Bộ | 1.0 | 500000.0 | ₫500,000\nVách kính ngăn phòng tắm PT1 | Đơn vị thi công nhôm kính | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Cửa | m2 | 6.82 | 2018091.0 | ₫13,763,381\nGiá treo thông minh | Nhà cung cấp thiết bị vệ sinh | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 5415000.0 | ₫5,415,000\nPhễu thu sàn 600mm | Nhà cung cấp thiết bị vệ sinh | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Nền | Thiết bị vệ sinh | Cái | 1.0 | 2587000.0 | ₫2,587,000\nCông tắc 3 nút | NCC và lắp đặt điện thông minh | Lầu 1 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1870000.0 | ₫1,870,000\nCảm biến hiện diện | NCC và lắp đặt điện thông minh | Lầu 1",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part19",
+    "source": "Dự toán NCM",
+    "page": 19,
+    "content": " | Vệ sinh phòng con | Hoàn thiện cơ bản | Trần | Điện thông minh | Bộ | 1.0 | 1540000.0 | ₫1,540,000\nLẦU 2\nPhân thô  lầu 2 | Nhà thầu chính | Lầu 2 | Khung nhà | Phần thô | Phần thô | Phần thô | m2 | 48.0 | 3950000.0 | ₫189,600,000\nVách kính ngăn phòng tắm PT1 | Đơn vị thi công nhôm kính | Lầu 2 | Vệ sinh phòng con | Hoàn thiện cơ bản | Tường | Cửa | m2 | 6.82 | 2018091.0 | ₫13,763,381\nNgạch cửa 100 | Đơn vị thi công đá hoa cương | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Nền | Đá | md | 0.95 | 220000.0 | ₫209,000\nMặt đá thang máy | Đơn vị thi công đá hoa cương | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Tường | Đá | m2 | 1.8 | 2800000.0 | ₫5,040,000\nSơn nước tường | Nhà cung cấp sơn nước | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Tường | Sơn | m2 | 24.0 | 50000.0 | ₫1,200,000\nSơn nước trần | Nhà cung cấp sơn nước | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Trần | Sơn | m2 | 2.54 | 50000.0 | ₫127,000\nTrần sảnh thang | Đội thi công thạch cao | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Trần | Thạch cao | m2 | 3.05 | 195000.0 | ₫594,750\nĐèn downlight 7w | Nhà cung cấp thiết bị điện | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 2.0 | 280000.0 | ₫560,000\nĐèn tường thang | Nhà cung cấp thiết bị điện | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 912000.0 | ₫912,000\nTủ điện tầng 4-8 modules | Nhà cung cấp thiết bị điện | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Tường | Thiết bị điện | Bộ | 1.0 | 132000.0 | ₫132,000\nỔ cắm 3 chấu | Nhà cung cấp thiết bị điện | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 69300.0 | ₫69,300\nMặt nạ ổ cắm đôi 3 chấu | Nhà cung cấp thiết bị điện | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 27300.0 | ₫27,300\nMCB 2P - 40A | Nhà cung cấp thiết bị điện | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 341000.0 | ₫341,000\nInox ốp thang má",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part20",
+    "source": "Dự toán NCM",
+    "page": 20,
+    "content": "y | NCC và lắp đặt thang máy | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Tường | Sắt, inox | Bộ | 1.0 | 14475000.0 | ₫14,475,000\nMCB 1P - 16A | Nhà cung cấp thiết bị điện | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 66750.0 | ₫66,750\nMCB 1P - 20A | Nhà cung cấp thiết bị điện | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 2.0 | 66750.0 | ₫133,500\nMCB 1P - 25A | Nhà cung cấp thiết bị điện | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 66750.0 | ₫66,750\nRCBO  2P  - 20A | Nhà cung cấp thiết bị điện | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 419000.0 | ₫419,000\nVách kính S1A | Đơn vị thi công nhôm kính | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Tường | Cửa | m2 | 1.41 | 1710784.0 | ₫2,412,205\nPhụ thu uốn công cửa S1A | Đơn vị thi công nhôm kính | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 80000.0 | ₫80,000\nCửa S2 | Đơn vị thi công nhôm kính | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Tường | Cửa | m2 | 3.48 | 2425896.0 | ₫8,442,118\nPhụ kiện cửa S2 | Đơn vị thi công nhôm kính | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 792000.0 | ₫792,000\nCông tắc 3 nút | NCC và lắp đặt điện thông minh | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1870000.0 | ₫1,870,000\nCảm biến hiện diện | NCC và lắp đặt điện thông minh | Lầu 2 | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1540000.0 | ₫1,540,000\nSàn gạch giả gỗ | Nhà cung cấp gạch ốp lát | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Nền | Gạch | m2 | 26.73 | 505000.0 | ₫13,498,650\nNgạch cửa 100 | Đơn vị thi công đá hoa cương | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Nền | Đá | md | 0.9 | 220000.0 | ₫198,000\nSơn nước hoàn thiện tường | Nhà cung cấp sơn nước | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Tường | Sơn | m2 | 5.0 | 50000",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part21",
+    "source": "Dự toán NCM",
+    "page": 21,
+    "content": ".0 | ₫250,000\nSơn nước lót tường (sau tủ, vách thạch cao) | Nhà cung cấp sơn nước | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Tường | Sơn | m2 | 47.5 | 50000.0 | ₫2,375,000\nCửa đi D4 | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 9000000.0 | ₫9,000,000\nTay nắm + khóa cửa cửa D4 | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Tường | Cửa | Cái | 1.0 | 3000000.0 | ₫3,000,000\nCửa sổ S6 | Đơn vị thi công nhôm kính | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Tường | Cửa | m2 | 8.1 | 2283960.0 | ₫18,500,076\nPhụ kiện cửa sổ S6 | Đơn vị thi công nhôm kính | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 2.0 | 306000.0 | ₫612,000\nSơn nước trần | Nhà cung cấp sơn nước | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Trần | Sơn | m2 | 24.0 | 50000.0 | ₫1,200,000\nTrần phòng ngủ | Đội thi công thạch cao | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Trần | Thạch cao | m2 | 27.0 | 195000.0 | ₫5,265,000\nTrần bo cong | Đội thi công thạch cao | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Trần | Thạch cao | md | 4.08 | 117000.0 | ₫477,360\nỔ cắm 3 chấu | Nhà cung cấp thiết bị điện | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 5.0 | 69300.0 | ₫346,500\nMặt nạ ổ cắm đôi 3 chấu | Nhà cung cấp thiết bị điện | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 5.0 | 27300.0 | ₫136,500\nỔ cắm internet | Nhà cung cấp thiết bị điện | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 130000.0 | ₫130,000\nMặt nạ ổ cắm internet | Nhà cung cấp thiết bị điện | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 27300.0 | ₫27,300\nMáy lạnh cục bộ 1.5hp | Đơn vị cung cấp máy lạnh | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 1.0 | 9873500.0 | ₫9,873,500\nDây đồng | Thi công ống đồng máy lạnh | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản ",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part22",
+    "source": "Dự toán NCM",
+    "page": 22,
+    "content": "| Trần | Thiết bị điện | md | 8.0 | 430000.0 | ₫3,440,000\nĐèn downlight - 12w | Nhà cung cấp thiết bị điện | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 6.0 | 825000.0 | ₫4,950,000\nĐèn thả đầu giường | Nhà cung cấp thiết bị điện | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 279000.0 | ₫279,000\nKeo chà ron | Nhà cung cấp gạch ốp lát | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Nền | Gạch | m2 | 5.3 | 50000.0 | ₫265,000\nĐèn led downlight thông minh | NCC và lắp đặt điện thông minh | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Trần | Điện thông minh | Bộ | 6.0 | 825000.0 | ₫4,950,000\nCông tắc 3 nút | NCC và lắp đặt điện thông minh | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 2.0 | 1870000.0 | ₫3,740,000\nCông tắc 4 nút | NCC và lắp đặt điện thông minh | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1925000.0 | ₫1,925,000\nĐộng cơ rèm 2 lớp | NCC và lắp đặt điện thông minh | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Trần | Điện thông minh | Bộ | 2.0 | 3520000.0 | ₫7,040,000\nThanh rèm | NCC và lắp đặt điện thông minh | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Trần | Điện thông minh | md | 8.0 | 400000.0 | ₫3,200,000\nMáng nhôm | NCC và lắp đặt điện thông minh | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Trần | Điện thông minh | md | 2.0 | 450000.0 | ₫900,000\nĐông cơ rèm sáo | NCC và lắp đặt điện thông minh | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Trần | Điện thông minh | Bộ | 1.0 | 2500000.0 | ₫2,500,000\nLed 16 triệu màu | NCC và lắp đặt điện thông minh | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Trần | Điện thông minh | Bộ | 1.0 | 935000.0 | ₫935,000\nModule 5 in 1 | NCC và lắp đặt điện thông minh | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Trần | Điện thông minh | Bộ | 1.0 | 1485000.0 | ₫1,485,000\nNguồn  led | NCC và lắp đặt điện thông minh | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Trầ",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part23",
+    "source": "Dự toán NCM",
+    "page": 23,
+    "content": "n | Điện thông minh | Bộ | 1.0 | 660000.0 | ₫660,000\nKhóa thông minh | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 6590000.0 | ₫6,590,000\nGiường ngủ | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Nền | Nội thất | Cái | 1.0 | 12500000.0 | ₫12,500,000\nTab đầu giường | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | Cái | 1.0 | 2800000.0 | ₫2,800,000\nBàn trang điểm | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | Cái | 1.0 | 4250000.0 | ₫4,250,000\nKính thủy ốp tường | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Kính | m2 | 4.99 | 1312500.0 | ₫6,549,375\nVách đầu giường (1) | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | m2 | 8.289 | 1500000.0 | ₫12,433,500\nVách đầu giường (2) | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | m2 | 1.95 | 1300000.0 | ₫2,535,000\nVách đầu giường (3) | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | m2 | 1.0 | 900000.0 | ₫900,000\nTủ túi xách | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | m2 | 4.05 | 3200000.0 | ₫12,960,000\nVách CNC che nhà tắm | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | m2 | 2.57 | 2200000.0 | ₫5,654,000\nTủ trang trí bàn trang điểm | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | m2 | 1.62 | 3000000.0 | ₫4,860,000\nTủ quần áo | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | m2 | 3.105 | 3200000.0 | ₫9,936,000\nTủ quần áo 02 | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | m2 | 4.59 | 2500000.0 | ₫11,475,000\nTủ quần áo 01 | Đơn ",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part24",
+    "source": "Dự toán NCM",
+    "page": 24,
+    "content": "vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | m2 | 3.645 | 3200000.0 | ₫11,664,000\nVách ốp gỗ | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | m2 | 6.345 | 1500000.0 | ₫9,517,500\nGhế ngồi | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Nền | Nội thất | Cái | 1.0 | ₫0\nRèm 2 lớp | Đơn vị thi công rèm cửa | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | md | 3.37 | 1575000.0 | ₫5,307,750\nTủ hấp quần áo | Nhà thầu điện máy | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Thiết bị điện | m2 | 1.0 | ₫0\nKính thủy ốp tường | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | m2 | 1.0 | 2000000.0 | ₫2,000,000\nCánh kết hợp gỗ MDF | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | m2 | 1.134 | 1500000.0 | ₫1,701,000\nKhung cánh nhôm 22x22,  kính 5mm | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | m2 | 1.763 | 2000000.0 | ₫3,526,000\nTủ quần áo 03 | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | m2 | 3.645 | 2500000.0 | ₫9,112,500\nKhung cánh nhôm 22x22,  kính 5mm | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | m2 | 3.645 | 2000000.0 | ₫7,290,000\nPhụ kiến kính lùa | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | Bộ | 1.0 | 1250000.0 | ₫1,250,000\nVách ốp gương | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | m2 | 4.59 | 1250000.0 | ₫5,737,500\nKhung cánh nhôm 22x22,  kính 5mm | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | m2 | 2.025 | 2000000.0 | ₫4,050,000\nVách ốp vòm cửa đi | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tườn",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part25",
+    "source": "Dự toán NCM",
+    "page": 25,
+    "content": "g | Nội thất | md | 6.55 | 650000.0 | ₫4,257,500\nRèm sáo | Đơn vị thi công rèm cửa | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | m2 | 4.32 | 400000.0 | ₫1,728,000\nLen chân tường nhựa | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | md | 10.0 | 95000.0 | ₫950,000\nHộc tủ bộc vải | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | Bộ | 2.0 | 2520000.0 | ₫5,040,000\nPhụ kiện nâng hạ giá quần áo | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | Bộ | 1.0 | 2620000.0 | ₫2,620,000\nPhụ kiện giá treo quần âu | Đơn vị thi công nội thất | Lầu 2 | Phòng ngủ master | Hoàn thiện nội thất | Tường | Nội thất | Bộ | 1.0 | 2350000.0 | ₫2,350,000\nGạch nền GA - 04 | Nhà cung cấp gạch ốp lát | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Nền | Gạch | m2 | 7.2 | 370000.0 | ₫2,664,000\nNgạch cửa 100 | Đơn vị thi công đá hoa cương | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Nền | Đá | md | 0.8 | 220000.0 | ₫176,000\nGạch ốp tường GA-08 | Nhà cung cấp gạch ốp lát | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Tường | Gạch | m2 | 23.76 | 630000.0 | ₫14,968,800\nCửa đi Dw2 | Đơn vị thi công nhôm kính | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 9000000.0 | ₫9,000,000\nTay nắm + khóa cửacửa Dw2 | Đơn vị thi công nhôm kính | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Tường | Cửa | Cái | 1.0 | 3000000.0 | ₫3,000,000\nCửa sổ S7 | Đơn vị thi công nhôm kính | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Tường | Cửa | m2 | 3.08 | 3001440.0 | ₫9,244,435\nPhụ kiện cửa sổ | Đơn vị thi công nhôm kính | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 792000.0 | ₫792,000\nVách kính tắm | Đơn vị thi công nhôm kính | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Tường | Kính | m2 | 3.41 | 600000.0 | ₫2,046,000\nPhụ kiện vách kính | Đơn vị thi công nhôm kính | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | ",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part26",
+    "source": "Dự toán NCM",
+    "page": 26,
+    "content": "Tường | Kính | Bộ | 1.0 | 6500000.0 | ₫6,500,000\nSơn nước trần | Nhà cung cấp sơn nước | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Trần | Sơn | m2 | 6.19 | 50000.0 | ₫309,500\nTrần vệ sinh | Đội thi công thạch cao | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Trần | Thạch cao | m2 | 7.11 | 205000.0 | ₫1,457,550\nBồn cầu  thông minh | Nhà cung cấp thiết bị vệ sinh | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Nền | Thiết bị vệ sinh | Cái | 1.0 | 19860000.0 | ₫19,860,000\nVòi xịt | Nhà cung cấp thiết bị vệ sinh | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 312000.0 | ₫312,000\nSen tắm | Nhà cung cấp thiết bị vệ sinh | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Trần | Thiết bị vệ sinh | Cái | 1.0 | 26000000.0 | ₫26,000,000\nỔ cắm 3 chấu | Nhà cung cấp thiết bị điện | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 2.0 | 69300.0 | ₫138,600\nMặt nạ ổ cắm đôi 3 chấu | Nhà cung cấp thiết bị điện | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 2.0 | 27300.0 | ₫54,600\nĐèn downlight - 10w | Nhà cung cấp thiết bị điện | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 2.0 | 332000.0 | ₫664,000\nKhung sắt gia cố mặt đá | Đội thi công cơ khí | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Tường | Sắt, inox | Cái | 1.0 | 1000000.0 | ₫1,000,000\nVòi lavabo | Nhà cung cấp thiết bị vệ sinh | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 2470000.0 | ₫2,470,000\nMặt đá lavabo | Đơn vị thi công đá hoa cương | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Tường | Đá | Bộ | 1.0 | 3500000.0 | ₫3,500,000\nLavabo âm bàn | Nhà cung cấp thiết bị vệ sinh | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 1228500.0 | ₫1,228,500\nTủ treo gương | Đơn vị thi công nội thất | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Tường | Nội thất | Cái | 1.0 | 5000000.0 | ₫5,000,000\nMóc treo giấy vệ sinh | Nhà cung cấp thiết",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part27",
+    "source": "Dự toán NCM",
+    "page": 27,
+    "content": " bị vệ sinh | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 720000.0 | ₫720,000\nPhễu thu sàn | Nhà cung cấp thiết bị vệ sinh | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Nền | Thiết bị vệ sinh | Cái | 1.0 | 312000.0 | ₫312,000\nTủ lavabo | Đơn vị thi công nội thất | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Tường | Nội thất | Cái | 1.0 | 6000000.0 | ₫6,000,000\nBồn tắm nằm | Nhà cung cấp thiết bị vệ sinh | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Nền | Thiết bị vệ sinh | Cái | 1.0 | 86682160.0 | ₫86,682,160\nKeo chà ron | Nhà cung cấp gạch ốp lát | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Nền | Gạch | Kg | 6.5 | 50000.0 | ₫325,000\nRèm sáo | Đơn vị thi công rèm cửa | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Tường | Nội thất | m2 | 2.24 | 400000.0 | ₫896,000\nMặt đá viền bệ bồn cầu | Đơn vị thi công đá hoa cương | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Tường | Đá | Bộ | 1.0 | 1000000.0 | ₫1,000,000\nGiá treo thông minh | Nhà cung cấp thiết bị vệ sinh | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 5415000.0 | ₫5,415,000\nPhễu thu sàn 600mm | Nhà cung cấp thiết bị vệ sinh | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Nền | Thiết bị vệ sinh | Cái | 1.0 | 2587000.0 | ₫2,587,000\nCông tắc 4 nút | NCC và lắp đặt điện thông minh | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1925000.0 | ₫1,925,000\nCảm biến hiện diện | NCC và lắp đặt điện thông minh | Lầu 2 | Vệ sinh master | Hoàn thiện cơ bản | Trần | Điện thông minh | Bộ | 1.0 | 1540000.0 | ₫1,540,000\nQuạt hút mùi | Nhà cung cấp thiết bị vệ sinh | Lầu 2 | Vệ sinh master | Hoàn thiện nội thất | Trần | Thiết bị điện | Cái | 1.0 | 3445000.0 | ₫3,445,000\nSÂN THƯỢNG\nPhân thô tầng sân thượng | Nhà thầu chính | Sân thượng | Khung nhà | Phần thô | Phần thô | Phần thô | m2 | 33.75 | 3950000.0 | ₫133,312,500\nNgạch cửa 100 | Đơn vị thi công đá hoa cương | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ ",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part28",
+    "source": "Dự toán NCM",
+    "page": 28,
+    "content": "bản | Nền | Đá | md | 0.95 | 220000.0 | ₫209,000\nMặt đá thang máy | Đơn vị thi công đá hoa cương | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ bản | Tường | Đá | m2 | 1.8 | 2800000.0 | ₫5,040,000\nSơn nước tường | Nhà cung cấp sơn nước | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ bản | Tường | Sơn | m2 | 24.0 | 50000.0 | ₫1,200,000\nCửa S2 | Đơn vị thi công nhôm kính | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ bản | Tường | Cửa | m2 | 3.48 | 2425896.0 | ₫8,442,118\nSơn nước trần | Nhà cung cấp sơn nước | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ bản | Trần | Sơn | m2 | 2.54 | 50000.0 | ₫127,000\nTrần sảnh thang | Đội thi công thạch cao | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ bản | Trần | Thạch cao | m2 | 2.28 | 195000.0 | ₫444,600\nĐèn downlight 7w | Nhà cung cấp thiết bị điện | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 2.0 | 280000.0 | ₫560,000\nĐèn tường thang | Nhà cung cấp thiết bị điện | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 204000.0 | ₫204,000\nTủ điện tầng 10-14 modules | Nhà cung cấp thiết bị điện | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ bản | Tường | Thiết bị điện | Bộ | 1.0 | 247000.0 | ₫247,000\nỔ cắm 3 chấu | Nhà cung cấp thiết bị điện | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 69300.0 | ₫69,300\nMặt nạ ổ cắm đôi 3 chấu | Nhà cung cấp thiết bị điện | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 273000.0 | ₫273,000\nMCB 2P - 50A | Nhà cung cấp thiết bị điện | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 341000.0 | ₫341,000\nPhụ kiện cửa S2 | Đơn vị thi công nhôm kính | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 792000.0 | ₫792,000\nInox ốp thang máy | NCC và lắp đặt thang máy | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ ",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part29",
+    "source": "Dự toán NCM",
+    "page": 29,
+    "content": "bản | Tường | Sắt, inox | Bộ | 1.0 | 14475000.0 | ₫14,475,000\nMCB 1P - 16A | Nhà cung cấp thiết bị điện | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 66750.0 | ₫66,750\nMCB 1P - 20A | Nhà cung cấp thiết bị điện | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 2.0 | 66750.0 | ₫133,500\nMCB 1P - 25A | Nhà cung cấp thiết bị điện | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 66750.0 | ₫66,750\nRCBO  2P  - 20A | Nhà cung cấp thiết bị điện | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 3.0 | 419000.0 | ₫1,257,000\nRCBO  2P  - 25A | Nhà cung cấp thiết bị điện | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 449000.0 | ₫449,000\nRCBO 2P - 32A | Nhà cung cấp thiết bị điện | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 637000.0 | ₫637,000\nCông tắc 2 nút | NCC và lắp đặt điện thông minh | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1815000.0 | ₫1,815,000\nCảm biến hiện diện | NCC và lắp đặt điện thông minh | Sân thượng | Sảnh thang sân thượng | Hoàn thiện cơ bản | Trần | Điện thông minh | Bộ | 1.0 | 1540000.0 | ₫1,540,000\nGạch - GA 07 | Nhà cung cấp gạch ốp lát | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Nền | Gạch | m2 | 28.8 | 460000.0 | ₫13,248,000\nNgạch cửa 100 | Đơn vị thi công đá hoa cương | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Nền | Đá | md | 0.9 | 220000.0 | ₫198,000\nSơn nước hoàn thiện tường | Nhà cung cấp sơn nước | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Tường | Sơn | m2 | 5.0 | 50000.0 | ₫250,000\nSơn nước lót tường (sau tủ, vách thạch cao) | Nhà cung cấp sơn nước | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Tường | Sơn | m2 | 47.5 | 50000.0 | ₫2,375,000\nCửa sổ S9 | Đơn vị thi công nhôm kính | Sân thượng | Phòng bếp ",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part30",
+    "source": "Dự toán NCM",
+    "page": 30,
+    "content": "+ ăn | Hoàn thiện cơ bản | Tường | Cửa | m2 | 2.31 | 3213936.0 | ₫7,424,192\nPhụ kiện cửa sổ S9 | Đơn vị thi công nhôm kính | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 792000.0 | ₫792,000\nSơn nước trần | Nhà cung cấp sơn nước | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Trần | Sơn | m2 | 24.0 | 50000.0 | ₫1,200,000\nTrần phòng bếp | Đội thi công thạch cao | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Trần | Thạch cao | m2 | 29.82 | 195000.0 | ₫5,814,900\nỔ cắm 3 chấu | Nhà cung cấp thiết bị điện | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 5.0 | 69300.0 | ₫346,500\nMặt nạ ổ cắm đôi 3 chấu | Nhà cung cấp thiết bị điện | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 5.0 | 27300.0 | ₫136,500\nỔ cắm internet | Nhà cung cấp thiết bị điện | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 130000.0 | ₫130,000\nMặt nạ ổ cắm internet | Nhà cung cấp thiết bị điện | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 27300.0 | ₫27,300\nMáy lạnh cục bộ 2.5hp | Đơn vị cung cấp máy lạnh | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 1.0 | 26800000.0 | ₫26,800,000\nDây đồng | Thi công ống đồng máy lạnh | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Trần | Thiết bị điện | md | 8.0 | 650000.0 | ₫5,200,000\nĐèn downlight - 10w | Nhà cung cấp thiết bị điện | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 6.0 | 323000.0 | ₫1,938,000\nDây đèn led | Nhà cung cấp thiết bị điện | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Trần | Thiết bị điện | md | 10.0 | 50700.0 | ₫507,000\nBộ nguồn đèn led | Nhà cung cấp thiết bị điện | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 6.0 | 175000.0 | ₫1,050,000\nCửa đi D7 | Đơn vị thi công nhôm kính | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Tường | Cửa | m2 | 2.3",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part31",
+    "source": "Dự toán NCM",
+    "page": 31,
+    "content": "1 | 2523616.0 | ₫5,829,553\nPhụ kiện cửa D7 | Đơn vị thi công nhôm kính | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 396000.0 | ₫396,000\nCửa đi D8 | Đơn vị thi công nhôm kính | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Tường | Cửa | m2 | 7.65 | 2538450.0 | ₫19,419,142\nPhụ kiện cửa D8 | Đơn vị thi công nhôm kính | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 3832000.0 | ₫3,832,000\nLan can ban công LC | Đơn vị thi công nhôm kính | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Nền | Sắt, inox | md | 3.1 | 1700000.0 | ₫5,270,000\nKeo chà ron | Nhà cung cấp gạch ốp lát | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Nền | Gạch | Kg | 10.0 | 50000.0 | ₫500,000\nCảm biến khói | NCC và lắp đặt điện thông minh | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Trần | Điện thông minh | Bộ | 1.0 | 968000.0 | ₫968,000\nCông tắc 3 nút | NCC và lắp đặt điện thông minh | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 2.0 | 1870000.0 | ₫3,740,000\nCông tắc 1 nút | NCC và lắp đặt điện thông minh | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1760000.0 | ₫1,760,000\nCông tắc 2 nút | NCC và lắp đặt điện thông minh | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1815000.0 | ₫1,815,000\nCông tắc 4 nút | NCC và lắp đặt điện thông minh | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1925000.0 | ₫1,925,000\nĐộng cơ rèm 2 lớp | NCC và lắp đặt điện thông minh | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Trần | Điện thông minh | Bộ | 2.0 | 3520000.0 | ₫7,040,000\nThanh rèm | NCC và lắp đặt điện thông minh | Sân thượng | Phòng bếp + ăn | Hoàn thiện cơ bản | Trần | Điện thông minh | md | 8.0 | 400000.0 | ₫3,200,000\nTủ bếp dưới | Đơn vị thi công nội thất | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Trần | Nội thất | md | 2.2 | 3200000.0 | ₫7,040,000\nTủ bếp",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part32",
+    "source": "Dự toán NCM",
+    "page": 32,
+    "content": " trên | Đơn vị thi công nội thất | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Tường | Nội thất | md | 2.2 | 2900000.0 | ₫6,380,000\nĐá ốp mặt bếp | Đơn vị thi công đá hoa cương | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Tường | Đá | md | 1.5 | 1800000.0 | ₫2,700,000\nĐá ốp tường bếp | Đơn vị thi công đá hoa cương | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Tường | Đá | md | 1.35 | 1800000.0 | ₫2,430,000\nTủ tủ lạnh | Nhà thầu điện máy | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Tường | Nội thất | m2 | 2.09 | 2800000.0 | ₫5,852,000\nĐảo bếp | Đơn vị thi công nội thất | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Nền | Nội thất | md | 2.8 | 3500000.0 | ₫9,800,000\nMặt đá đảo bếp | Đơn vị thi công đá hoa cương | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Nền | Đá | md | 2.87 | 1800000.0 | ₫5,166,000\nTủ rượu | Đơn vị thi công nội thất | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Tường | Nội thất | m2 | 2.31 | 2300000.0 | ₫5,313,000\nBàn thờ | Đơn vị thi công nội thất | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Tường | Nội thất | Bộ | 1.0 | 17325000.0 | ₫17,325,000\nVách mặt trước bàn thờ | Đơn vị thi công nội thất | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Tường | Nội thất | m2 | 2.59 | 4725000.0 | ₫12,237,750\nVách mặt bên bàn thờ | Đơn vị thi công nội thất | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Tường | Nội thất | m2 | 4.08 | 3990000.0 | ₫16,279,200\nVách mặt hậu bàn thờ | Đơn vị thi công nội thất | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Tường | Nội thất | m2 | 4.85 | 2205000.0 | ₫10,694,250\nVách ốp trần bàn thờ | Đơn vị thi công nội thất | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Tường | Nội thất | m2 | 1.52 | 2205000.0 | ₫3,351,600\nĐợt kệ trang trí | Đơn vị thi công nội thất | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Tường | Nội thất | md | 2.0 | 600000.0 | ₫1,200,000\nBồn rửa chén | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Nền | T",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part33",
+    "source": "Dự toán NCM",
+    "page": 33,
+    "content": "hiết bị bếp | Cái | 1.0 | 38500000.0 | ₫38,500,000\nVòi rửa chén | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Nền | Thiết bị bếp | Cái | 1.0 | 5170000.0 | ₫5,170,000\nMáy giặt 1k0g | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Nền | Thiết bị bếp | Cái | 1.0 | 9990000.0 | ₫9,990,000\nLò hấp | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Nền | Thiết bị bếp | Cái | 1.0 | 20800000.0 | ₫20,800,000\nTủ lạnh đứng | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Nền | Thiết bị bếp | Cái | 1.0 | 7490000.0 | ₫7,490,000\nBếp từ | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Nền | Thiết bị bếp | Cái | 1.0 | 28600000.0 | ₫28,600,000\nLò vi sóng | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Nền | Thiết bị bếp | Cái | 1.0 | 11500000.0 | ₫11,500,000\nLò nướng | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Nền | Thiết bị bếp | Cái | 1.0 | 24400000.0 | ₫24,400,000\nMáy hút mùi | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Nền | Thiết bị bếp | Cái | 1.0 | 28800000.0 | ₫28,800,000\nMáy lọc nước | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Nền | Thiết bị bếp | Cái | 1.0 | 3990000.0 | ₫3,990,000\nTủ bảo quản rượu | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Nền | Thiết bị bếp | Cái | 1.0 | 18000000.0 | ₫18,000,000\nMáy rửa chén | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Nền | Thiết bị bếp | Cái | 1.0 | 35200000.0 | ₫35,200,000\nTủ lạnh | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Nền | Thiết bị bếp | Cái | 1.0 | 7490000.0 | ₫7,490,000\nMáy lọc nước | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Nền | Thiết bị bếp | Cái | 1.0 | 4990000.0 | ₫4,990,000\nKính ốp bếp | Đơn vị thi công nội thất | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Tường | Nội thất | md | 2.2 | 1200000.0 | ₫2,640,000\nKhung cánh nhôm 22x22,  kính 5mm | Đơn vị thi công nội thất | Sân thượng | Phòng bếp + ăn | Hoàn thiện nội thất | Nội thất | m2 | 2.31 | 2000000.0 | ₫4,620,000\nGạch nền GA - 04 | Nhà cung cấp gạch ốp lát | Sân",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part34",
+    "source": "Dự toán NCM",
+    "page": 34,
+    "content": " thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Nền | Gạch | m2 | 2.5 | 400000.0 | ₫1,000,000\nNgạch cửa | Đơn vị thi công đá hoa cương | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Nền | Đá | md | 0.8 | 220000.0 | ₫176,000\nGạch ốp tường GA-08 | Nhà cung cấp gạch ốp lát | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Tường | Gạch | m2 | 16.2 | 415000.0 | ₫6,723,000\nCửa lùa Dw3 | Đơn vị thi công nhôm kính | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 10500000.0 | ₫10,500,000\nTay nắm + khóa cửa Dw3 | Đơn vị thi công nhôm kính | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Tường | Cửa | Bộ | 1.0 | 3000000.0 | ₫3,000,000\nSơn nước trần | Nhà cung cấp sơn nước | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Trần | Sơn | m2 | 2.31 | 50000.0 | ₫115,500\nTrần thạch cao | Đội thi công thạch cao | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Trần | Thạch cao | m2 | 2.76 | 205000.0 | ₫565,800\nBồn cầu | Nhà cung cấp thiết bị vệ sinh | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Nền | Thiết bị vệ sinh | Cái | 1.0 | 6595000.0 | ₫6,595,000\nVòi xịt | Nhà cung cấp thiết bị vệ sinh | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Nền | Thiết bị vệ sinh | Cái | 1.0 | 342000.0 | ₫342,000\nỔ cắm 3 chấu | Nhà cung cấp thiết bị điện | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 2.0 | 69300.0 | ₫138,600\nMặt nạ ổ cắm có nắp che | Nhà cung cấp thiết bị điện | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Tường | Thiết bị điện | Cái | 2.0 | 27300.0 | ₫54,600\nĐèn downlight - 10w | Nhà cung cấp thiết bị điện | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 1.0 | 323000.0 | ₫323,000\nDây đèn led | Nhà cung cấp thiết bị điện | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Trần | Thiết bị điện | md | 1.1 | 50700.0 | ₫55,770\nBộ nguồn đèn led | Nhà cung cấp thiết bị điện | Sân thượng | Vệ sinh sân thượng | Hoàn thiện",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part35",
+    "source": "Dự toán NCM",
+    "page": 35,
+    "content": " cơ bản | Trần | Thiết bị điện | Cái | 1.0 | 175000.0 | ₫175,000\nQuạt hút mùi | Nhà cung cấp thiết bị vệ sinh | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Trần | Thiết bị điện | Cái | 1.0 | 3445000.0 | ₫3,445,000\nKhung sắt gia cố mặt đá | Đội thi công cơ khí | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Tường | Sắt, inox | Cái | 1.0 | 1000000.0 | ₫1,000,000\nVòi lavabo | Nhà cung cấp thiết bị vệ sinh | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 1425000.0 | ₫1,425,000\nMặt đá lavabo | Đơn vị thi công đá hoa cương | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Tường | Đá | Bộ | 1.0 | 3500000.0 | ₫3,500,000\nLavabo âm bàn | Nhà cung cấp thiết bị vệ sinh | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 1228500.0 | ₫1,228,500\nTủ lavabo | Đơn vị thi công nội thất | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Tường | Nội thất | Cái | 1.0 | 5500000.0 | ₫5,500,000\nTủ treo gương | Đơn vị thi công nội thất | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Tường | Nội thất | Cái | 1.0 | 6000000.0 | ₫6,000,000\nMóc treo giấy vệ sinh | Nhà cung cấp thiết bị vệ sinh | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Tường | Thiết bị vệ sinh | Cái | 1.0 | 720000.0 | ₫720,000\nPhễu thu sàn | Nhà cung cấp thiết bị vệ sinh | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Nền | Thiết bị vệ sinh | Cái | 1.0 | 364000.0 | ₫364,000\nKeo chà ron | Nhà cung cấp gạch ốp lát | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Nền | Gạch | Kg | 4.0 | 50000.0 | ₫200,000\nCảm biến hiện diện | NCC và lắp đặt điện thông minh | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1540000.0 | ₫1,540,000\nCông tắc 2 nút | NCC và lắp đặt điện thông minh | Sân thượng | Vệ sinh sân thượng | Hoàn thiện cơ bản | Tường | Điện thông minh | Bộ | 1.0 | 1815000.0 | ₫1,815,000\nMÁI\nMái BTCT | Nhà thầu chính | Mái | Khung nhà | P",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part36",
+    "source": "Dự toán NCM",
+    "page": 36,
+    "content": "hần thô | Phần thô | Phần thô | m2 | 10.95 | 3950000.0 | ₫43,252,500\nMái  tôn | Đội thi công cơ khí | Mái | Tầng mái | Hoàn thiện cơ bản | Trần | Sắt, inox | m2 | 30.0 | 750000.0 | ₫22,500,000\nMáy năng lượng mặt trời | Đội thi công điện nước | Mái | Tầng mái | Hoàn thiện cơ bản | Nền | Thiết bị nước | Cái | 1.0 | 7559160.0 | ₫7,559,160\nBơm tăng áp | Đội thi công điện nước | Mái | Tầng mái | Hoàn thiện cơ bản | Nền | Thiết bị nước | Cái | 1.0 | 2385400.0 | ₫2,385,400\nBồn nước | Đội thi công điện nước | Mái | Tầng mái | Hoàn thiện cơ bản | Nền | Thiết bị nước | Cái | 1.0 | 6379000.0 | ₫6,379,000\nChân sắt_bồn nước | Đội thi công điện nước | Mái | Tầng mái | Hoàn thiện cơ bản | Hạng mục khác | Sắt, inox | Cái | 1.0 | 4000000.0 | ₫4,000,000\nPhễu thoát sàn_chắn rác | Nhà cung cấp thiết bị vệ sinh | Mái | Tầng mái | Hoàn thiện cơ bản | Nền | Thiết bị nước | Cái | 1.0 | 130000.0 | ₫130,000\nMái kính thông tầng MK | Đơn vị thi công nhôm kính | Mái | Tầng mái | Hoàn thiện cơ bản | Nền | Sắt, inox | m2 | 1.96 | 900000.0 | ₫1,764,000\nBuồng thang máy sắt | Đội thi công cơ khí | Mái | Tầng mái | Hoàn thiện cơ bản | Nền | Sắt, inox | m2 | 3.25 | 4000000.0 | ₫13,000,000\nMáy lọc đầu nguôn | Mái | Tầng mái | Hoàn thiện cơ bản | Nền | Thiết bị nước | ₫0\nTHANG BỘ\nSơn nước hoàn thiện_màu trắng | Nhà cung cấp sơn nước | Thang bộ | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Tường | Sơn | m2 | 22.5 | 50000.0 | ₫1,125,000\nĐá ốp cầu thang | Đơn vị thi công đá hoa cương | Thang bộ | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Nền | Đá | m2 | 15.3 | 1900000.0 | ₫29,070,000\nSơn nước đáy thang | Nhà cung cấp sơn nước | Thang bộ | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Trần | Sơn | m2 | 5.7 | 50000.0 | ₫285,000\nLan can kính + máng nhôm | Đơn vị thi công nội thất | Thang bộ | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Tường | Kính | md | 5.2 | 5270000.0 | ₫27,404,000\nLen tường | Đơn vị thi công đá hoa cương | Thang bộ | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Nền | Đá | m2 | 15.3 | 220000.0 |",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part37",
+    "source": "Dự toán NCM",
+    "page": 37,
+    "content": " ₫3,366,000\nĐá tiểu cảnh | Đơn vị thi công đá hoa cương | Thang bộ | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Nền | Đá | m2 | 3.0 | 1900000.0 | ₫5,700,000\nVật tư ốp đá | Đơn vị thi công đá hoa cương | Thang bộ | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Nền | Đá | m2 | 23.3 | 150000.0 | ₫3,495,000\nTay vịn lan can nhôm 20x20 | Đơn vị thi công nội thất | Thang bộ | Sảnh thang tầng trệt | Hoàn thiện cơ bản | Nền | Kính | md | 5.2 | 1620000.0 | ₫8,424,000\nSơn nước hoàn thiện_màu trắng | Nhà cung cấp sơn nước | Thang bộ | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Tường | Sơn | m2 | 22.5 | 50000.0 | ₫1,125,000\nĐá ốp cầu thang | Đơn vị thi công đá hoa cương | Thang bộ | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Nền | Đá | m2 | 12.55 | 1900000.0 | ₫23,845,000\nLan can kính + máng nhôm | Đơn vị thi công nội thất | Thang bộ | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Nền | Kính | md | 5.2 | 5270000.0 | ₫27,404,000\nSơn nước đáy thang | Nhà cung cấp sơn nước | Thang bộ | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Trần | Sơn | m2 | 5.7 | 50000.0 | ₫285,000\nLen tường | Đơn vị thi công đá hoa cương | Thang bộ | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Nền | Đá | m2 | 15.3 | 220000.0 | ₫3,366,000\nVật tư ốp đá | Đơn vị thi công đá hoa cương | Thang bộ | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Nền | Đá | m2 | 23.3 | 150000.0 | ₫3,495,000\nTay vịn lan can nhôm 20x20 | Đơn vị thi công nội thất | Thang bộ | Sảnh thang lầu 1 | Hoàn thiện cơ bản | Nền | Kính | md | 5.2 | 1620000.0 | ₫8,424,000\nSơn nước hoàn thiện_màu trắng | Nhà cung cấp sơn nước | Thang bộ | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Tường | Sơn | m2 | 22.5 | 50000.0 | ₫1,125,000\nĐá ốp cầu thang | Đơn vị thi công đá hoa cương | Thang bộ | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Nền | Đá | m2 | 12.55 | 1900000.0 | ₫23,845,000\nLan can kính + máng nhôm | Đơn vị thi công nội thất | Thang bộ | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Nền | Kính | md | 5.2 | 5270000.0 | ₫27,404,000\nSơn nước đáy thang | Nhà cung cấp sơn nước | Thang bộ | Sảnh thang ",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự toán NCM.xlsx_part38",
+    "source": "Dự toán NCM",
+    "page": 38,
+    "content": "lầu 2 | Hoàn thiện cơ bản | Trần | Sơn | m2 | 5.7 | 50000.0 | ₫285,000\nLen tường | Đơn vị thi công đá hoa cương | Thang bộ | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Nền | Đá | m2 | 15.3 | 220000.0 | ₫3,366,000\nVật tư ốp đá | Đơn vị thi công đá hoa cương | Thang bộ | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Nền | Đá | m2 | 23.3 | 150000.0 | ₫3,495,000\nTay vịn lan can nhôm 20x20 | Đơn vị thi công nội thất | Thang bộ | Sảnh thang lầu 2 | Hoàn thiện cơ bản | Nền | Kính | md | 5.2 | 1620000.0 | ₫8,424,000\nMẶT TIỀN\nKhung sắt + Tấm nhôm cắt CNC | Đội thi công cơ khí | Hoàn thiện mặt ngoài | Mặt tiền | Hoàn thiện cơ bản | Tường | Sắt, inox | m2 | 20.84 | 2315000.0 | ₫48,244,600\nDây đèn led | Đội thi công điện nước | Hoàn thiện mặt ngoài | Mặt tiền | Hoàn thiện cơ bản | Trần | Thiết bị điện | md | 30.0 | 270000.0 | ₫8,100,000\nSơn nước hoàn thiện_màu xám | Nhà cung cấp sơn nước | Hoàn thiện mặt ngoài | Mặt tiền | Hoàn thiện cơ bản | Tường | Sơn | m2 | 61.0 | 50000.0 | ₫3,050,000\nLam nhựa giả gỗ | Đơn vị thi công nhôm kính | Hoàn thiện mặt ngoài | Mặt tiền | Hoàn thiện cơ bản | Tường | Nhựa | md | 72.85 | 179000.0 | ₫13,040,150\nNguồn dây đèn led | Đội thi công điện nước | Hoàn thiện mặt ngoài | Mặt tiền | Hoàn thiện cơ bản | Nền | Thiết bị điện | Cái | 3.0 | 350000.0 | ₫1,050,000\nLam nhôm mặt tiền | Đơn vị thi công nhôm kính | Hoàn thiện mặt ngoài | Mặt tiền | Hoàn thiện cơ bản | Nền | Sắt, inox | md | 36.0 | 230000.0 | ₫8,280,000\nCHI PHÍ KHÁC\nChi phí giám sát | Trợ lý Chủ Đầu Tư | Không gian khác | Khung nhà | Chi phí khác | Hạng mục khác | Phần thô | Gói | 6.0 | 20000000.0 | ₫120,000,000",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự toán NCM"
+  },
+  {
+    "id": "bao-gia_Dự trù ngân sách xây nhà.xlsx_part1",
+    "source": "Dự trù ngân sách xây nhà",
+    "page": 1,
+    "content": "[Sheet: Tổng hợp_PA Full]\nKHAI TOÁN NGÂN SÁCH XÂY NHÀ_PA FULL\nKHAI TOÁN NGÂN SÁCH XÂY NHÀ | 7931400823\nTrong đó\nSTT | Hạng mục | Diện tích | Đơn giá | Thành iền\n1.0 | M2 xây dựng phần thô | 810.55 | 3900000.0 | 3161145000\n2.0 | M2 phần hoàn thiện | 647.25 | 3200000.0 | 2071200000\n3.0 | M2 hoàn thiện giai đoạn 2 | 115.5 | 5100000.0 | 589050000\n4.0 | Chi phí khác | 2110005823\nBẢNG CHI TIẾT CÁC HẠNG MỤC\nSTT | Các loại chi phí | ĐVT | Số lượng | Đơn giá | Thành tiền | Ghi chú\n1.0 | Mua đất | Lô đất | 0\n2.0 | Tháo dỡ nhà cũ | Gói | 0\n3.0 | Định vị ranh đất | Gói | 1.0 | 5000000.0 | 5000000\n4.0 | Xin phép xây dựng | Hồ sơ | 0\n5.0 | Thuê nhà tạm thời | Tháng | 15000000.0 | 0\n6.0 | Tư vấn đầu tư | Gói\n7.0 | Di dời đồng hồ điện nước, đấu nối hố ga | Lần\n8.0 | Thiết kế xây dựng | m2 | 647.25 | 180000.0 | 116505000\n9.0 | Thẩm tra hồ sơ và Kiểm định (nếu có) | Lần | 0\n10.0 | Lập dự toán | Gói | 1.0 | 0\n11.0 | Bảo hiểm công trình xây dựng | % công trình | 0.0005 | 3161145000 | 1580572.5 | Chủ nhà mua\n12.0 | Hoạt động tâm linh (khởi công, xin phép) | Lần\n13.0 | Thuê bảo vệ, người nhà trông coi | Tháng | 2.0 | 0 | Bảo quản đồ nội thất, thiết bị 2 tháng cuối công trình\n14.0 | Khảo sát địa chất | Vị trí | 2.0\n15.0 | Khoan dẫn (tạo lỗ ép cọc) | md\n16.0 | Ép cọc | md | 480 | 275000.0 | 132000000 | 48 tim, 10m/tim (tạm tính)\n17.0 | Nhân công ép cọc | Tim | 49.0 | 900000.0 | 44100000\n18.0 | Ép cừ C chống sạt lở | md | 30.0 | 2400000.0 | 72000000 | 2 hệ giằng tường vây\n19.0 | Xây dựng phần thô | m2 | 810.55 | 3900000 | 3161145000 | Vật tư phần thô nhân công hoàn thiện\n20.0 | Hoàn thiện | m2 | 647.25 | 3200000 | 2071200000 | Đơn giá sẽ cập nhật sau khi nhận bản vẽ đầy đủ\n22.0 | Nội thất | phòng | 20.0 | 40000000.0 | 800000000 | Tạm tính nội thất 1 phòng (bao gồm nội thất gỗ, thiết bị)\n23.0 | Thang máy | Bộ | 1.0 | 340000000 | 340000000 | Thang máy 6 điểm dừng\nBộ tiêu chuẩn 320tr 4 điểm dừng \nThêm 1 điểm dừng tăng 10tr\n24.0 | Điểm dừng thang máy | Điểm | 6.0 | 15000000.0 | 90000000\n25.0 | ",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự trù ngân sách xây nhà"
+  },
+  {
+    "id": "bao-gia_Dự trù ngân sách xây nhà.xlsx_part2",
+    "source": "Dự trù ngân sách xây nhà",
+    "page": 2,
+    "content": "Dây điện 3P thang máy | Gói | 1.0 | 15000000.0 | 15000000\n26.0 | Phòng cháy chữa cháy | Gói | 1.0 | 450000000.0 | 450000000\n27.0 | Trợ Lý Xây Nhà | Tháng | 7.0 | 23980000.0 | 167860000\n28.0 | Công nghệ thông minh và an ninh | Gói | 1.0 | 0\n29.0 | Vườn và cảnh quan | Gói | 1.0 | 0\n30.0 | Quà cáp hàng xóm, bồi dưỡng abc, thợ thuyền | Lần | 10.0 | 2000000.0 | 20000000\n31.0 | Hoạt động tâm linh (bồi hoàn long mạch, cất nóc) | Lần | 0\n32.0 | Dịch vụ hoàn công | Hồ sơ | 1.0 | 70000000.0 | 70000000\n33.0 | Tổng vệ sinh công trình | Gói | 1.0 | 15000000.0 | 15000000\n34.0 | Hoạt động tâm linh (cúng nhập trạch) | 0\n35.0 | Hoàn thiện lề đường sau thi công do hư hỏng | m2 | 500000.0 | 0\n36.0 | Tô tường nhà hàng xóm 2 bên khi tháo dỡ nhà cũ | m2\n37.0 | Thiết bị điện lạnh, NLMT | Máy lạnh, máy nước nóng NLMT\n38.0 | Thiết bị điện tử | Tivi, loa, robot hút bụi,...\n39.0 | Thiết bị nhà bếp | Tủ lạnh, bếp từ, lò nướng,...\n40.0 | Phát sinh | 0.05 | 360010250\n7931400823\n[Sheet: m2 xây dựng_PA Full]\nSTT | HẠNG MỤC | KHỐI LƯỢNG\n(m2) | HỆ SỐ | DIỆN TÍCH\nPHẦN THÔ (m2) | HỆ SỐ | DIỆN TÍCH\nHOÀN THIỆN (m2) | HỆ SỐ | DIỆN TÍCH THIẾT KẾ (m2)\n1.0 | Móng | 128.0 | 0.5 | 64\n2.0 | Tầng hầm sau nhà | 55 | 2.0 | 110 | 0.7 | 38.5\n3.0 | Trệt | 110.0 | 1.0 | 110 | 1.0 | 110\n4.0 | Lửng | 71.5 | 1.0 | 71.5 | 1.0 | 71.5\n5.0 | Thông tầng tầng lửng | 38.5 | 0.5 | 19.25 | 0.5 | 19.25\n6.0 | Lầu 1 | 110 | 1.0 | 110 | 1.0 | 110\n7.0 | Lầu 2 | 110 | 1.0 | 110 | 1.0 | 110\n8.0 | Lầu 3 | 110 | 1.0 | 110 | 1.0 | 110\n9.0 | Sân thượng có mái che | 33 | 1.0 | 33 | 1.0 | 33\n10.0 | Sân thượng không mái che | 77 | 0.5 | 38.5 | 0.3 | 23.1\n11.0 | Mái | 33 | 0.5 | 16.5 | 0.5 | 16.5\n13.0 | Sân sau | 18 | 0.5 | 9 | 0.3 | 5.4\n14.0 | Hố pít thang máy | 4.4 | 2.0 | 8.8\nTổng cộng | 810.55 | 647.25 | 0\n[Sheet: Tổng hợp_PA 2 lầu]\nKHAI TOÁN NGÂN SÁCH XÂY NHÀ_PA 2 LẦU\nKHAI TOÁN NGÂN SÁCH XÂY NHÀ | 6083020873\nTrong đó\nSTT | Hạng mục | Diện tích | Đơn giá | Thành iền\n1.0 | M2 xây dựng phần thô | 579.55 | 3900000.0 | 2260245000\n2.0 | M2 phần",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự trù ngân sách xây nhà"
+  },
+  {
+    "id": "bao-gia_Dự trù ngân sách xây nhà.xlsx_part3",
+    "source": "Dự trù ngân sách xây nhà",
+    "page": 3,
+    "content": " hoàn thiện | 481.15 | 3200000.0 | 1539680000\n3.0 | M2 hoàn thiện giai đoạn 2 | 38.5 | 5100000.0 | 196350000\n4.0 | Chi phí khác | 2086745873\nBẢNG CHI TIẾT CÁC HẠNG MỤC\nSTT | Các loại chi phí | ĐVT | Số lượng | Đơn giá | Thành tiền | Ghi chú\n1.0 | Mua đất | Lô đất | 0\n2.0 | Tháo dỡ nhà cũ | Gói | 0\n3.0 | Định vị ranh đất | Gói | 1.0 | 5000000.0 | 5000000\n4.0 | Xin phép xây dựng | Hồ sơ | 0\n5.0 | Thuê nhà tạm thời | Tháng | 15000000.0 | 0\n6.0 | Tư vấn đầu tư | Gói\n7.0 | Di dời đồng hồ điện nước, đấu nối hố ga | Lần\n8.0 | Thiết kế xây dựng | m2 | 481.15 | 180000.0 | 86607000\n9.0 | Thẩm tra hồ sơ và Kiểm định (nếu có) | Lần | 0\n10.0 | Lập dự toán | Gói | 1.0 | 0\n11.0 | Bảo hiểm công trình xây dựng | % công trình | 0.0005 | 2260245000 | 1130122.5 | Chủ nhà mua\n12.0 | Hoạt động tâm linh (khởi công, xin phép) | Lần\n13.0 | Thuê bảo vệ, người nhà trông coi | Tháng | 2.0 | 0 | Bảo quản đồ nội thất, thiết bị 2 tháng cuối công trình\n14.0 | Khảo sát địa chất | Vị trí | 2.0\n15.0 | Khoan dẫn (tạo lỗ ép cọc) | md\n16.0 | Ép cọc | md | 480 | 275000.0 | 132000000 | 48 tim, 10m/tim (tạm tính)\n17.0 | Nhân công ép cọc | Tim | 48.0 | 900000.0 | 43200000\n18.0 | Ép cừ C chống sạt lở | md | 2400000.0 | 0 | 2 hệ giằng tường vây\n19.0 | Xây dựng phần thô | m2 | 579.55 | 3900000 | 2260245000 | Vật tư phần thô nhân công hoàn thiện\n20.0 | Hoàn thiện giai đoạn 1 (trước hoàn công) | m2 | 481.15 | 3200000 | 1539680000 | Đơn giá sẽ cập nhật sau khi nhận bản vẽ đầy đủ\n21.0 | Hoàn thiện giai đoạn 2 (sau hoàn công) | m2 | 38.5 | 5100000 | 196350000 | Tầng lửng\n22.0 | Nội thất | phòng | 12.0 | 40000000.0 | 480000000 | Tạm tính nội thất 1 phòng (bao gồm nội thất gỗ, thiết bị)\n23.0 | Thang máy | Bộ | 1.0 | 320000000 | 320000000 | Thang máy 6 điểm dừng\nBộ tiêu chuẩn 320tr 4 điểm dừng \nThêm 1 điểm dừng tăng 10tr\n24.0 | Điểm dừng thang máy | Điểm | 4.0 | 15000000.0 | 60000000\n25.0 | Dây điện 3P thang máy | Gói | 1.0 | 15000000.0 | 15000000\n26.0 | Phòng cháy chữa cháy | Gói | 1.0 | 450000000.0 | 450000000\n27.0 ",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự trù ngân sách xây nhà"
+  },
+  {
+    "id": "bao-gia_Dự trù ngân sách xây nhà.xlsx_part4",
+    "source": "Dự trù ngân sách xây nhà",
+    "page": 4,
+    "content": "| Trợ Lý Xây Nhà | Tháng | 5.0 | 23980000.0 | 119900000\n28.0 | Công nghệ thông minh và an ninh | Gói | 1.0 | 0\n29.0 | Vườn và cảnh quan | Gói | 1.0 | 0\n30.0 | Quà cáp hàng xóm, bồi dưỡng abc, thợ thuyền | Lần | 6.0 | 2000000.0 | 12000000\n31.0 | Hoạt động tâm linh (bồi hoàn long mạch, cất nóc) | Lần | 0\n32.0 | Hoàn công | Hồ sơ | 1.0 | 70000000.0 | 70000000\n33.0 | Chi phí \"xin phép đặc biệt\" | Lần | 1.0 | 0\n34.0 | Tổng vệ sinh công trình | Gói | 1.0 | 15000000.0 | 15000000\n35.0 | Hoạt động tâm linh (cúng nhập trạch) | 0\n36.0 | Hoàn thiện lề đường sau thi công do hư hỏng | m2 | 500000.0 | 0\n23.0 | Tô tường nhà hàng xóm 2 bên khi tháo dỡ nhà cũ | m2\n24.0 | Thiết bị điện lạnh, NLMT | Máy lạnh, máy nước nóng NLMT\n25.0 | Thiết bị điện tử | Tivi, loa, robot hút bụi,...\n26.0 | Thiết bị nhà bếp | Tủ lạnh, bếp từ, lò nướng,...\n27.0 | Phát sinh | 0.05 | 276908750\n6083020873\n[Sheet: m2 xây dựng_PA 2 lầu]\nSTT | HẠNG MỤC | KHỐI LƯỢNG\n(m2) | HỆ SỐ | DIỆN TÍCH\nPHẦN THÔ (m2) | HỆ SỐ | DIỆN TÍCH\nHOÀN THIỆN (m2) | HỆ SỐ | DIỆN TÍCH THIẾT KẾ (m2)\n1.0 | Móng | 128.0 | 0.5 | 64\n2.0 | Trệt | 110.0 | 1.0 | 110 | 1.0 | 110\n3.0 | Lửng | 71.5 | 1.0 | 71.5 | 1.0 | 71.5\n4.0 | Thông tầng tầng lửng | 38.5 | 0.5 | 19.25 | 0.5 | 19.25\n5.0 | Lầu 1 | 110 | 1.0 | 110 | 1.0 | 110\n6.0 | Lầu 2 | 110 | 1.0 | 110 | 1.0 | 110\n7.0 | Mái BTCT | 110 | 0.7 | 77 | 0.5 | 55\n8.0 | Sân sau | 18 | 0.5 | 9 | 0.3 | 5.4\n9.0 | Hố pít thang máy | 4.4 | 2.0 | 8.8\nTổng cộng | 579.55 | 481.15 | 0\n7000000.0\n4056850000",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Dự trù ngân sách xây nhà"
+  },
+  {
+    "id": "bao-gia_Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ).xlsx_part1",
+    "source": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)",
+    "page": 1,
+    "content": "[Sheet: Báo giá thi công]\nPHỤ LỤC HỢP ĐỒNG SỐ 1: BÁO GIÁ THI CÔNG\nSTT | Khu vực xây dựng | Diện tích khu vực xây dựng (m2) | Hệ số tính phí | Diện tích tính phí xây dựng (m2)\n1.0 | Móng cọc | 120.0 | 0.5 | 60\n2.0 | Tầng hầm/ bán hầm\n3.0 | Tầng trệt (Tầng 1) | 100.0 | 1.2 | 120\n4.0 | Sân trệt | 20.0 | 1.0 | 20\n5.0 | Tầng lửng (65% trệt) | 65 | 1.0 | 65\n6.0 | Tầng 2 | 100 | 1.0 | 100\n7.0 | Tầng 3 | 100 | 1.0 | 100\n8.0 | Tầng 4 | 100 | 1.0 | 100\n9.0 | Tầng 5 | 1.0 | 0\n10.0 | Sân thượng tầng 5 | 0.6 | 0\n11.0 | Ô trống các tầng lửng, 1, 2, 3,... | 30 | 0\n12.0 | Tum thang (30% tầng 4) | 30 | 1.0 | 30\n13.0 | Sân thượng tum thang (Giàn trang trí) | 70 | 0.7 | 49\n14.0 | Mái tum, seno tum | 30 | 0.5 | 15\n15.0 | Ban công tầng 2-3-4-5 | 18 | 0.7 | 12.6\n16.0 | Khác (hẻm nhỏ, nhiều tầng,...) | 0\nTổng cộng | 783 | 671.6\nĐơn giá | 999999.0\nThành tiền tạm tính | 671599328.4\n[Sheet: Đợt tạm ứng]\nPHỤ LỤC HỢP ĐỒNG SỐ 2: ĐỢT TẠM ỨNG\nĐợt | Nội dung | T-Toán | Số tiền\n% GTHĐ | VNĐ\n1.0 | Sau khi ký kết hợp đồng | 0.07\n2.0 | Sau khi bên B tập kết nhân lực, máy thi công và bổ sung đầy đủ hồ sơ khởi công | 0.03\n3.0 | Sau khi bên B đào đất và xây xong hố móng | 0.05\n4.0 | Sau khi đổ xong bê tông móng và sàn tầng hầm | 0.07\n5.0 | Sau khi đổ xong bê tông tầng trệt | 0.07\n6.0 | Sau khi đổ xong bê tông tầng lửng | 0.07\n7.0 | Sau khi đổ xong bê tông tầng 1 | 0.07\n8.0 | Sau khi đổ xong bê tông tầng 2 | 0.07\n9.0 | Sau khi đổ xong bê tông tầng 3 | 0.07\n10.0 | Sau khi đổ xong bê tông tầng 4 | 0.07\n11.0 | Sau khi đổ xong bê tông tầng sân thượng | 0.07\n12.0 | Sau khi bên B đổ cột, xây tường, đổ xong sàn mái | 0.05\n13.0 | Sau khi bên B hoàn thiện 80% công tác xây tất cả tường trong công trình và bắt đầu công tác tô tường | 0.06\n14.0 | Sau khi bên B hoàn thiện 80% công tác tô tất cả tường trong công trình và bắt đầu công tác ốp lót gạch | 0.06\n15.0 | Sau khi bên B hoàn thành công tác ốp lót và tiến hành công tác bả matíc sơn nước | 0.05\n16.0 | Sau khi bên B hoàn thành công tác sơn nước và tiến hành lắp thi",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)"
+  },
+  {
+    "id": "bao-gia_Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ).xlsx_part2",
+    "source": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)",
+    "page": 2,
+    "content": "ết bị điện nước. | 0.05\n17.0 | Sau khi bên B hoàn thành và bàn giao công trình theo hợp đồng đã kí. | 0.05\n18.0 | Sau khi kết thúc thời gian bảo hành (12 tháng) | 0.02\nTỔNG TIỀN | 1.0\n[Sheet: Vật liệu]\nPHỤ LỤC HỢP ĐỒNG SỐ 3: CHI TIẾT VẬT TƯ, CHỦNG LOẠI\nSTT | VẬT TƯ | CHỦNG LOẠI\nĐủ tốt | Đề xuất nếu 'buộc' phải giảm ngân sách\n1.0 | Thép xây dựng | Việt Nhật CB3, CB4 (Theo thiết kế)\n2.0 | Xi măng đổ bê tông | PCB40 - Insee\n3.0 | Xi măng xây tường | PCB40 - Insee hoặc Hà Tiên\n4.0 | Xi măng tô/trát tường | PCB30 - Insee hoặc Hà Tiên (Xi măng mác cao dễ bị nứt)\n5.0 | Bê tông thương phẩm | Bê tông ...\n6.0 | Ván khuôn | Ván gỗ phủ phim\n7.0 | Cát trộn bê tông tay | Cát vàng bê tông\n8.0 | Cát xây, trát tường | Cát vàng bê tông\n9.0 | Đá 1x2cm, 4x6cm | Đá xám Đồng Nai\n10.0 | Gạch ống: 8x8x18cm, gạch đinh: 4x8x18cm | Tynel Đồng Nai hoặc Tynel Bình Dương\n11.0 | Gạch cháy cho công tác xây Coffa móng, dầm móng | Đồng Nai hoặc Bình Dương\n12.0 | Dây cáp điện chiếu sáng | Cáp Cadivi\n13.0 | Cáp mạng Cat6 cho Camera, Wifi, Tivi | Commscope\n14.0 | Ống điện PVC cho điện trần, tường | Vanlock/MPE\n15.0 | Ống điện ruột gà thả điểm đèn chiếu sáng | Vanlock/MPE\n16.0 | Hệ thống thoát nước loại dày cho phần âm dưới đất, loại trung cho phần nổi | PVC Bình Minh, PN >= 5,6\n17.0 | Hệ thống cấp nước lạnh | PPR Bình Minh, PN >= 10\n18.0 | Hệ thống cấp nước nóng | PPR Bình Minh\n19.0 | Hệ thống cấp nước nóng đi nổi trên mái | PP-R Vesbo kháng khuẩn chống tia cực tím\n20.0 | Sika Latex phụ gia liên kết cấu kiện | Sika\n21.0 | Chống thấm: Sân thượng, ban công, WC, bồn hoa, mái.. | Smartflex\n22.0 | Cục kê bê tông đúc sẵn – sử dụng cho cột, dầm, sàn, cầu thang.\n23.0 | Dây cáp điện (cấp nguồn & chiếu sáng) | Cáp Cadivi\n24.0 | Cáp mạng Cat6 cho Camera, Wifi, Tivi | Commscope\n25.0 | Ống điện PVC cho điện trần, tường | Nanoco/Vanlock\n26.0 | Ống điện ruột gà thả điểm đèn chiếu sáng | Nanoco/Vanlock\n[Sheet: Hạng mục & biện pháp thi công]\nPHỤ LỤC HỢP ĐỒNG SỐ 4: PHẠM VI CÔNG VIỆC\nSTT | HẠNG MỤC THI CÔNG | GHI CHÚ | T",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)"
+  },
+  {
+    "id": "bao-gia_Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ).xlsx_part3",
+    "source": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)",
+    "page": 3,
+    "content": "HAM KHẢO\nA | CÔNG TÁC CHUẨN BỊ\n1.0 | Tổ chức công trường, làm lán trại cho công nhân\n2.0 | Vệ sinh mặt bằng thi công, định vị tim, móng\n3.0 | Công tác giàn giáo bao che công trình | Tuỳ cân nhắc | https://www.baohosanboo.com/wp-content/uploads/2025/02/luoi-cuoc-bao-che-bui-1.jpg\nB | PHẦN MÓNG\n4.0 | Đào móng\n5.0 | Ép cọc M... | Không bao gồm chi phí xử lý mặt bằng, làm đường công vụ, xử lý móng công trình cũ, dị vật trong nền đất | https://betonghoangso.com/upload/elfinder/Quy%20tr%C3%ACnh%20%C3%A9p%20c%E1%BB%8Dc%20th%E1%BB%AD.png\n6.0 | Đổ bê tông neo đài cọc, M..., theo bản vẽ thiết kế | Cọc tròn thì cần đổ bê tông lòng cọc, cọc vuông thì không cần | - Thi công: https://i.ytimg.com/vi/cR9wc8VK3yU/hqdefault.jpg\n - Thành phẩm: https://xaydungmoctrang.vn/wp-content/uploads/2025/06/mong-coc-dai-cao-va-dai-thap-1.webp\n7.0 | Đổ bê tông lót dày 100mm, M150, bao gồm trải tấm bạt sọc hoặc nilong đen | https://betonghoangso.com/upload/elfinder/hinh-anh-ve-be-tong-lot.jpg\n8.0 | Gia công và lắp đặt cốt thép móng | https://xaydungnenmong.com/wp-content/uploads/2021/09/dai-mong-la-gi-dai-coc-la-gi.jpg\n9.0 | Lắp đặt ván khuôn hoặc xây tường biện pháp dày 100mm | https://xaydunghuyhoang.vn/wp-content/uploads/2019/11/Cach-tinh-don-gia-dich-vu-xay-nha-quan-6-tron-goi-don-gian-nhat-2.jpg\n10.0 | Cung cấp mút xốp PE/ván/xốp ngăn cách giáp ranh giữa lớp bê tông và nhà hiện trạng --> đổ bê tông không kết dính gây ảnh hưởng kết cấu với nhà hiện trạng | https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTheIWxETKcnINBhITFxnTyZgY-x2Ru3Xw3ww&s\n11.0 | Đổ bê tông tươi móng, dầm móng M..., R28, B8 | Đã bao gồm ca bơm | https://kientructayho.vn/wp-content/uploads/2020/06/nen-do-be-tong-tuoi-hay-be-tong-tron-tay.jpg\n12.0 | Thi công Bể tự hoại (BTH)\n - Đổ bê tông đáy, vách bao bể tự hoại bằng bê tông, kết cấu liên kế theo thiết kế\n - Xây tường vách ngăn bể tự hoại bằng gạch đinh 4x8x18cm, M75\n - Tô tường, M75\n - Chống thấm hồ dầu + Sika latex\n - Đổ bê tông nắp đan, M250, thép D10\n - Treo bể tự h",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)"
+  },
+  {
+    "id": "bao-gia_Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ).xlsx_part4",
+    "source": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)",
+    "page": 4,
+    "content": "oại vào dầm, móng | Xây gạch đinh cũng được | https://enic.vn/wp-content/uploads/2023/12/Doi-voi-be-xay-bang-gach-nung-768x480.jpg\n13.0 | Thi công hố gas thoát nước\n - Đổ bê tông đáy hố ga, theo bản vẽ thiết kế\n - Xây tường gạch đinh 4x8x18cm, M75\n - Chống thấm hồ dầu + Sika latex\n - Tô tường, M75\n - Đổ bê tông nắp đan, M250, thép D10 | Xây gạch đinh cũng được | https://thongcongnghetdanang.com/wp-content/uploads/2021/07/khoang-cach-ho-ga-1.jpg\n14.0 | Thi công hố pit thang máy\n - Đổ bê tông đáy, vách hố pit thang máy, theo bản vẽ thiết kế\n - Lắp đặt ván khuôn hoặc xây tường biện pháp dày 100mm\n - Gia công lắp đặt cốt thép đáy và vách hố pit\n - Chống thấm hồ dầu + Sika latex | https://thangmaygiatot.com/wp-content/uploads/2021/10/ho-pit.jpg?v=1634957342\n15.0 | Lấp móng bằng đất kết hợp xà bần sạch, đầm chặt bằng đầm dùi kết hợp long nền | https://sben.vn/wp-content/uploads/2023/03/xa-ban-san-lap-mat-bang-compressed.jpg\n16.0 | Trải đá mi bụi dày 100mm, long nước đầm chặt bằng máy đầm bàn hoặc đầm cóc | https://media.loveitopcdn.com/30694/da-mi-bui-1.jpg\n17.0 | Phun thuốc xử lý chống mối termize 200SC | Tuỳ điều kiện kinh tế cân nhắc | https://khutrungxanh.com/wp-content/uploads/2021/01/diet-moi-truoc-khi-xay-nha.jpg\n18.0 | Trải tấm bạt sọc hoặc tấm nilong đen chống mất nước bê tông sàn trệt | https://vatlieuphutro.com/upload/elfinder/bat-soc-3-mau-lot-san-do-be-tong.jpg\n19.0 | Gia công và lắp đặt thép sàn trệt, thép D8 @200 | Tuỳ điều kiện kinh tế cân nhắc | https://www.giangiaodaianphat.com/uploads/news/2020_06/cach-bo-tri-thep-san-va-thi-cong-thep-san_1.jpg\n20.0 | Đổ bê tông tươi sàn trệt theo mác thiết kế | Đã bao gồm ca bơm | https://betonghoangcat.com/wp-content/uploads/2022/03/maxresdefault-300x169.jpg\n21.0 | Trải bao bố/bạt, tưới nước bảo dưỡng bê tông móng, sàn trệt sau khi đổ bê tông. Tưới bảo dưỡng liên tiếp 3 ngày | https://baobo.com.vn/watermark/804x804/1/upload/product/gia-bao-bo-bao-duong-be-tong10130.jpg\n22.0 | Sản xuất lắp dựng cốt thép, coffa và đổ bê",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)"
+  },
+  {
+    "id": "bao-gia_Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ).xlsx_part5",
+    "source": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)",
+    "page": 5,
+    "content": " tông vách hầm đối với công trình có tầng hầm (Vách hầm cao đến đáy dầm tầng trệt). | Coffa phủ phim nếu không tô vách, coffa sắt nếu tô vách | https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEifAt_Y5MhSC-Vc-R_ElwLkBxEVenkANd6S4btctVYqIZIh0jZb7oIlwNPrHFRjy3BYagrG8TKqyBeNXEgNIFCRI3m4-lnPz7FZICPT4f_HR4TZ4LJ_c1R2AjLORskmtX_8qroyXOKn97I/s1600/coppha+vach+5.jpg\nC | PHẦN THÂN\n23.0 | Gia công và lắp đặt cốt thép cột | Bẻ cổ chai vị trí sắt biên cột | https://cokhitudongchiho.com/wp-content/uploads/2018/03/thi-cong-cong-trinh.jpg\n24.0 | Gia công và lắp đặt ván khuôn cột | https://copphaquynhon.net/wp-content/uploads/2023/05/coppha-quy-nhon.jpg\n25.0 | Đổ bê tông cột bằng thủ công, M... (có lấy mẫu thí nghiệm)\nTỷ lệ trộn 1 bao xi, 4 xô cát, 6 xô đá | Chỉ quan tâm mác bê tông. Không quan tâm tỷ lệ trộn thế nào | https://maybedaisatcaheoviet.com/wp-content/uploads/2019/12/do-be-tong-cot-khong-bi-ro-11.jpg\n26.0 | Xây tường bao bằng gạch ống 8x8x18cm dày 100mm, đổ giằng tường BTCT, thép D10, vữa M75, khoan cấy râu thép D6 | Có điều kiện thì có thể cân nhắc xây tường 200 chống ồn, chống nóng | https://dichvusuanha24h.com/uploads/dich-vu/2023_01/tien-hanh-to-tuong.jpg\n27.0 | Tô tường trong & ngoài nhà, M75 (có lấy mẫu thí nghiệm) | Chỉ quan tâm mác hồ. Không quan tâm tỷ lệ trộn thế nào | https://vlxdchauthuanphat.com/wp-content/uploads/2025/05/cat-xay-to-3-1024x395.png\n28.0 | Gia công và lắp đặt cốt thép dầm, sàn, cầu thang | https://tapchinhadep.net/wp-content/uploads/2019/09/thi-cong-thang-2-1024x765.jpg\n29.0 | Gia công và lắp đặt ván khuôn dầm, sàn, cầu thang | https://www.giangiaodaianphat.com/uploads/news/2020_05/yeu-cau-ky-thuat-thi-cong-cop-pha-van-khuon-gian-giao-2.jpg\n30.0 | Cung cấp mút xốp PE/ván/xốp ngăn cách giáp ranh giữa lớp bê tông và nhà hiện trạng --> đổ bê tông không kết dính với nhà bên cạnh | https://hoanglampvc.com/wp-content/uploads/2018/07/xop-pe-foam-2.png\n31.0 | Đổ bê tông tươi dầm, sàn, cầu thang, đá 1x2cm, M..., R7. Chống giàn giáo 2.5 tầng đối",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)"
+  },
+  {
+    "id": "bao-gia_Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ).xlsx_part6",
+    "source": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)",
+    "page": 6,
+    "content": " với sàn đổ bê tông | - Đã bao gồm ca bơm\n- Trường hợp đổ bê tông thủ công vẫn lấy mẫu đi thí nghiệm | https://vatlieuxaydung.org.vn/Upload/48/Nam_2022/Thang_8/Ngay_24/tieu%20chuan%20ve%20tong%20tuoi.jpg\n32.0 | Đổ bê tông tươi dầm, sàn mái, đá 1x2cm, M..., R14\n33.0 | Cung cấp con kê bê tông tạo lớp bê tông bảo vệ | https://file.hstatic.net/200000530227/file/1d_9da5b810267f4fcc964e01875a3ef46f_grande.jpg\n34.0 | Cung cấp xốp lắp đặt sàn âm (nếu có) | https://file.hstatic.net/1000375557/file/san_xop_vuot_nhip_c06ba1986f5342faa3b704efd6a13c43_grande.jpg\n35.0 | Đóng lưới chống nứt các vị trí đường ống điện, cấp thoát nước, lanh tô, các vị trí bê tông tiếp giáp với tường gạch… | https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGBpj_iwXAOe3XFBnETauedc1w6NiokU1BhQ&s\n36.0 | Xây tường vách ngăn bằng gạch ống 8x8x18cm dày 100mm, M75, khoan cấy râu thép D6 | Phải có phụ gia nếu khoan cấy | https://oct.vn/keo-cay-thep-sika/\n37.0 | Xây tường gạch đinh 4x8x18 tại các vị trí cửa đi, cửa sổ và các vị trí chịu lực cho các vật dụng nội thất | https://scontent.fsgn14-1.fna.fbcdn.net/v/t39.30808-6/490677279_1231905768942968_8260697674114314002_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=CB689Oe68-cQ7kNvwEERwZU&_nc_oc=AdkEDIe23sXOu8Q_FZHzedvuiFQtGS2HsFMYvprutfoKuwuyLmze1uX61F606YCrKj0&_nc_zt=23&_nc_ht=scontent.fsgn14-1.fna&_nc_gid=w4xLVdVzuBRdQEk5chvsXQ&oh=00_Aflb0b3KyDZCYmr088wJsSvgjZ6fb8ZlYzy4vjvJoNDDaA&oe=694C36F2\n38.0 | Xây bậc cầu thang gạch đinh 4x8x18, không tô mặt bậc cầu thang | https://i.ytimg.com/vi/f_NJFNCWnJM/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCmGldQR_ozWqPiN9OngnZochDbuQ\n39.0 | Đổ BTCT bổ trụ với tường dài hơn 5m hoặc cao hơn 4m, đà lanh tô, M250, đá 1x2cm | https://kientruc999.vn/wp-content/uploads/2017/07/bo-tru-tuong-xay.jpg\n40.0 | Tô trần ban công, M75 (nếu có) | https://i.ytimg.com/vi/gbh3kT7Ry78/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCLPPjt1dO4ZWct6kKClb1JzqwFzw\n41.0 | Đổ BTCT bồn",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)"
+  },
+  {
+    "id": "bao-gia_Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ).xlsx_part7",
+    "source": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)",
+    "page": 7,
+    "content": " hoa bằng thủ công, M250, đá 1x2cm\n42.0 | Đổ gờ BTCT cao 200-...mm chống thấm cho các vị trí WC, ban công, sân thượng, sàn mái, hộp gain.. (theo thiết kế), M250, đá 1x2cm | Lưu ý không cần tô gờ bê tông | https://chongthamvitec.vn/storage/7b/29/7b29krbfhoguwtn2pemaksemofrp_son-chong-tham-nha-ve-sinh-2.jpg\n43.0 | Đổ BTCT giằng tường kết thúc, M250, đá 1x2cm | https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyLqJlB2W3o8T1PdDqge0VzVqFkUewGka2tg&s\n44.0 | Trát gờ chỉ ngắt nước, M75 | https://genta.vn/wp-content/uploads/2021/05/ung-dung-nep-chi-ngat-nuoc-agl3-6-2.jpg\n45.0 | Cán nền dày 30-50mm, M75 | https://bizweb.dktcdn.net/100/183/149/files/can-nen-la-gi1.jpg?v=1624852676173\n46.0 | Trải bao bố/bạt, tưới nước bảo dưỡng bê tông dầm, sàn, cầu thang sau khi đổ bê tông. Tưới bảo dưỡng liên tiếp 3 ngày\n47.0 | Tưới nước bảo dưỡng tường xây, tô liên tiếp 3 ngày\nD | PHẦN CHỐNG THẤM\n48.0 | Chống thấm sàn mái - Quét 4 lớp SIKATOP 540 SEALvới lưới thủy tinh toàn phần, định mức 3kg/m². | https://file.hstatic.net/1000375557/file/chong-tham-san-mai-1_d2c36a30e2454a8bb17c7fc756c49c22_grande.jpg\n49.0 | Chống thấm ban công, sân thượng, bồn hoa - Quét 3 lớp\n SIKATOP 540 SEAL, định mức 2,2kg/m², gia cố góc chân tường bằng smartflex và lưới polyester\n50.0 | Chống thấm hố pit thang máy - Quét 3 lớp SIKATOP 540 SEAL, định mức 2,2kg/m², gia cố góc chân tường bằng smartflex và lưới polyester\n51.0 | Chống thấm WC, khu giặt phơi - Quét 2 lớp SIKATOP 540 SEAL, định mức 1,5kg/m², gia cố góc chân tường bằng smartflex và lưới polyester | https://enhome.vn/wp-content/uploads/2021/07/can-nen-la-gi-1.jpg\n52.0 | Đổ Sikagrout cổ ống xuyên sàn:\n - Đục quanh cổ ống\n - Vệ sinh bề mặt\n - Lắp đặt cốt pha, chèn vữa bịt kín\n - Đổ Sikagrout không co ngót fill kín quanh cổ ống\n - Sika latex TH liên kết lớp bê tông mới cũ\n - Thanh trương nở Hyperstop | https://chongthamthanhtin.com/wp-content/uploads/2020/01/quy-trinh-chong-tham-co-ong.jpg\n53.0 | Ngâm nước kiểm tra toàn bộ sàn chống thấm 2 ngày liên tiếp | h",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)"
+  },
+  {
+    "id": "bao-gia_Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ).xlsx_part8",
+    "source": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)",
+    "page": 8,
+    "content": "ttps://chongthamminhnhat.com/Data/upload/images/chong%20tham%20san%20mai%203.jpg\nE | PHẦN NHÂN CÔNG HOÀN THIỆN\n54.0 | Cung cấp vật tư xi măng, nêm cân bằng phục vụ cho công tác ốp lát gạch | Không bao gồm vật tư keo dán gạch | https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBysJjjjS9VpehaXZlRUW1u1FKoxqw81XL5w&s\n54.0 | Nhân công lát gạch, chà joint sàn các lầu & ban công, len chân tường gạch | Không bao gồm nhân công ốp gạch mặt tiền và các vách tường trang trí, bậc cầu thang | https://www.vn.weber/files/vn/styles/1920x1080_resize/public/pictures/2023-07/keo-cha-ron-tot-nhat-1a.jpeg.webp?itok=ythm1V0F\n55.0 | Nhân công ốp lát gạch, chà joint  WC\n56.0 | Nhân công sơn nước (thi công 2 lớp bả Matic, 1 lớp sơn lót, 2 lớp sơn phủ đảm bảo kỹ thuật; kiểm tra độ ẩm và vệ sinh bề mặt trước khi bả bột, sơn nước) | Rọi đèn khi xả tường\n57.0 | Vật tư phụ sơn nước (các dụng cụ cọ, rulo, giấy nhám…) không bao gồm sơn\n58.0 | Không bao gồm nhân công sơn hiệu ứng, sơn gấm, sơn trang trí\nF | PHẦN ĐIỆN - ĐIỆN NHẸ\n59.0 | Cung cấp vật tư điện - điện nhẹ: ống cứng, đế âm, ruột gà, dây điện, cáp mạng Cat6 và vật tư phụ toàn nhà (theo thiết kế) | Không bao gồm vật tư tủ điện\n60.0 | Cung cấp vật tư cho hệ thống điện 3P, điện 3P thang máy\n61.0 | Cung cấp và lắp đặt hệ thống tiếp địa | Không bao gồm vật tư và nhân công hệ thống chống sét\n62.0 | Nhân công lắp đặt hệ thống điện âm tường - trần: ống điện, ruột gà, đế âm tường, box điện, tủ điện tầng, kéo dây điện cho công tắc, ổ cắm, đèn chiếu sáng..v.v.. (theo hồ sơ thiết kế) | Không bao gồm vật tư và nhân công hệ thống điện lạnh, hệ thống hút mùi, hệ thống thiết bị camera\n63.0 | Nhân công lắp đặt hệ thống điện nhẹ âm tường - trần: ống điện, box điện, cáp mạng Cat6 cho Tivi, Wifi, Camera (theo hồ sơ thiết kế) | Không bao gồm nhân công kéo dây cáp quang. Vật tư Bên A cung cấp\n64.0 | Nhân công lắp đặt thiết bị như: công tắc, ổ cắm, đèn chiếu sáng, MCB các tủ tầng (không bao gồm đèn chùm, quạt, đèn trang trí thả trần) | Không bao gồm nhân côn",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)"
+  },
+  {
+    "id": "bao-gia_Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ).xlsx_part9",
+    "source": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)",
+    "page": 9,
+    "content": "g lắp đặt hệ thiết bị điện thông minh và các thiết bị bếp\n65.0 | Nhân công lắp đặt đèn led dây như: hộc đèn, bậc tam cấp, đèn led âm trần | Không bao gồm nhân công lắp đặt led bậc cầu thang và led tủ trang trí nội thất\nG | PHẦN CẤP THOÁT NƯỚC\n66.0 | Cung cấp vật tư thoát nước: ống thoát nước PVC, bao gồm vật tư phụ toàn nhà. Sử dụng lơi 45° thay vì co 90° các vị trí vuông góc\n67.0 | Cung cấp vật tư cấp nước: ống cấp nước lạnh & nóng PPR cho toàn nhà, bao gồm vật tư phụ toàn nhà (theo thiết kế)\n68.0 | Nhân công lắp đặt hệ thống cấp thoát nước phần ngầm: ống thoát PVC, ống cấp PPR. Bao gồm đấu nối hệ thống thoát nước thải từ trong nhà ra hố ga thành phố (nhà thầu chủ động làm việc với dịch vụ công địa phương)\n69.0 | Nhân công lắp đặt hệ thống cấp thoát nước âm tường - trần: ống thoát PVC, ống cấp PPR\n70.0 | Nhân công lắp đặt: máy bơm, bồn nước, thiết bị vệ sinh, vòi nước, chậu rửa chén + vòi | Không bao gồm nhân công lắp đặt TBVS cao cấp, máy NLMT + vật tư phụ\nNguyên tắc đấu nối hệ thống thoát nước:\n - Nước thoát tầng trệt không đấu nối chung với thoát nước các tầng. \n - Thoát nước mưa, ban công không đấu nối chung với thoát nước sinh hoạt.\n - Thoát bếp đi riêng 1 đường ống \n - Thoát nước sinh hoạt và lavabo đường ống 90\n - Lắp đặt bể tách mỡ (nếu có)\nCấp, thoát nước trên mặt dầm, móng tầng trệt. Trường hợp cần đi ống nước xuyên dầm phải báo trước cho chủ đầu tư làm việc lại với thiết kế. Khi đi xuyên dầm phải tăng cường thép chỗ ống xuyên dầm.\nH | PHẦN SÂN VƯỜN\n71.0 | Đào móng\n72.0 | Ép cọc ly tâm D..., M... | Không bao gồm chi phí xử lý mặt bằng, làm đường công vụ, xử lý móng công trình cũ, dị vật trong nền đất\n73.0 | Đổ bê tông neo đài cọc, M..., theo bản vẽ thiết kế\n74.0 | Đổ bê tông lót móng, đà kiềng dày 100mm, M150, bao gồm trải tấm bạt sọc hoặc nilong đen\n75.0 | Gia công và lắp đặt cốt thép móng, đà kiềng\n76.0 | Lắp đặt ván khuôn hoặc xây tường biện pháp dày 100mm\n77.0 | Đổ bê tông thủ công móng, đà kiềng M250, R28\n78.0 | Xây tường chắn đất dày 200mm bằng gạch",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)"
+  },
+  {
+    "id": "bao-gia_Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ).xlsx_part10",
+    "source": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)",
+    "page": 10,
+    "content": " đinh, M75\n79.0 | Gia công và lắp đặt cốt thép cột\n80.0 | Gia công và lắp đặt ván khuôn cột\n81.0 | Đổ bê tông cột bằng thủ công, M250\n82.0 | Xây tường bằng gạch ống 8x8x18cm, vữa M75, khoan cấy râu\n thép D6\n83.0 | Xây tường bồn hoa bằng gạch đinh 4x8x18cm, vữa M75\n84.0 | Tô tường, M75\n85.0 | Đóng lưới chống nứt các vị trí đường ống điện, cấp thoát nước, các vị trí bê tông tiếp giáp với tường gạch…\n86.0 | Đổ BTCT giằng tường kết thúc, M250, đá 1x2cm\n87.0 | Trải tấm bạt sọc hoặc tấm nilong đen chống mất nước bê tông sàn sân vườn\n88.0 | Gia công và lắp đặt thép sàn sân vườn, thép D8 @200\n89.0 | Đổ bê tông thủ công sàn sân vườn, M250, R28\n90.0 | Cán nền dày 30-50mm, M75\n91.0 | Cung cấp vật tư điện: ống cứng, ruột gà, dây điện và vật tư phụ (theo thiết kế)\n92.0 | Cung cấp vật tư cấp nước: ống cấp nước lạnh PPR cho vòi nước, hệ thống tưới cây, bao gồm vật tư phụ (theo thiết kế)\n93.0 | Nhân công lắp đặt hệ thống điện âm tường - sàn: ống điện, ruột gà, box điện, kéo dây điện cho đèn chiếu sáng..v.v.. (theo hồ sơ thiết kế)\n94.0 | Nhân công lắp đặt hệ thống cấp nước âm tường - sàn: ống cấp PPR\n95.0 | Nhân công lắp đặt thiết bị như: đèn chiếu sáng, đèn trang trí gắn tường, đèn ghim cỏ, vòi nước\n96.0 | Nhân công lát gạch nền sân, len chân tường | Không bao gồm nhân công ốp gạch vách tường, ốp gạch cổng\nI | CÔNG TÁC, HẠNG MỤC KHÁC CHƯA BIẾT ĐƯA VÀO ĐÂU\n97.0 | Không bao gồm tháo dỡ hiện trạng\n98.0 | Dọn dẹp vệ sinh công trình hằng ngày. Đổ xà bần các hạng mục công việc của đội thợ hồ, điện nước, sơn nước. Xà bần các hạng mục hoàn thiện như đá, cửa, kính, thạch cao,... do CĐT chịu chi phí (trường hợp không phải công việc của nhà thầu chính phụ trách)\n99.0 | Không bao gồm định vị trắc đạt ranh mốc đất theo sổ đỏ\n100.0 | Không bao gồm chi phí pháp lý với chính quyền\n101.0 | Không bao gồm tháo dỡ cấu kiện ngầm phần móng\n102.0 | Không bao gồm vô đất trồng cây\n103.0 | Đôn nền khối nhà chính bao gồm:\n - Xây tường bó nền bằng gạch đinh, dày 200mm, M75\n - Vật tư cát/ đất san lấp\n - Nhân c",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)"
+  },
+  {
+    "id": "bao-gia_Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ).xlsx_part11",
+    "source": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)",
+    "page": 11,
+    "content": "ông kết hợp ca máy san lấp, đầm chặt\n104.0 | Điện nước tường rào hiện trạng\n - Dây điện Cadivi\n - Ống cấp nước PPR D20 PN10\n - Ống điện, ruột gà\n - Cắt đục, tô trám\n - Đóng lưới chống nứt\n - Nhân công thi công cấp nguồn đèn, cổng tự động, cấp nước vòi nước\n105.0 | Vận chuyển xà bần ra khỏi công trình (thuộc phạm vi của nhà thầu)\n106.0 | Không bao gồm vệ sinh công nghiệp\n107.0 | Cung cấp vật tư và nhân công xử lý chống thấm khe giữa 2 nhà (nếu có)\n108.0 | Chi phí điện nước sản xuất\n[Sheet: Hệ số tính phí]\nKHU VỰC THI CÔNG | HỆ SỐ TÍNH PHÍ | GHI CHÚ\nHầm\n /bán hầm | Độ sâu từ 1m - 1.3m so với code vỉa hè | 1.5\nĐộ sâu từ 1.3m - 1.7m so với code vỉa hè | 1.75\nĐộ sâu từ 1.7m - 2.0m so với code vỉa hè | 2.0\nĐộ sâu từ 2m trở lên so với code vỉa hè | 2.4\nMóng | Móng đơn | 0.3\nMóng băng 1 phương/ 2 phương | 50% - 70%\nMóng của công trình thi công móng cọc | 0.5\nSân trước \n / sân sau | Diện tích dưới 10m2 | 1.0 | Tường sân cao 2,6m, có trụ cổng, có đèn trang trí\nDiện tích 10m2 - 20m2 | 0.7\nDiện tích trên 20m2 | 0.5\nTầng sinh hoạt | Tầng trệt - Đan sắt đổ bê tông nền | 1.2 | Khu nền đất yếu, nhà xe\nTầng trệt - Nền bằng xà bần + cát san lấp | 1.0\nCác tầng lầu | 1.0\nBan công \nTrống mặt tiền / Xây 30% mặt tiền \n/ Xây trên 50% mặt tiền | 70% - 100% | Bao gồm vật tư chống thấm, tùy độ cầu kì mặt tiền\nSân thượng - Không có lam trang trí | 0.6 | Bao gồm vật tư chống thấm, xây tường bao cao 1m\nSân thượng - Có lam trang trí | 0.7\nTầng mái | Mái tôn (toàn bộ xà gồ sắt hộp và tôn lợp) | 0.3 | Tính theo mặt nghiêng, bao gồm máng xối\nMái ngói kèo sắt (hệ khung kèo và ngói lợp) | 0.7\nMái ngói kèo thép / bê tông cốt thép | 70% - 100% | Bao gồm vật tư chống thấm, làm gờ bê tông 10cm\nMái bê tông cốt thép | 0.5\nXây tường cao 1m | 0.7\nÔ trống trong nhà | Diện tích ≤ 8m² | 1.0 | Có dầm giáp vòng, xây tường trên dầm\nDiện tích lớn hơn 8m² đến 15m² | 0.7\nDiện tích lớn hơn 15m² | 0.5",
+    "keywords": [
+      "báo giá",
+      "dự toán",
+      "chi phí",
+      "ngân sách",
+      "phát sinh",
+      "đơn giá",
+      "vật tư",
+      "thanh toán"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Phụ lục hợp đồng (Lấy báo giá xong đưa vào phụ lục HĐ)"
+  },
+  {
+    "id": "bao-gia_nhom_mua_part1",
+    "source": "Nhóm mua",
+    "page": 1,
+    "content": "[Sheet: Trang tính1]\nSTT | TÊN + 3 SỐ ĐUÔI ĐT | LOẠI HÌNH | THỜI GIAN CẦN | XPXD/HOÀN CÔNG | NHÀ THẦU CHÍNH, NHÀ THẦU PHỤ | VẬT LIỆU | KIM KHÍ ĐIỆN MÁY | KHÁC\nTHIẾT KẾ | XÂY DỰNG | TRỢ LÝ XÂY NHÀ | NỘI THẤT | PCCC | THANG MÁY | CỬA NHÔM KÍNH | CỬA COMPOSITE | CỬA CUỐN | SẮT TRANG TRÍ | ĐÁ HOA CƯƠNG | THẠCH CAO | RÈM | SMART HOME | LIGHTING | GẠCH | THIẾT BỊ VỆ SINH | SƠN NƯỚC | THIẾT BỊ ĐIỆN, NƯỚC | MÁY LẠNH | TỦ LẠNH | BẾP | MÁY GIẶT/MÁY SẤY | MÁY NƯỚC NÓNG\n1.0 | Thái 230 | NHÀ Ở | 2026-01-01 00:00:00 | True | 80m2, 1 trệt 3 lầu | True | True | True | True\n2027-01-01 00:00:00 | 200m2, 4 lầu | 12 cửa đi, 20 cửa sổ, 5 vách kính | 12 bộ | 1 bộ | 60m lan can cầu thang, 26m ban công, 1 bộ cổng chính | 200m cầu thang, ngạch cửa, bếp | 320m2 | 12 cửa đi, 20 cửa sổ | 400m2 nền, 100m2 tường | 6 phòng | 1280m2 | True | 6 cái | 1 cái 750L | Bếp gas điện tử 2 lò | 1 giặt, 1 sấy | NLMT\n2.0",
+    "keywords": [
+      "nhóm mua",
+      "vật tư",
+      "giá",
+      "đơn giá",
+      "mua chung"
+    ],
+    "images": [],
+    "_topic": "bao-gia",
+    "_section": "Nhóm mua"
+  }
+]
